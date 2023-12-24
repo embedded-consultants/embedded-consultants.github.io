@@ -1,4 +1,5 @@
 ######################## default configuration ####################
+
 # The base URL of your site (required). This will be prepended to all relative URLs.
 baseURL = "https://www.embedded-consultants.com"
 # Title of your website (required).
