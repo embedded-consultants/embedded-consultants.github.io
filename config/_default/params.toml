@@ -56,10 +56,10 @@ show_categories = true
 # seo meta data for OpenGraph / Twitter Card
 # seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
 [metadata]
-keywords = ["Boilerplate", "Hugo"]
-description = "Hugo & Tailwindcss Starter"
-author = "zeon.studio"
-image = "images/og-image.png"
+keywords = ["Embedded", "Product Development", "PCB Design", "Development", "Electronics", "Embedded Consulting"]
+description = "Unlock strategic insights and elevate your projects with our experienced embedded consultants. We integrate seamlessly into your team, providing expert guidance and solutions tailored to your unique needs. Enhance efficiency, innovation, and success with our dedicated embedded consulting services."
+author = "Embedded Consultants"
+image = "images/ec/ec_full.png"
 
 
 # site verifications
@@ -74,7 +74,7 @@ mastodon = "" # Your verification code
 # cookies
 # cookies module: https://github.com/gethugothemes/hugo-modules/tree/master/components/cookie-consent
 [cookies]
-enable = false
+enable = true
 expire_days = 60
 content = "This site uses cookies. By continuing to use this website, you agree to their use."
 button = "I Accept"
