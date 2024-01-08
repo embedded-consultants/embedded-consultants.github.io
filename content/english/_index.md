@@ -2,7 +2,7 @@
 # Banner
 banner:
   title: "Where innovation is crafted through expert consultations"
-  content: "At Embedded Consultants, we specialize in transforming your product concepts into tangible realities in the real world."
+  content: "'Engineering is the art of directing the great sources of power in nature for the use and convenience of man.' - Thomas Telford"
   small_title: "What are you looking for?"
   col1_text: "Review a project idea and validate it for the market"
   col2_text: "Converting an idea into a ready to be shipped product"
@@ -14,22 +14,21 @@ banner:
 
 # Features
 features:
-  - title: "What's Included in Hugoplate"
+  - title: "What are we <b><i>providing</i></b>"
     image: "/images/service-1.png"
-    content: "Hugoplate is a comprehensive starter template that includes everything you need to get started with your Hugo project. What's Included in Hugoplate"
+    #content: "We are addressing critical challenges in the hardware product development industry by providing innovative solutions and services to enhance efficiency, reliability, and overall performance throughout the entire development lifecycle."
     bulletpoints:
-      - "10+ Pre-build pages"
-      - "95+ Google Pagespeed Score"
-      - "Build with Hugo and TailwindCSS for easy and customizable styling"
-      - "Fully responsive on all devices"
-      - "SEO-optimized for better search engine rankings"
-      - "**Open-source and free** for personal and commercial use"
+      - "We're your shortcut to a decade of professional experience in the product development industry."
+      - "We manage prototype and series manufacturing for your products."
+      - "We quickly create working prototypes to test your product ideas."
+      - "We do evaluation for your product idea – free consultation."
+      - "We provide free insights and examples on the latest tech via our blog platform."
     button:
       enable: false
       label: "Get Started Now"
       link: "#"
 
-  - title: "Discover the Key Features Of Hugo"
+  - title: "Value we deliver to our clients"
     image: "/images/service-2.png"
     content: "Hugo is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
     bulletpoints:
@@ -41,16 +40,4 @@ features:
       label: "Get Started Now"
       link: "https://github.com/zeon-studio/hugoplate"
 
-  - title: "The Top Reasons to Choose Hugo for Your Hugo Project"
-    image: "/images/service-3.png"
-    content: "With Hugo, you can build modern and content-focused websites without sacrificing performance or ease of use."
-    bulletpoints:
-      - "Instantly load static sites for better user experience and SEO."
-      - "Intuitive syntax and support for popular frameworks make learning and using Hugo a breeze."
-      - "Use any front-end library or framework, or build custom components, for any project size."
-      - "Built on cutting-edge technology to keep your projects up-to-date with the latest web standards."
-    button:
-      enable: false
-      label: ""
-      link: ""
 ---

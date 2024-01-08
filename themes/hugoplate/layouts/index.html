@@ -12,15 +12,16 @@
             <!--<h1 class="mb-4">
               {{ .title | markdownify }}
             </h1>-->
-            <h2 class="mb-8">
+            <h2 class="mb-5">
               {{ .title | markdownify }}
             </h2>
           </div>
-          <div class="lg:col-10 mb-8 text-center">
-            <p class="mb-8">
+          
+          <div class="lg:col-10 mb-1 text-center">
+            <p>
               {{ .content | markdownify }}
             </p>
-            <h5 class="mb-8">
+            <!--<h5 class="mb-8">
               {{ .small_title | markdownify }}
             </h5>
             <br>
@@ -43,15 +44,7 @@
                 </div>
               </div>
             </div>
-            <!--<br><br>
-            {{ with .button }}
-              {{ if .enable }}
-                <a class="btn btn-primary" href="{{ .link | absURL }}">
-                  {{ .label }}
-                  <i class="fa fa-arrow-right pl-2"></i>
-                </a>
-              {{ end }}
-            {{ end }}-->
+            -->
           </div>
         </div>
       </div>
@@ -67,13 +60,13 @@
           <div
             class="mb:md-0 {{ if not (modBool $i 2) }}
               md:order-2
-            {{ end }} md:col-5 mb-6">
+            {{ end }} md:col-3 mb-3">
             {{ partial "image" (dict "Src" .image "Alt" "feature image") }}
           </div>
           <div
             class="{{ if not (modBool $i 2) }}
               md:order-1
-            {{ end }} md:col-7 lg:col-6">
+            {{ end }} md:col-10 lg:col-8">
             <h2 class="mb-4">
               {{ .title | markdownify }}
             </h2>
@@ -84,7 +77,9 @@
               {{ range .bulletpoints }}
                 <li class="relative mb-4 pl-6">
                   <i class="fa fa-check absolute left-0 top-1.5"></i>
-                  {{ . | markdownify }}
+                  <b>
+                    {{ . | markdownify }}
+                  </b>
                 </li>
               {{ end }}
             </ul>
