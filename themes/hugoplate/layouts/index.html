@@ -1,7 +1,7 @@
 {{ define "main" }}
   <!-- Banner -->
   {{ with .Params.banner }}
-    <section class="container-fluid " style="min-height: 90vh; background-image: url('https://github.com/embedded-consultants/embedded-consultants.github.io/blob/main/assets/images/ec/background.jpg?raw=true'); background-repeat: no-repeat; background-size: 100%; background-position: center; background-size: cover;">
+    <section class="container-fluid " style="min-height: 90vh; background-image: url('https://github.com/embedded-consultants/embedded-consultants.github.io/blob/main/assets/images/ec/background.webp?raw=true'); background-repeat: no-repeat; background-size: 100%; background-position: center; background-size: cover;">
         <div class="row justify-center text-left " style="position: absolute;
         top: 50%;
         left: 39%;
@@ -10,11 +10,6 @@
             <h2 class="block font-bold text-dark dark:text-darkmode-dark mb-2">
               {{ .title | markdownify }}
             </h2>
-            <!--<span
-              class="text-[3rem] block font-bold text-dark dark:text-darkmode-dark">
-              {{ .title | markdownify }}
-            </span>-->
-            <!--<h1 class="h2 mb-4">Page not found</h1>-->
             <div class="content">
               <p>
                 Bringing a decade of professional experience to craft tailored
@@ -34,13 +29,6 @@
             </a>
           </div>
         </div>
-      <!--<div class="row justify-center text-center" style="min-height: 90vh; background-color: red;">
-          <p>
-            {{ .title | markdownify }}
-
-            {{ .content | markdownify }}
-          </p>
-      </div>-->
     </section>
   {{ end }}
   <!-- /Banner -->

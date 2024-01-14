@@ -2,15 +2,6 @@
 # Banner
 banner:
   title: "Innovative product development by passionate embedded consultants"
-  content: "'Engineering is the art of directing the great sources of power in nature for the use and convenience of man.' - Thomas Telford"
-  small_title: "What are you looking for?"
-  col1_text: "Review a project idea and validate it for the market"
-  col2_text: "Converting an idea into a ready to be shipped product"
-  col3_text: "Read blog posts about the product development industry"
-  button:
-    enable: true
-    label: "View Our Portfolio"
-    link: "https://github.com/zeon-studio/hugoplate"
 
 # Features
 features:
