@@ -1,51 +1,50 @@
 {{ define "main" }}
   <!-- Banner -->
   {{ with .Params.banner }}
-    <section class="section pt-14">
-      <div class="container">
-        <div class="row justify-center">
-          <div class="lg:col-6 mb-6 text-center">
-            <!--<div class="col-6">
-              {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px]" ) }}
-            </div>
-            <br>-->
-            <!--<h1 class="mb-4">
-              {{ .title | markdownify }}
-            </h1>-->
-            <h2 class="mb-5">
-              {{ .title | markdownify }}
-            </h2>
+    <section class="section pt-16" style="min-height: 90vh; background-image: url(/images/ec/background.jpg); background-repeat: no-repeat; background-size: 100% 100%;">
+      <div class="row justify-center">
+        <div class="lg:col-6 mb-6 text-center">
+          <!--<div class="col-6">
+            {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px]" ) }}
           </div>
-          
-          <div class="lg:col-10 mb-1 text-center">
-            <p>
-              {{ .content | markdownify }}
-            </p>
-            <!--<h5 class="mb-8">
-              {{ .small_title | markdownify }}
-            </h5>
-            <br>
-            <div class="container text-center">
-              <div class="row align-items-start">
-                <div class="col">
-                  <a href="#"><i class="fa fa-briefcase fa-5x" aria-hidden="true"></i></a>
-                  <br><br>
-                  <p>{{ .col1_text }}</p>
-                </div>
-                <div class="col">
-                  <a href="#"><i class="fa fa-microchip fa-5x" aria-hidden="true"></i></a>
-                  <br><br>
-                  <p>{{ .col2_text }}</p>
-                </div>
-                <div class="col">
-                  <a href="/blog"><i class="fa fa-rss fa-5x" aria-hidden="true"></i></a>
-                  <br><br>
-                  <p>{{ .col3_text }}</p>
-                </div>
+          <br>-->
+          <!--<h1 class="mb-4">
+            {{ .title | markdownify }}
+          </h1>-->
+          <h2 class="mb-5">
+            {{ .title | markdownify }}
+          </h2>
+        </div>
+      </div>
+      <div class="row justify-center">
+        <div class="lg:col-10 mb-1 text-center">
+          <p>
+            {{ .content | markdownify }}
+          </p>
+          <!--<h5 class="mb-8">
+            {{ .small_title | markdownify }}
+          </h5>
+          <br>
+          <div class="container text-center">
+            <div class="row align-items-start">
+              <div class="col">
+                <a href="#"><i class="fa fa-briefcase fa-5x" aria-hidden="true"></i></a>
+                <br><br>
+                <p>{{ .col1_text }}</p>
+              </div>
+              <div class="col">
+                <a href="#"><i class="fa fa-microchip fa-5x" aria-hidden="true"></i></a>
+                <br><br>
+                <p>{{ .col2_text }}</p>
+              </div>
+              <div class="col">
+                <a href="/blog"><i class="fa fa-rss fa-5x" aria-hidden="true"></i></a>
+                <br><br>
+                <p>{{ .col3_text }}</p>
               </div>
             </div>
-            -->
           </div>
+          -->
         </div>
       </div>
     </section>
