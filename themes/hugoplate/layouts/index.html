@@ -1,7 +1,7 @@
 {{ define "main" }}
   <!-- Banner -->
   {{ with .Params.banner }}
-    <section class="container-fluid " style="min-height: 90vh; background-image: url('https://github.com/embedded-consultants/embedded-consultants.github.io/blob/main/assets/images/ec/background.jpg?raw=true'); background-repeat: no-repeat; background-size: 100%; background-position: center; ">
+    <section class="container-fluid " style="min-height: 90vh; background-image: url('https://github.com/embedded-consultants/embedded-consultants.github.io/blob/main/assets/images/ec/background.jpg?raw=true'); background-repeat: no-repeat; background-size: 100%; background-position: center; background-size: cover;">
         <div class="row justify-center text-left " style="position: absolute;
         top: 50%;
         left: 39%;
@@ -23,8 +23,14 @@
             </div>-->
             <a
               href="{{ site.BaseURL | relLangURL }}"
+              class="btn btn-primary mt-8 mr-3">
+              Providing Value
+            </a>
+
+            <a
+              href="{{ site.BaseURL | relLangURL }}"
               class="btn btn-primary mt-8">
-              Our Expertise
+              Successful Projects
             </a>
           </div>
         </div>
