@@ -1,7 +1,7 @@
 ---
 # Banner
 banner:
-  title: "Where innovation is crafted through expert consultations"
+  title: "Innovative product development by passionate embedded consultants"
   content: "'Engineering is the art of directing the great sources of power in nature for the use and convenience of man.' - Thomas Telford"
   small_title: "What are you looking for?"
   col1_text: "Review a project idea and validate it for the market"

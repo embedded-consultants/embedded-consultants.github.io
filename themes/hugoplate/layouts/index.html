@@ -1,52 +1,40 @@
 {{ define "main" }}
   <!-- Banner -->
   {{ with .Params.banner }}
-    <section class="section pt-16" style="min-height: 90vh; background-image: url('https://github.com/embedded-consultants/embedded-consultants.github.io/blob/main/assets/images/ec/background.jpg?raw=true'); background-repeat: no-repeat; background-size: 100% auto; background-position: center; ">
-      <div class="row justify-center">
-        <div class="lg:col-6 mb-6 text-center">
-          <!--<div class="col-6">
-            {{ partial "image" (dict "Src" .image "Alt" "Banner image" "Loading" "eager" "Class" "mx-auto lg:!max-w-[800px]" ) }}
+    <section class="container-fluid " style="min-height: 90vh; background-image: url('https://github.com/embedded-consultants/embedded-consultants.github.io/blob/main/assets/images/ec/background.jpg?raw=true'); background-repeat: no-repeat; background-size: 100%; background-position: center; ">
+        <div class="row justify-center text-left " style="position: absolute;
+        top: 50%;
+        left: 39%;
+        transform: translate(-50%, -50%)">
+          <div class="sm:col-12 md:col-12 lg:col-10">
+            <h2 class="block font-bold text-dark dark:text-darkmode-dark mb-2">
+              {{ .title | markdownify }}
+            </h2>
+            <!--<span
+              class="text-[3rem] block font-bold text-dark dark:text-darkmode-dark">
+              {{ .title | markdownify }}
+            </span>-->
+            <!--<h1 class="h2 mb-4">Page not found</h1>
+            <div class="content">
+              <p>
+                The page you are looking for might have been removed, had its name
+                changed, or is temporarily unavailable.
+              </p>
+            </div>-->
+            <a
+              href="{{ site.BaseURL | relLangURL }}"
+              class="btn btn-primary mt-8">
+              Our Expertise
+            </a>
           </div>
-          <br>-->
-          <!--<h1 class="mb-4">
-            {{ .title | markdownify }}
-          </h1>-->
-          <h2 class="mb-5">
-            {{ .title | markdownify }}
-          </h2>
         </div>
-      </div>
-      <div class="row justify-center">
-        <div class="lg:col-10 mb-1 text-center">
+      <!--<div class="row justify-center text-center" style="min-height: 90vh; background-color: red;">
           <p>
+            {{ .title | markdownify }}
+
             {{ .content | markdownify }}
           </p>
-          <!--<h5 class="mb-8">
-            {{ .small_title | markdownify }}
-          </h5>
-          <br>
-          <div class="container text-center">
-            <div class="row align-items-start">
-              <div class="col">
-                <a href="#"><i class="fa fa-briefcase fa-5x" aria-hidden="true"></i></a>
-                <br><br>
-                <p>{{ .col1_text }}</p>
-              </div>
-              <div class="col">
-                <a href="#"><i class="fa fa-microchip fa-5x" aria-hidden="true"></i></a>
-                <br><br>
-                <p>{{ .col2_text }}</p>
-              </div>
-              <div class="col">
-                <a href="/blog"><i class="fa fa-rss fa-5x" aria-hidden="true"></i></a>
-                <br><br>
-                <p>{{ .col3_text }}</p>
-              </div>
-            </div>
-          </div>
-          -->
-        </div>
-      </div>
+      </div>-->
     </section>
   {{ end }}
   <!-- /Banner -->
