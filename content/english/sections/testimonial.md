@@ -1,6 +1,6 @@
 ---
 enable: true
-title: "🇩🇪🇨🇦🇺🇸 Projects 🇫🇷🇮🇳🇬🇧"
+title: "🇩🇪 🇨🇦 🇺🇸 Projects 🇫🇷 🇮🇳 🇬🇧"
 description: "We take immense pride in delivering exceptional projects to our clients, ensuring satisfaction and success."
 
 # Testimonials

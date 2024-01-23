@@ -19,16 +19,26 @@ features:
       label: "Get Started Now"
       link: "#"
 
-  - title: "Value we deliver to our clients"
+process:
+  - title: "How do we develop a product?"
     image: "/images/service-2.png"
-    content: "Hugo is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
     bulletpoints:
-      - "Zero JS, by default: No JavaScript runtime overhead to slow you down."
-      - "Customizable: Tailwind, MDX, and 100+ other integrations to choose from."
-      - "UI-agnostic: Supports React, Preact, Svelte, Vue, Solid, Lit and more."
+      - "One"
+      - "Two"
     button:
       enable: true
-      label: "Get Started Now"
-      link: "https://github.com/zeon-studio/hugoplate"
+      label: "Contact us"
+      link: "#"
+  # - title: "Value we deliver to our clients"
+  #   image: "/images/service-2.png"
+  #   content: "Hugo is an all-in-one web framework for building fast, content-focused websites. It offers a range of exciting features for developers and website creators. Some of the key features are:"
+  #   bulletpoints:
+  #     - "Zero JS, by default: No JavaScript runtime overhead to slow you down."
+  #     - "Customizable: Tailwind, MDX, and 100+ other integrations to choose from."
+  #     - "UI-agnostic: Supports React, Preact, Svelte, Vue, Solid, Lit and more."
+  #   button:
+  #     enable: true
+  #     label: "Get Started Now"
+  #     link: "https://github.com/zeon-studio/hugoplate"
 
 ---

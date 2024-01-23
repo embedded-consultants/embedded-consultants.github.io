@@ -48,17 +48,17 @@
             class="{{ if not (modBool $i 2) }}
               md:order-1
             {{ end }} md:col-10 lg:col-8">
-            <h2 class="mb-4">
+            <h2 class="display-4">
               {{ .title | markdownify }}
             </h2>
-            <p class="mb-8 text-lg">
+            <p class="mb-8 display-5 text-white">
               {{ .content | markdownify }}
             </p>
             <ul>
               {{ range .bulletpoints }}
-                <li class="relative mb-4 pl-6">
-                  <i class="fa fa-check absolute left-0 top-1.5"></i>
-                  <b>
+                <li class="relative text-lg mb-4 pl-6">
+                  <i class="fa fa-check absolute left-0 top-1.5 text-white"></i>
+                  <b class="text-white">
                     {{ . | markdownify }}
                   </b>
                 </li>
@@ -143,4 +143,53 @@
     {{ end }}
   {{ end }}
   <!-- /Testimonials -->
+
+<!-- add tabs here to include what we can offer.
+tabs can be: hardware; firmware; mechanical; software;-->
+
+  <!-- process -->
+  <!-- {{ range $i, $e:= .Params.process }}
+    <section class="section-sm">
+      <div class="container">
+        <div class="row items-center justify-between">
+          <div
+            class="mb:md-0 {{ if not (modBool $i 2) }}
+              md:order-2
+            {{ end }} md:col-3 mb-3">
+            {{ partial "image" (dict "Src" .image "Alt" "feature image") }}
+          </div>
+          <div
+            class="{{ if not (modBool $i 2) }}
+              md:order-1
+            {{ end }} md:col-10 lg:col-8">
+            <h2 class="display-4">
+              {{ .title | markdownify }}
+            </h2>
+            <p class="mb-8 display-5 text-white">
+              {{ .content | markdownify }}
+            </p>
+            <ul>
+              {{ range .bulletpoints }}
+                <li class="relative text-lg mb-4 pl-6">
+                  <i class="fa fa-check absolute left-0 top-1.5 text-white"></i>
+                  <b class="text-white">
+                    {{ . | markdownify }}
+                  </b>
+                </li>
+              {{ end }}
+            </ul>
+            {{ with .button }}
+              {{ if .enable }}
+                <a class="btn btn-primary mt-6" href="{{ .link | absURL }}">
+                  {{ .label }}
+                  <i class="fa fa-arrow-right pl-2"></i>
+                </a>
+              {{ end }}
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    </section>
+  {{ end }} -->
+  <!-- /Features -->
 {{ end }}
