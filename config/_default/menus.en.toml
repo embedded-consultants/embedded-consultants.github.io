@@ -9,12 +9,17 @@ weight = 1
 [[main]]
 name = "Blog"
 url = "blog/"
-weight = 3
+weight = 4
 
 [[main]]
 name = "Portfolio"
 url = "portfolio/"
 weight = 2
+
+[[main]]
+name = "How we do it"
+url = "howwedoit/"
+weight = 3
 
 #[[main]]
 #name = "About"
