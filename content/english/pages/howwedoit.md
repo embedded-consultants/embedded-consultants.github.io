@@ -12,7 +12,7 @@ draft: false
 
 ## Depending on the situation, we have specific steps we follow with our clients
 
-{{< accordion "Evaluating an idea" >}}
+{{< accordion "Evaluating an idea">}}
 What is the process that we are evaluating a hardware idea? 
 
 We need the next items from the clients to start our investigation:

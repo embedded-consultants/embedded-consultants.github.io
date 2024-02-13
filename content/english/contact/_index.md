@@ -1,6 +1,6 @@
 ---
-title: "Contact"
-meta_title: ""
-description: "this is meta description"
+title: "Contact us!"
+meta_title: "Contact Embedded Consultants"
+description: "Contact Embedded Consultants"
 draft: false
 ---
