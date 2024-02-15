@@ -1,5 +1,16 @@
 {
   "main": [
+    
+    {
+      "name": "telegram",
+      "icon": "fab fa-telegram",
+      "link": ""
+    },
+    {
+      "name": "email",
+      "icon": "fa-regular fa-envelope",
+      "link": ""
+    },
     {
       "name": "twitter",
       "icon": "fab fa-twitter",
