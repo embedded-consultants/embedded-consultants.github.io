@@ -9,7 +9,7 @@ social:
     link: https://www.github.com/embedded-consultants
 
   - name: twitter
-    icon: fa-brands fa-twitter
+    icon: fa-brands fa-x-twitter
     link: https://twitter.com/EmbeddedConsul
 
   - name: linkedin
