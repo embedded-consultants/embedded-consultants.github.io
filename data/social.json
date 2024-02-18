@@ -4,7 +4,7 @@
     {
       "name": "email",
       "icon": "fa-regular fa-envelope",
-      "link": ""
+      "link": "mailto:contact@embedded-consultants.com"
     },
     {
       "name": "twitter",
@@ -14,17 +14,17 @@
     {
       "name": "github",
       "icon": "fab fa-github",
-      "link": ""
+      "link": "https://github.com/embedded-consultants"
     },
     {
       "name": "linkedin",
       "icon": "fab fa-linkedin",
-      "link": ""
+      "link": "https://www.linkedin.com/company/embedded-consultants"
     },
     {
       "name": "discord",
       "icon": "fab fa-discord",
-      "link": "https://www.linkedin.com/"
+      "link": "https://discord.gg/dZrpwj46"
     }
   ]
 }

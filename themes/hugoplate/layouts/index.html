@@ -18,23 +18,27 @@
               </p>
             </div>
             <a
-              href="{{ site.BaseURL | relLangURL }}"
+              href="#embedded-features"
               class="btn btn-primary mt-5 mr-3">
               Providing Value
             </a>
 
             <a
-              href="{{ site.BaseURL | relLangURL }}"
+              href="#embedded-projects"
               class="btn btn-primary mt-5">
               Successful Projects
             </a>
           </div>
         </div>
     </section>
+    
   {{ end }}
   <!-- /Banner -->
 
   <!-- Features -->
+  
+  <div id="embedded-features">
+  </div>
   {{ range $i, $e:= .Params.features }}
     <section class="section-sm {{ if (modBool $i 2) }}bg-gradient{{ end }}">
       <div class="container">
@@ -81,6 +85,8 @@
   <!-- /Features -->
 
   <!-- Testimonials -->
+  <div id="embedded-projects">
+  </div>
   {{ with site.GetPage "sections/testimonial" }}
     {{ if .Params.enable }}
       <section class="section">
