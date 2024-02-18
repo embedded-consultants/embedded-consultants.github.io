@@ -2,11 +2,6 @@
   "main": [
     
     {
-      "name": "telegram",
-      "icon": "fab fa-telegram",
-      "link": ""
-    },
-    {
       "name": "email",
       "icon": "fa-regular fa-envelope",
       "link": ""
@@ -15,6 +10,16 @@
       "name": "twitter",
       "icon": "fab fa-x-twitter",
       "link": "https://twitter.com/EmbeddedConsul"
+    },
+    {
+      "name": "github",
+      "icon": "fab fa-github",
+      "link": ""
+    },
+    {
+      "name": "linkedin",
+      "icon": "fab fa-linkedin",
+      "link": ""
     },
     {
       "name": "discord",
