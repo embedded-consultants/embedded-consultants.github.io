@@ -38,15 +38,15 @@ Of course, this list could go on, but we quickly realize that it is HARD to have
 
 ### How are the major tools solving this?
 
-Major tools like Altium are trying to integrate this as much as possible using in-house or third-party software like SnapEDA. 
-
-Altiums ActiveBOM tools is very helpful when exporting BOM, but it is still not the full connection that a library needs. 
+Major tools like Altium with introducing the Altium 365 platform is going toward achieving the full connection, which is:
 
 A full connection would be: Symbol - Footprint - 3D model - Datasheet - Stock 
 
 Companies like AISLER have their own PushTo feature where you only have to have the MPN of the component in your library and they will detect it and get pricing accordingly! Very clever, but still not the full connection. 
 
 At the end of the day, a DRC tool, BOM tool or a third-party database won't fully protect you from making a big mistake on your footprint design, BUT they minimize it by a LOT! 
+
+On all the above we still hear the comment "We want to offline manage or have our own server with our component library!"
 
 ### Automated or a separate person?
 
