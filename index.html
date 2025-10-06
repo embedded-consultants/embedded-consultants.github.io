@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Embedded Consultants</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon/ec_favicon.png" />
+
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            scroll-snap-type: y mandatory;
+            /* Enables snap scrolling */
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+            background-color: #0d0d0d;
+            color: #f8f9fa;
+            font-family: "Cormorant Garamond", serif;
+        }
+
+        section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 10vw;
+            padding-right: 10vw;
+            scroll-snap-align: start;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 700;
+            line-height: 1.1;
+            max-width: 17ch;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: clamp(1.1rem, 3vw, 1.6rem);
+            color: #bfbfbf;
+            max-width: 100ch;
+        }
+
+        /* 🧩 Mobile improvements */
+        @media (max-width: 576px) {
+            section {
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 2rem;
+            }
+
+            h1 {
+                font-size: clamp(4rem, 12vw, 4rem);
+                line-height: 1.05;
+                max-width: 90%;
+            }
+
+            p {
+                font-size: clamp(1.5rem, 4.5vw, 1.4rem);
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <div>
+            <h1>Embedded Consultants LLC</h1>
+            <!-- <p>From IDEA to MANUFACTURING</p> -->
+            <p>We <u>design</u>, <u>develop</u>, and <u>deliver</u> hardware and software products</p>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h1>What is it we do?</h1>
+            <h3><u>We turn ideas into real products</u></h3>
+            <p>
+                • We design the devices and electronics required for your project.<br>
+                • We develop the software that makes them function.<br>
+                • We build prototypes for fast testing and feedback.<br>
+                • We guide your product through production to market launch.
+            </p>
+        </div>
+    </section>
+
+
+    <section>
+        <div>
+            <h1>How do we do it?</h1>
+            <div class="container text-center">
+
+                <!-- Flex container for blocks -->
+                <div class="d-flex flex-wrap justify-content-center align-items-center" style="gap: 0.5rem;">
+
+                    <!-- Idea -->
+                    <div
+                        style="background-color: #ffffff; color: #000000; padding: 0.8rem 1.5rem; border-radius: 0.5rem; min-width: 100px;">
+                        Idea
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="d-none d-md-flex align-items-center" style="font-size: 1.5rem;">→</div>
+                    <div class="d-flex d-md-none w-100 justify-content-center" style="font-size: 1.5rem;">↓</div>
+
+                    <!-- System Design Document -->
+                    <div
+                        style="background-color: #ffffff; color: #000000; padding: 0.8rem 1.5rem; border-radius: 0.5rem; min-width: 150px;">
+                        Planning & Design
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="d-none d-md-flex align-items-center" style="font-size: 1.5rem;">→</div>
+                    <div class="d-flex d-md-none w-100 justify-content-center" style="font-size: 1.5rem;">↓</div>
+
+                    <!-- Development -->
+                    <div
+                        style="background-color: #ffffff; color: #000000; padding: 0.8rem 1.5rem; border-radius: 0.5rem; min-width: 120px;">
+                        Development
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="d-none d-md-flex align-items-center" style="font-size: 1.5rem;">→</div>
+                    <div class="d-flex d-md-none w-100 justify-content-center" style="font-size: 1.5rem;">↓</div>
+
+                    <!-- Prototype -->
+                    <div
+                        style="background-color: #ffffff; color: #000000; padding: 0.8rem 1.5rem; border-radius: 0.5rem; min-width: 100px;">
+                        Prototype
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="d-none d-md-flex align-items-center" style="font-size: 1.5rem;">→</div>
+                    <div class="d-flex d-md-none w-100 justify-content-center" style="font-size: 1.5rem;">↓</div>
+
+                    <!-- Validation -->
+                    <div
+                        style="background-color: #ffffff; color: #000000; padding: 0.8rem 1.5rem; border-radius: 0.5rem; min-width: 120px;">
+                        Validation
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="d-none d-md-flex align-items-center" style="font-size: 1.5rem;">→</div>
+                    <div class="d-flex d-md-none w-100 justify-content-center" style="font-size: 1.5rem;">↓</div>
+
+                    <!-- Manufacturing -->
+                    <div
+                        style="background-color: #ffffff; color: #000000; padding: 0.8rem 1.5rem; border-radius: 0.5rem; min-width: 120px;">
+                        Manufacturing
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div>
+            <h1>We have worked on</h1>
+
+            <!-- Full-width “window” -->
+            <div class="scroll-window" style="
+        width: 100%;
+        height: 300px;
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    ">
+                <div
+                    style="scroll-snap-align: start; height: 300px; display: flex; flex-direction: column; justify-content: center; padding: 1rem;">
+                    <h2>INDUSTRIAL CONTROLLER</h2>
+                    <p>
+                        An industrial controller built around the Raspberry Pi Compute Module, designed to meet
+                        demanding automation and control requirements.
+                        The system integrates isolated power supplies, a backup UPS for reliability, and multiple
+                        industrial-grade interfaces including HDMI, USB, Ethernet, CAN, and RS485.
+                    </p>
+                </div>
+
+                <div
+                    style="scroll-snap-align: start; height: 300px; display: flex; flex-direction: column; justify-content: center; padding: 1rem;">
+                    <h2>STM32 SoM</h2>
+                    <p>
+                        A compact and high-performance System on
+                        Module built around the STM32MP1, featuring
+                        external SDRAM for extended memory
+                        capacity, onboard eMMC for storage, CAN Bus
+                        for industrial communication and an Ethernet
+                        controller for network connectivity.
+                    </p>
+                </div>
+
+                <div
+                    style="scroll-snap-align: start; height: 300px; display: flex; flex-direction: column; justify-content: center; padding: 1rem;">
+                    <h2>AUTOMOTIVE HUB</h2>
+                    <p>
+                        It manages a USB 3.1 upstream link and distributes it to USB 3.1, dual USB 2.0 ports, Gigabit
+                        Ethernet, and RS485. The module streamlines integration by combining multiple interfaces into
+                        a single reliable solution.
+                    </p>
+                </div>
+
+                <div
+                    style="scroll-snap-align: start; height: 300px; display: flex; flex-direction: column; justify-content: center; padding: 1rem;">
+                    <h2>RFID/NFC CRYPTO DEV KIT</h2>
+                    <p>
+                        development kit built around a n
+                        RFID/NFC-enabled chip paired with a
+                        microcontroller that provides integrated
+                        cryptographic handling. The kit is tailored for
+                        applications in the cryptocurrency market.
+                    </p>
+                </div>
+
+                <div
+                    style="scroll-snap-align: start; height: 300px; display: flex; flex-direction: column; justify-content: center; padding: 1rem;">
+                    <h2>HIGH VOLTAGE INDUSTRIAL CONTROLLER</h2>
+                    <p>
+                        This industrial-grade controller is designed to serve as the main control unit for high-voltage
+                        equipment, as well as RS485 and CAN-based devices.
+                    </p>
+                </div>
+
+                <div
+                    style="scroll-snap-align: start; height: 300px; display: flex; flex-direction: column; justify-content: center; padding: 1rem;">
+                    <h2>INDUCTIVE DEV KIT</h2>
+                    <p>
+                        A dedicated hardware platform created to
+                        evaluate the performance and reliability of
+                        inductive keyboard technologies.
+                    </p>
+                </div>
+
+
+            </div>
+
+            <!-- Scroll hint -->
+            <div style="
+        text-align: center;
+        font-size: 0.9rem;
+        color: #888;
+        margin-top: 0.5rem;
+        animation: fadeInOut 2.5s infinite;
+    ">
+                ↓ Scroll inside this window ↓
+            </div>
+
+            <style>
+                @keyframes fadeInOut {
+
+                    0%,
+                    100% {
+                        opacity: 0.2;
+                    }
+
+                    50% {
+                        opacity: 1;
+                    }
+                }
+
+                /* Make the scroll window full height on mobile */
+                @media (max-width: 768px) {
+                    .scroll-window {
+                        height: 60vh !important;
+                    }
+
+                    .scroll-window>div {
+                        height: 60vh !important;
+                        padding: 2rem;
+                        text-align: center;
+                        justify-content: center;
+                        text-align: left;
+                    }
+
+                }
+            </style>
+        </div>
+    </section>
+
+
+    <section>
+        <div>
+            <h1>Clients & Partners</h1>
+
+            <!-- Grid of partner logos -->
+            <div class="row justify-content-center align-items-center" style="gap: 2rem; margin-top: 2rem;">
+
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+                    <img src="media/partners/lyra.webp" alt="Partner 1"
+                        style="max-width: 100%; filter: brightness(0) invert(1);">
+                </div>
+
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+                    <img src="media/partners/pcbdesign.webp" alt="Partner 2"
+                        style="max-width: 100%; filter: brightness(0) invert(1);">
+                </div>
+
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+                    <img src="media/partners/sensa.webp" alt="Partner 3"
+                        style="max-width: 100%; filter: brightness(0) invert(1);">
+                </div>
+
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+                    <img src="media/partners/sabotronic.webp" alt="Partner 4"
+                        style="max-width: 100%; filter: brightness(0) invert(1);">
+                </div>
+
+                <div class="col-6 col-sm-4 col-md-3 col-lg-2 d-flex justify-content-center">
+                    <img src="media/partners/kingpin.webp" alt="Partner 5"
+                        style="max-width: 100%; filter: brightness(0) invert(1);">
+                </div>
+            </div>
+    </section>
+
+    <section>
+        <div>
+            <h1>Contact</h1>
+            <p>Let's get in touch — <u><a style="text-decoration: none;color: white"
+                        href="mailto:contact@embedded-consultants.com">contact@embedded-consultants.com</a></u></p>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
