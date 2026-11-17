@@ -204,27 +204,29 @@ const scope = [
       </div>
     </section>
 
-    <section id="blog" class="blog">
-      <div class="wrap">
-        <div class="blog-top">
-          <div>
-            <p class="eyebrow">From the blog</p>
-            <h2>Engineering notes from real projects.</h2>
+    {posts.length > 0 && (
+      <section id="blog" class="blog">
+        <div class="wrap">
+          <div class="blog-top">
+            <div>
+              <p class="eyebrow">From the blog</p>
+              <h2>Engineering notes from real projects.</h2>
+            </div>
+            <a class="more" href="/blog/">All articles</a>
           </div>
-          <a class="more" href="/blog/">All articles</a>
+          <div class="posts">
+            {posts.map((post) => (
+              <a class="post" href={`/blog/${post.id}/`}>
+                <span class="cat">{post.data.category}</span>
+                <h3>{post.data.title}</h3>
+                <p>{post.data.description}</p>
+                <span class="rd">{formatDate(post.data.date)} · {readingMinutes(post.body)} min read</span>
+              </a>
+            ))}
+          </div>
         </div>
-        <div class="posts">
-          {posts.map((post) => (
-            <a class="post" href={`/blog/${post.id}/`}>
-              <span class="cat">{post.data.category}</span>
-              <h3>{post.data.title}</h3>
-              <p>{post.data.description}</p>
-              <span class="rd">{formatDate(post.data.date)} · {readingMinutes(post.body)} min read</span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    )}
 
     <section class="faq" aria-labelledby="faq-heading">
       <div class="wrap">
