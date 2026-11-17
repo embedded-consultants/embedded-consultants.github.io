@@ -1,7 +1,6 @@
 /**
- * Site-wide settings. The three placeholders below are intentional.
- * Replace them before launch. See the pull request description for the
- * exact steps (Formspree, Umami, Cal.com, GitHub Pages source).
+ * Site-wide settings. Umami and Cal.com are still placeholders.
+ * See the pull request for the Pages source switch.
  */
 export const site = {
   name: 'Embedded Consultants',
@@ -18,12 +17,8 @@ export const site = {
   linkedin: 'https://www.linkedin.com/company/embedded-consultants/',
   x: 'https://x.com/embdd_consult',
   github: 'https://github.com/embedded-consultants',
-  /**
-   * Formspree form id — the path segment after https://formspree.io/f/.
-   * Create the form at https://formspree.io, then replace YOUR_FORM_ID.
-   * While this starts with YOUR_, the form asks visitors to email us instead.
-   */
-  formspreeId: 'YOUR_FORM_ID',
+  /** Formspree form id. Submissions post to https://formspree.io/f/xqpqqweo */
+  formspreeId: 'xqpqqweo',
   /**
    * Cal.com event URL for the free 30-minute intro call.
    * Example: https://cal.com/your-team/30min

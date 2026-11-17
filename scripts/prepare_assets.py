@@ -130,7 +130,6 @@ def prepare_logos() -> None:
         "lyra": 120,
         "pcbdesign": 88,
         "sensa": 80,
-        "sabotronic": 72,
         "kingpin": 160,
         "valsogard": 128,
     }
