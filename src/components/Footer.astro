@@ -1,0 +1,26 @@
+---
+import { site } from '../config';
+
+const year = new Date().getFullYear();
+const onHome = Astro.url.pathname === '/';
+const to = (hash: string) => (onHome ? `#${hash}` : `/#${hash}`);
+---
+
+<footer>
+  <div class="wrap">
+    <a href="/" aria-label="Embedded Consultants home">
+      <img src="/brand/ec-logo-full-white.svg" width="2899" height="488" alt="" />
+    </a>
+    <nav aria-label="Footer">
+      <a href={to('services')}>Services</a>
+      <a href={to('process')}>Process</a>
+      <a href={to('work')}>Work</a>
+      <a href="/blog/">Blog</a>
+      <a href={to('contact')}>Contact</a>
+      <a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href={site.x} target="_blank" rel="noopener noreferrer">X</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+    <span>© {year} {site.legalName}<span class="loc">Headquarters: Novi Sad, Serbia</span></span>
+  </div>
+</footer>

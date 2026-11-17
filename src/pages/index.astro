@@ -1,0 +1,331 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import lyra from '../assets/partners/lyra.webp';
+import pcbdesign from '../assets/partners/pcbdesign.webp';
+import sensa from '../assets/partners/sensa.webp';
+import kingpin from '../assets/partners/kingpin.webp';
+import valsogard from '../assets/partners/valsogard.webp';
+import { booking, formAction, formspreeReady, mailto, site } from '../config';
+import { faq, industries, outcomes, plans, principles, projects, services, steps } from '../data/home';
+import { faqPage, graph } from '../lib/schema';
+import { byDateDesc, formatDate, readingMinutes } from '../lib/posts';
+
+const posts = (await getCollection('blog')).sort(byDateDesc).slice(0, 3);
+const logos = [
+  { src: lyra, alt: 'Lyra', sq: false },
+  { src: pcbdesign, alt: 'PCB Design', sq: false },
+  { src: sensa, alt: 'Sensa', sq: false },
+  { src: kingpin, alt: 'Kingpin', sq: true },
+  { src: valsogard, alt: 'Valsogard', sq: true },
+];
+
+const scope = [
+  ['01', 'Hardware & PCB', 'Architecture, schematic, layout', 'HW'],
+  ['02', 'Embedded firmware', 'Bare-metal, RTOS, embedded Linux', 'FW'],
+  ['03', 'Software', 'Tools, mobile, cloud, test', 'SW'],
+  ['04', 'Mechanical', 'Housing, mounting, DFM', 'ME'],
+  ['05', 'Production transfer', 'Prototypes, test, series build', 'NPI'],
+];
+---
+
+<Base title={site.title} description={site.description} jsonLd={graph(faqPage(faq))}>
+  <main id="main">
+    <section class="hero dark" id="top">
+      <div class="grid-bg" aria-hidden="true"></div>
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">Embedded systems design consultancy</p>
+          <h1>Electronic products, engineered from <em>idea to production.</em></h1>
+          <p class="lead">
+            We design the hardware, PCBs, firmware, software and enclosure, then hand the product over ready to build.
+            The first call and the initial research are free.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contact" data-umami-event="Book call">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+              Book a free 30-min call
+            </a>
+            <a class="btn btn-ghost" href="#process">See the process</a>
+          </div>
+          <ul class="facts">
+            <li><b>~10 yrs</b> Product development</li>
+            <li><b>1 day</b> Reply time</li>
+            <li><b>Free</b> First call &amp; research</li>
+            <li><b>Novi Sad</b> Headquarters</li>
+          </ul>
+        </div>
+        <aside class="spec" aria-label="What a project can include">
+          <div class="spec-head"><span><span class="dot"></span>PROJECT SCOPE</span><span>IN HOUSE</span></div>
+          {scope.map(([n, title, detail, tag]) => (
+            <div class="spec-row">
+              <span class="n">{n}</span>
+              <span class="t">{title}<small>{detail}</small></span>
+              <span class="tag">{tag}</span>
+            </div>
+          ))}
+          <img class="mark" src="/brand/ec-icon-white.svg" width="1000" height="1000" alt="" />
+        </aside>
+      </div>
+    </section>
+
+    <section class="proof" aria-label="Clients and partners">
+      <div class="wrap">
+        <p>Engineering partner to product teams in North America, Europe and India</p>
+        <ul class="logos">
+          {logos.map((logo) => (
+            <li>
+              <img
+                class={logo.sq ? 'sq' : undefined}
+                src={logo.src.src}
+                width={logo.src.width}
+                height={logo.src.height}
+                alt={logo.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <p class="eyebrow">What we do</p>
+        <h2>One small team for the whole product.</h2>
+        <p class="lead">Hardware, firmware, software and mechanics, in one team, so the seams between them are designed on purpose.</p>
+        <div class="cards4">
+          {services.map((service) => (
+            <article class="card">
+              <div class="ic" aria-hidden="true">
+                <svg viewBox="0 0 24 24" set:html={service.icon} />
+              </div>
+              <h3>{service.title}</h3>
+              <p>{service.text}</p>
+              <div class="tags">{service.tags.map((tag) => <span>{tag}</span>)}</div>
+            </article>
+          ))}
+        </div>
+        <div class="industries">
+          <b>Industries</b>
+          {industries.map((name) => <span>{name}</span>)}
+        </div>
+        <p class="cert-note">Certification support is part of the work. We design for the tests your market requires and stay with you through the lab.</p>
+      </div>
+    </section>
+
+    <section id="why" class="why dark">
+      <div class="wrap">
+        <div class="top">
+          <div>
+            <p class="eyebrow">Why work with us</p>
+            <h2>Senior judgment early, when it is cheapest.</h2>
+          </div>
+          <p class="lead">The expensive mistakes in electronics happen in the first weeks. That is where we put the experience.</p>
+        </div>
+        <div class="principles">
+          {principles.map((item) => (
+            <div>
+              <span class="n">{item.n}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          ))}
+        </div>
+        <div class="outcomes">
+          {outcomes.map((item) => (
+            <div><b>{item.title}</b>{item.text}</div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="wrap">
+        <p class="eyebrow">How we work</p>
+        <h2>From idea to production, step by step.</h2>
+        <p class="lead">Eight steps. You see the result of each one and decide before the next starts.</p>
+        <ol class="steps">
+          {steps.map((step) => (
+            <li class:list={['step', { gate: step.gate }]}>
+              {step.gate && <span class="gate-pill">Gate</span>}
+              <div class="n">{step.n}</div>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+              <div class="out"><i>You get</i>{step.out}</div>
+            </li>
+          ))}
+        </ol>
+        <p class="note"><b>Already have a prototype?</b> Start at any step. A review, a cost-down, or the move to series production.</p>
+      </div>
+    </section>
+
+    <section id="engage" class="engage">
+      <div class="wrap">
+        <p class="eyebrow">Ways to work with us</p>
+        <h2>Start small. Scale when it makes sense.</h2>
+        <p class="lead">The first call and the initial research are free. We are happy to hear your ideas. After that, pick a model. No price until we understand the product.</p>
+        <div class="cards3">
+          {plans.map((plan) => (
+            <article class:list={['plan', { feat: plan.featured }]}>
+              {plan.badge && <span class="badge">{plan.badge}</span>}
+              <span class="kind">{plan.kind}</span>
+              <h3>{plan.title}</h3>
+              <p>{plan.text}</p>
+              <ul>{plan.points.map((point) => <li>{point}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="work">
+      <div class="wrap">
+        <p class="eyebrow">Selected work</p>
+        <h2>Products we have helped build.</h2>
+        <p class="lead">Six recent designs. Most of our work is under NDA, so there are no client names and no photographs.</p>
+        <div class="work-grid">
+          {projects.map((project) => (
+            <article class="proj">
+              <div class="vis">
+                <Fragment set:html={project.art} />
+                <span>{project.kicker}</span>
+              </div>
+              <div class="body">
+                <h3>{project.title}</h3>
+                <p>{project.summary}</p>
+                <div class="tags">{project.tags.map((tag) => <span>{tag}</span>)}</div>
+              </div>
+            </article>
+          ))}
+        </div>
+        <p class="nda">// Described without client names or board photos.</p>
+      </div>
+    </section>
+
+    <section id="blog" class="blog">
+      <div class="wrap">
+        <div class="blog-top">
+          <div>
+            <p class="eyebrow">From the blog</p>
+            <h2>Engineering notes from real projects.</h2>
+          </div>
+          <a class="more" href="/blog/">All articles</a>
+        </div>
+        <div class="posts">
+          {posts.map((post) => (
+            <a class="post" href={`/blog/${post.id}/`}>
+              <span class="cat">{post.data.category}</span>
+              <h3>{post.data.title}</h3>
+              <p>{post.data.description}</p>
+              <span class="rd">{formatDate(post.data.date)} · {readingMinutes(post.body)} min read</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-heading">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">FAQ</p>
+          <h2 id="faq-heading">Questions we hear before most projects.</h2>
+        </div>
+        <div>
+          {faq.map((item, index) => (
+            <details open={index === 0}>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact dark">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Tell us about your product.</h2>
+          <p class="lead">A few sentences are enough. We reply within one business day, and suggest a call if it is a fit.</p>
+          <div class="direct">
+            <a href={booking.href} data-umami-event="Book call" {...(booking.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+              <span><b>Book a free 30-min call</b><small>{booking.detail}</small></span>
+              <span class="arr" aria-hidden="true">→</span>
+            </a>
+            <a href={mailto} data-umami-event="Email">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></span>
+              <span><b>{site.email}</b><small>Prefer email? Write to us directly.</small></span>
+              <span class="arr" aria-hidden="true">→</span>
+            </a>
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" data-umami-event="LinkedIn">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v6M8 8v.01M12 17v-4a2 2 0 014 0v4"/></svg></span>
+              <span><b>LinkedIn</b><small>Company page</small></span>
+              <span class="arr" aria-hidden="true">→</span>
+            </a>
+            <a href={site.x} target="_blank" rel="noopener noreferrer" data-umami-event="X">
+              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></span>
+              <span><b>X · @embdd_consult</b><small>Engineering notes</small></span>
+              <span class="arr" aria-hidden="true">→</span>
+            </a>
+          </div>
+          <p class="promise">
+            <span>●</span> Reply within 1 business day
+            &nbsp;&nbsp;<span>●</span> First call and research are free
+            &nbsp;&nbsp;<span>●</span> You own the IP once paid
+            &nbsp;&nbsp;<span>●</span> NDA on request
+            &nbsp;&nbsp;<span>●</span> HQ Novi Sad, Serbia
+          </p>
+        </div>
+        <form
+          class="inquiry"
+          data-inquiry
+          data-placeholder={formspreeReady ? undefined : 'true'}
+          action={formAction}
+          method="POST"
+          accept-charset="UTF-8"
+        >
+          <h3>Project inquiry</h3>
+          <div class="f">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required maxlength="120" />
+          </div>
+          <div class="f">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required maxlength="200" />
+          </div>
+          <div class="f">
+            <label for="company">Company (optional)</label>
+            <input id="company" name="company" type="text" autocomplete="organization" maxlength="160" placeholder="Optional" />
+          </div>
+          <div class="f">
+            <label for="stage">Stage</label>
+            <select id="stage" name="stage" required>
+              <option value="" selected disabled>Select</option>
+              <option value="idea">Idea</option>
+              <option value="prototype">Prototype</option>
+              <option value="production">Production</option>
+            </select>
+          </div>
+          <div class="f full">
+            <label for="message">Project description</label>
+            <textarea id="message" name="message" required maxlength="4000" placeholder="What should it do, who is it for, and roughly when?"></textarea>
+          </div>
+          <div class="hp" aria-hidden="true">
+            <label for="gotcha">Leave this empty</label>
+            <input id="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+          </div>
+          <input type="hidden" name="_subject" value="Project inquiry — embedded-consultants.com" />
+          <p class="form-status" data-status data-state="idle" role="status"></p>
+          <button class="btn btn-ink" type="submit" data-umami-event="Inquiry submit">Send inquiry</button>
+          <p class="fine">We use these details only to reply. <a href="/privacy/">Privacy policy</a>. Or email <a href={mailto}>{site.email}</a>.</p>
+          <noscript>
+            <p class="fine">If the form does not send, email {site.email}.</p>
+          </noscript>
+        </form>
+      </div>
+    </section>
+  </main>
+</Base>

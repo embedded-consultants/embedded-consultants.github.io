@@ -1,0 +1,28 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { byDateDesc, formatDate, readingMinutes } from '../../lib/posts';
+
+const posts = (await getCollection('blog')).sort(byDateDesc);
+const description = 'Engineering notes on PCB libraries, parts and taking electronics from a prototype to production.';
+---
+
+<Base title="Engineering notes" description={description} image="/og/og-blog.png">
+  <main id="main" class="page">
+    <div class="wrap">
+      <p class="eyebrow">Blog</p>
+      <h1>Engineering notes from real projects.</h1>
+      <p class="lead">Short write-ups from boards and parts we have worked with. The older notes are back at their original addresses.</p>
+      <div class="page-list">
+        {posts.map((post) => (
+          <a class="post" href={`/blog/${post.id}/`}>
+            <span class="cat">{post.data.category}</span>
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            <span class="rd">{formatDate(post.data.date)} · {readingMinutes(post.body)} min read</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+</Base>

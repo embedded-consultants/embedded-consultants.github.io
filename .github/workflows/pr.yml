@@ -1,0 +1,32 @@
+# Pull requests build the site and upload dist as an artifact named site-preview.
+# A public preview URL is not attached: this repository is an organization
+# GitHub Pages site with one production deployment, and a second host would
+# need its own token. Download the artifact to click through a PR build.
+# The workflow does not deploy, so it cannot change the custom domain.
+name: PR build
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  ASTRO_TELEMETRY_DISABLED: 1
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-preview
+          path: dist
+          retention-days: 14
