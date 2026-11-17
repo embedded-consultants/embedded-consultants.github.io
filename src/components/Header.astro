@@ -1,6 +1,9 @@
 ---
+import { getCollection } from 'astro:content';
+
 const onHome = Astro.url.pathname === '/';
 const to = (hash: string) => (onHome ? `#${hash}` : `/#${hash}`);
+const showBlog = (await getCollection('blog')).length > 0;
 ---
 
 <header>
@@ -14,7 +17,7 @@ const to = (hash: string) => (onHome ? `#${hash}` : `/#${hash}`);
       <li><a href={to('process')}>Process</a></li>
       <li><a href={to('engage')}>Engagement</a></li>
       <li><a href={to('work')}>Work</a></li>
-      <li><a href={onHome ? '#blog' : '/blog/'}>Blog</a></li>
+      {showBlog && <li><a href={onHome ? '#blog' : '/blog/'}>Blog</a></li>}
       <li class="mobile-only"><a class="btn btn-primary" href={to('contact')}>Start a project</a></li>
     </ul>
     <a class="btn btn-primary nav-cta" href={to('contact')} data-umami-event="Start a project">Start a project</a>

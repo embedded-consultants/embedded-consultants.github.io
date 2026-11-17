@@ -1,18 +1,22 @@
 ---
 import { getCollection } from 'astro:content';
+import Redirect from '../../components/Redirect.astro';
 import Base from '../../layouts/Base.astro';
 import { byDateDesc, formatDate, readingMinutes } from '../../lib/posts';
 
 const posts = (await getCollection('blog')).sort(byDateDesc);
-const description = 'Engineering notes on PCB libraries, parts and taking electronics from a prototype to production.';
+const description = 'Engineering notes on PCB design, parts and taking electronics to production.';
 ---
 
+{posts.length === 0 ? (
+  <Redirect to="/" />
+) : (
 <Base title="Engineering notes" description={description} image="/og/og-blog.png">
   <main id="main" class="page">
     <div class="wrap">
       <p class="eyebrow">Blog</p>
       <h1>Engineering notes from real projects.</h1>
-      <p class="lead">Short write-ups from boards and parts we have worked with. The older notes are back at their original addresses.</p>
+      <p class="lead">Short write-ups from boards and parts we have worked with.</p>
       <div class="page-list">
         {posts.map((post) => (
           <a class="post" href={`/blog/${post.id}/`}>
@@ -26,3 +30,4 @@ const description = 'Engineering notes on PCB libraries, parts and taking electr
     </div>
   </main>
 </Base>
+)}
