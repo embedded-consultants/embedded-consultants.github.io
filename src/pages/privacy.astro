@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config';
+
+const description = 'How Embedded Consultants LLC in Novi Sad handles inquiries, bookings and cookieless analytics.';
+---
+
+<Base title="Privacy" description={description} image="/og/og-privacy.png">
+  <main id="main" class="page">
+    <div class="wrap article-inner">
+      <p class="eyebrow">Legal</p>
+      <h1>Privacy</h1>
+      <p class="lead">What this site collects, why, and who to write to. No cookies for advertising.</p>
+      <div class="prose" style="margin-top:28px">
+        <p>
+          Embedded Consultants LLC is the controller for this website. Headquarters: Novi Sad, Serbia.
+          Email <a href={`mailto:${site.email}`}>{site.email}</a>.
+        </p>
+        <h2>The project form</h2>
+        <p>
+          If you write to us through the form, we receive your name, email address, company if you give one,
+          the stage you select (idea, prototype or production) and the description you write. We use that only
+          to reply, and to carry on the conversation if we work together.
+        </p>
+        <p>
+          The form is handled by Formspree, which emails the inquiry to us. Formspree processes it on our behalf.
+          A hidden field is there to catch automated spam. We do not use reCAPTCHA.
+        </p>
+        <h2>A booked call</h2>
+        <p>
+          The “30-min free call” link opens a calendar (Cal.com) or, until that is connected, your email app.
+          If you book through Cal.com, they process the time and the address you enter so the call can happen.
+        </p>
+        <h2>Analytics</h2>
+        <p>
+          We use Umami, which does not set a cookie and is not used for ads. It counts page views and a few
+          events, such as a click on the booking link or the form. It does not receive your name. Until the
+          analytics id is configured, the site loads no analytics script at all.
+        </p>
+        <h2>How long we keep it</h2>
+        <p>
+          Inquiry emails stay for as long as we need them to reply and to keep a record of the work.
+          Email us if you want a copy, a correction, or for the inquiry to be deleted.
+        </p>
+        <h2>We do not sell personal information</h2>
+        <p>We do not sell or rent the details you send. We do not put a person’s name on this website.</p>
+        <p>Updated 17 November 2026.</p>
+      </div>
+    </div>
+  </main>
+</Base>

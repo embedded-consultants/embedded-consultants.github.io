@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://embedded-consultants.com/sitemap-index.xml

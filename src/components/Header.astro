@@ -1,0 +1,34 @@
+---
+const onHome = Astro.url.pathname === '/';
+const to = (hash: string) => (onHome ? `#${hash}` : `/#${hash}`);
+---
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="Embedded Consultants home">
+      <img src="/brand/ec-logo-full-white.svg" width="2899" height="488" alt="Embedded Consultants" />
+    </a>
+    <ul class="nav-links" id="site-nav" data-nav-panel>
+      <li><a href={to('services')}>What we do</a></li>
+      <li><a href={to('why')}>Why us</a></li>
+      <li><a href={to('process')}>Process</a></li>
+      <li><a href={to('engage')}>Engagement</a></li>
+      <li><a href={to('work')}>Work</a></li>
+      <li><a href={onHome ? '#blog' : '/blog/'}>Blog</a></li>
+      <li class="mobile-only"><a class="btn btn-primary" href={to('contact')}>Start a project</a></li>
+    </ul>
+    <a class="btn btn-primary nav-cta" href={to('contact')} data-umami-event="Start a project">Start a project</a>
+    <button class="burger" type="button" data-nav-toggle aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <span></span>
+    </button>
+  </div>
+</header>
+<noscript>
+  <style>
+    @media (max-width: 1000px) {
+      .burger { display: none !important; }
+      .nav-links { display: flex !important; }
+    }
+  </style>
+</noscript>
