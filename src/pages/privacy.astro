@@ -28,14 +28,16 @@ const description = 'How Embedded Consultants LLC in Novi Sad handles inquiries,
         </p>
         <h2>A booked call</h2>
         <p>
-          The “30-min free call” link opens a calendar (Cal.com) or, until that is connected, your email app.
-          If you book through Cal.com, they process the time and the address you enter so the call can happen.
+          The “30-min free call” link opens a calendar booking page when that link is connected, and otherwise
+          opens your email app. We do not embed a calendar script on this site. If you book a time, the calendar
+          provider processes the time and the email address you enter so the call can happen.
         </p>
         <h2>Analytics</h2>
         <p>
-          We use Umami, which does not set a cookie and is not used for ads. It counts page views and a few
-          events, such as a click on the booking link or the form. It does not receive your name. Until the
-          analytics id is configured, the site loads no analytics script at all.
+          We use Umami Cloud (<a href="https://cloud.umami.is">cloud.umami.is</a>). The script is loaded with
+          <code>defer</code> from <code>https://cloud.umami.is/script.js</code>. Umami does not set a cookie and
+          is not used for advertising. It counts page views and a few events, such as a click on the booking
+          link or the form. It does not receive your name. There is no Google Analytics tag on this site.
         </p>
         <h2>How long we keep it</h2>
         <p>

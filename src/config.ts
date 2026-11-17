@@ -1,6 +1,6 @@
 /**
- * Site-wide settings. Umami and Cal.com are still placeholders.
- * See the pull request for the Pages source switch.
+ * Site-wide settings. The booking URL stays empty until the
+ * Google Calendar appointment schedule link is ready.
  */
 export const site = {
   name: 'Embedded Consultants',
@@ -20,31 +20,29 @@ export const site = {
   /** Formspree form id. Submissions post to https://formspree.io/f/xqpqqweo */
   formspreeId: 'xqpqqweo',
   /**
-   * Cal.com event URL for the free 30-minute intro call.
-   * Example: https://cal.com/your-team/30min
-   * While this contains YOUR_CAL, booking buttons fall back to email.
+   * Google Calendar appointment-schedule URL for the free 30-minute intro call.
+   * Leave this empty until the link is ready. Booking buttons then open email.
    */
-  calUrl: 'https://cal.com/YOUR_CAL_USERNAME/30min',
+  bookingUrl: '',
   umami: {
-    /** Umami script URL. Keep the cloud URL, or point at a self-hosted /script.js. */
+    /** Umami Cloud script. Loaded with defer. */
     src: 'https://cloud.umami.is/script.js',
-    /** Website id from the Umami dashboard. The placeholder disables the script. */
-    websiteId: 'YOUR_UMAMI_WEBSITE_ID',
+    websiteId: '948494fc-c531-4c80-83d3-450637f2a1f0',
   },
 } as const;
 
 export const formspreeReady = !site.formspreeId.startsWith('YOUR_');
 export const formAction = `https://formspree.io/f/${site.formspreeId}`;
-export const calReady = !site.calUrl.includes('YOUR_CAL');
-export const umamiReady = !site.umami.websiteId.startsWith('YOUR_');
+export const bookingReady = site.bookingUrl.trim().length > 0;
+export const umamiReady = site.umami.websiteId.trim().length > 0 && site.umami.src.trim().length > 0;
 
 export function absolute(path: string): string {
   return new URL(path, site.url).href;
 }
 
-export const booking = calReady
+export const booking = bookingReady
   ? {
-      href: site.calUrl,
+      href: site.bookingUrl,
       external: true,
       detail: 'Free, no obligation. Pick a time that suits you.',
     }
