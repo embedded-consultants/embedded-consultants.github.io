@@ -127,11 +127,11 @@ def prepare_logos() -> None:
     out = ROOT / "src" / "assets" / "partners"
     out.mkdir(parents=True, exist_ok=True)
     heights = {
-        "lyra": 120,
-        "pcbdesign": 88,
-        "sensa": 80,
-        "kingpin": 160,
-        "valsogard": 128,
+        "lyra": 64,
+        "pcbdesign": 64,
+        "sensa": 64,
+        "kingpin": 92,
+        "valsogard": 92,
     }
     for name, height in heights.items():
         im = trim(Image.open(ROOT / "media" / "partners" / f"{name}.webp"))

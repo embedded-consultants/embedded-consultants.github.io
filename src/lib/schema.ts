@@ -7,7 +7,7 @@ const organization = {
   name: site.legalName,
   alternateName: site.name,
   url: `${site.url}/`,
-  logo: absolute('/brand/ec-logo-full-black.svg'),
+  logo: absolute('/brand/ec-logo-full-black.png'),
   image: absolute('/og/og-default.png'),
   description: site.schemaDescription,
   email: site.email,
@@ -16,7 +16,12 @@ const organization = {
     addressLocality: 'Novi Sad',
     addressCountry: 'RS',
   },
-  areaServed: ['US', 'CA', 'Europe', 'IN'],
+  areaServed: [
+    { '@type': 'Country', name: 'US' },
+    { '@type': 'Country', name: 'CA' },
+    { '@type': 'Country', name: 'IN' },
+    { '@type': 'Place', name: 'Europe' },
+  ],
   knowsAbout: [
     'Embedded systems',
     'Electronics product development',
@@ -57,6 +62,19 @@ const website = {
   publisher: { '@id': `${site.url}/#org` },
   inLanguage: 'en',
 };
+
+export function webPage() {
+  return {
+    '@type': 'WebPage',
+    '@id': `${site.url}/#webpage`,
+    url: `${site.url}/`,
+    name: site.title,
+    description: site.description,
+    isPartOf: { '@id': `${site.url}/#website` },
+    about: { '@id': `${site.url}/#org` },
+    inLanguage: 'en',
+  };
+}
 
 export function graph(...nodes: Record<string, unknown>[]) {
   return {

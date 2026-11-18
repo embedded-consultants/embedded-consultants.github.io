@@ -143,13 +143,13 @@ export const projects = [
 export const services = [
   {
     title: 'Hardware & PCB',
-    text: 'Architecture, parts, schematic and multilayer layout, shaped for cost, certification and assembly.',
+    text: 'Architecture, parts, schematic and multilayer PCB design, shaped for cost, certification and assembly.',
     tags: ['High-speed', 'Power & isolation', 'CAN · RS485', 'USB · Ethernet'],
     icon: '<rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"/><rect x="9" y="9" width="6" height="6"/>',
   },
   {
     title: 'Embedded firmware',
-    text: 'Drivers, bring-up, RTOS and bare-metal applications, bootloaders and production programming.',
+    text: 'Firmware development for drivers, bring-up, RTOS and bare-metal applications, bootloaders and production programming.',
     tags: ['STM32', 'STM32MP1', 'ESP32', 'Embedded Linux'],
     icon: '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/>',
   },

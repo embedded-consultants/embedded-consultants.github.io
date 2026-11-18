@@ -259,7 +259,7 @@ header {
   font-size: clamp(40px, 5vw, 64px);
   margin: 18px 0 18px;
   letter-spacing: -0.035em;
-  max-width: 14ch;
+  max-width: 16ch;
 }
 
 .hero h1 em { font-style: normal; color: var(--copper); }

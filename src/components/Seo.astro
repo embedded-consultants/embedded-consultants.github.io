@@ -9,6 +9,7 @@ interface Props {
   published?: string;
   jsonLd?: Record<string, unknown>;
   noindex?: boolean;
+  omitCanonical?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   published,
   jsonLd,
   noindex = false,
+  omitCanonical = false,
 } = Astro.props;
 
 const fullTitle = title.includes(site.name) ? title : `${title} | ${site.name}`;
@@ -34,8 +36,8 @@ const imageAlt = `${site.name} — electronic products, engineered from idea to 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
-<link rel="canonical" href={canonical} />
-<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow'} />
+{!omitCanonical && <link rel="canonical" href={canonical} />}
+<meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large'} />
 <meta name="theme-color" content="#0E1116" />
 <meta name="author" content={site.legalName} />
 

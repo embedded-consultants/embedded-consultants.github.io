@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import Logo from './Logo.astro';
 
 const onHome = Astro.url.pathname === '/';
 const to = (hash: string) => (onHome ? `#${hash}` : `/#${hash}`);
@@ -9,7 +10,7 @@ const showBlog = (await getCollection('blog')).length > 0;
 <header>
   <div class="wrap nav">
     <a class="brand" href="/" aria-label="Embedded Consultants home">
-      <img src="/brand/ec-logo-full-white.svg" width="2899" height="488" alt="Embedded Consultants" />
+      <Logo alt="Embedded Consultants" />
     </a>
     <ul class="nav-links" id="site-nav" data-nav-panel>
       <li><a href={to('services')}>What we do</a></li>

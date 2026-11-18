@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import Logo from './Logo.astro';
 import { site } from '../config';
 
 const year = new Date().getFullYear();
@@ -11,7 +12,7 @@ const showBlog = (await getCollection('blog')).length > 0;
 <footer>
   <div class="wrap">
     <a href="/" aria-label="Embedded Consultants home">
-      <img src="/brand/ec-logo-full-white.svg" width="2899" height="488" alt="" />
+      <Logo />
     </a>
     <nav aria-label="Footer">
       <a href={to('services')}>Services</a>
