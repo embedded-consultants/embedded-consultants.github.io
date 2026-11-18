@@ -1037,7 +1037,7 @@ footer .loc { display: block; font-size: 13px; margin-top: 4px; }
 .page h1 {
   font-size: clamp(36px, 5vw, 56px);
   margin: 14px 0 12px;
-  max-width: 18ch;
+  max-width: 18em;
 }
 
 .page-list { display: grid; gap: 14px; margin-top: 36px; }
@@ -1077,6 +1077,10 @@ footer .loc { display: block; font-size: 13px; margin-top: 4px; }
 .post-faq h2 { font-size: 26px; margin: 0 0 4px; }
 .post-faq h3 { font-size: 18px; margin: 1.25rem 0 0.35rem; }
 .post-faq p { margin: 0; }
+.related { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 28px; }
+.related a { color: var(--copper-deep); font-weight: 600; }
+.card .more { margin-top: 12px; }
+.note a { color: var(--copper-deep); font-weight: 600; }
 .article .figure { margin: 28px 0 8px; }
 .article .figure img { width: 100%; border-radius: 12px; border: 1px solid var(--line); }
 .article .figure figcaption { margin-top: 8px; color: var(--slate); font-size: 14px; }

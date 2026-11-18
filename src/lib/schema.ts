@@ -1,6 +1,18 @@
 import { absolute, site } from '../config';
 import { services, type FaqItem } from '../data/home';
 
+export function areaServed() {
+  return [
+    { '@type': 'Country', name: 'United States' },
+    { '@type': 'Country', name: 'Canada' },
+    { '@type': 'Country', name: 'United Kingdom' },
+    { '@type': 'Country', name: 'Serbia' },
+    { '@type': 'Country', name: 'India' },
+    { '@type': 'Place', name: 'Europe' },
+    { '@type': 'Place', name: 'European Union' },
+  ];
+}
+
 const organization = {
   '@type': ['Organization', 'ProfessionalService'],
   '@id': `${site.url}/#org`,
@@ -17,22 +29,22 @@ const organization = {
     addressLocality: 'Novi Sad',
     addressCountry: 'RS',
   },
-  areaServed: [
-    { '@type': 'Country', name: 'US' },
-    { '@type': 'Country', name: 'CA' },
-    { '@type': 'Country', name: 'IN' },
-    { '@type': 'Place', name: 'Europe' },
-  ],
+  areaServed: areaServed(),
   knowsAbout: [
-    'Embedded systems',
     'Electronics product development',
-    'PCB design',
-    'Embedded firmware',
+    'Embedded systems development',
+    'Hardware design services',
+    'PCB design services',
+    'Embedded firmware development',
+    'IoT product development',
+    'Electronics design consultancy',
+    'Design for manufacturing',
+    'Prototype to mass production',
+    'Nearshore electronics engineering',
     'STM32',
     'ESP32',
     'CAN bus',
     'RS485',
-    'Design for manufacturing',
     'EMC pre-compliance',
   ],
   sameAs: [site.linkedin, site.x, site.github],
@@ -63,15 +75,32 @@ const website = {
 };
 
 export function webPage() {
+  return webPageFor({ title: site.title, description: site.description, path: '/' });
+}
+
+export function webPageFor(page: { title: string; description: string; path: string }) {
+  const url = absolute(page.path);
   return {
     '@type': 'WebPage',
-    '@id': `${site.url}/#webpage`,
-    url: `${site.url}/`,
-    name: site.title,
-    description: site.description,
+    '@id': page.path === '/' ? `${site.url}/#webpage` : `${url}#webpage`,
+    url,
+    name: page.title,
+    description: page.description,
     isPartOf: { '@id': `${site.url}/#website` },
     about: { '@id': `${site.url}/#org` },
     inLanguage: 'en',
+  };
+}
+
+export function serviceNode(service: { name: string; description: string; path: string }) {
+  return {
+    '@type': 'Service',
+    name: service.name,
+    serviceType: service.name,
+    description: service.description,
+    url: absolute(service.path),
+    provider: { '@id': `${site.url}/#org` },
+    areaServed: areaServed(),
   };
 }
 
@@ -108,20 +137,17 @@ export function breadcrumb(items: { name: string; path: string }[]) {
 }
 
 export function serviceList() {
-  return services.map((service) => ({
-    '@type': 'Service',
-    name: service.title,
-    serviceType: service.title,
-    description: service.text,
-    url: `${site.url}/#services`,
-    provider: { '@id': `${site.url}/#org` },
-    areaServed: [
-      { '@type': 'Country', name: 'US' },
-      { '@type': 'Country', name: 'CA' },
-      { '@type': 'Country', name: 'IN' },
-      { '@type': 'Place', name: 'Europe' },
-    ],
-  }));
+  return [
+    ...services.map((service) =>
+      serviceNode({ name: service.title, description: service.text, path: service.href }),
+    ),
+    serviceNode({
+      name: 'Design for manufacturing and production transfer',
+      description:
+        'Design for manufacturing and the handover from a prototype to files a factory can build, test and program.',
+      path: '/services/dfm/',
+    }),
+  ];
 }
 
 export function blogPosting(post: {
