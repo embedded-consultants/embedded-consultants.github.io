@@ -38,7 +38,7 @@ const scope = [
           <p class="eyebrow">Embedded systems design consultancy</p>
           <h1>Embedded systems consulting, from <em>idea to production.</em></h1>
           <p class="lead">
-            Embedded Consultants is an embedded systems consultancy in Novi Sad, Serbia. We do electronics product development for product teams in industrial, automotive, medical and consumer markets: the hardware, PCBs, firmware, software and enclosure, from idea to production. The first call and the initial research are free.
+            Embedded Consultants is an electronics product development company in Novi Sad, Serbia, and an embedded systems development company for teams in the US, Canada, Europe and India. The work is the hardware, PCBs, firmware, software and enclosure, from idea to production. The first call and the initial research are free.
           </p>
           <div class="cta-row">
             <a class="btn btn-primary" href="#contact-call" data-preselect="call" data-umami-event="Request call">
@@ -93,7 +93,7 @@ const scope = [
       <div class="wrap">
         <p class="eyebrow">What we do</p>
         <h2>One small team for the whole product.</h2>
-        <p class="lead">Hardware, firmware, software and mechanics, in one team, so the seams between them are designed on purpose.</p>
+        <p class="lead">Hardware design services, PCB design services, embedded firmware development and the mechanical design, in one team, so the seams between them are designed on purpose.</p>
         <div class="cards4">
           {services.map((service) => (
             <article class="card">
@@ -103,13 +103,16 @@ const scope = [
               <h3>{service.title}</h3>
               <p>{service.text}</p>
               <div class="tags">{service.tags.map((tag) => <span>{tag}</span>)}</div>
+              <a class="more" href={service.href}>Read the service</a>
             </article>
           ))}
         </div>
+        <p class="note"><a href="/services/dfm/">Design for manufacturing and the move from prototype to mass production</a> is its own piece of work.</p>
         <div class="industries">
           <b>Industries</b>
           {industries.map((name) => <span>{name}</span>)}
         </div>
+        <p class="note">An electronics design consultancy for <a href="/markets/us/">US companies</a>, <a href="/markets/europe/">European companies</a> in the EU, the UK, DACH and the Nordics, and <a href="/markets/serbia/">nearshore engineering from Novi Sad</a>.</p>
         <p class="cert-note">Certification support is part of the work. We design for the tests your market requires and stay with you through the lab.</p>
       </div>
     </section>

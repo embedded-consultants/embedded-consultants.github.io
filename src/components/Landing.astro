@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import { absolute } from '../config';
+import type { LandingPage } from '../data/landings';
+import { breadcrumb, faqPage, graph, serviceNode, webPageFor } from '../lib/schema';
+
+interface Props {
+  page: LandingPage;
+}
+
+const { page } = Astro.props;
+const path = `/${page.group}/${page.slug}/`;
+const crumbs = [
+  { name: 'Home', path: '/' },
+  { name: page.group === 'services' ? 'Services' : 'Where we work', path: page.group === 'services' ? '/#services' : '/markets/serbia/' },
+  { name: page.title, path },
+];
+const nodes = [
+  webPageFor({ title: page.metaTitle, description: page.description, path }),
+  faqPage(page.faq, `${absolute(path)}#faq`),
+  breadcrumb(crumbs),
+];
+if (page.serviceName) {
+  nodes.push(serviceNode({ name: page.serviceName, description: page.summary, path }));
+}
+---
+
+<Base title={page.metaTitle} description={page.description} jsonLd={graph(...nodes)}>
+  <main id="main" class="page">
+    <article class="article-inner">
+      <p class="eyebrow">{page.eyebrow}</p>
+      <h1>{page.title}</h1>
+      <p class="definition">{page.summary}</p>
+      {page.sections.map((section) => (
+        <section class="prose">
+          <h2>{section.heading}</h2>
+          {section.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+          {section.bullets && (
+            <ul>
+              {section.bullets.map((item) => <li>{item}</li>)}
+            </ul>
+          )}
+        </section>
+      ))}
+      <section class="post-faq" id="faq" aria-labelledby="landing-faq">
+        <h2 id="landing-faq">Questions and answers</h2>
+        {page.faq.map((item) => (
+          <div>
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </div>
+        ))}
+      </section>
+      <nav class="related" aria-label="Related">
+        {page.related.map((item) => (
+          <a href={item.href}>{item.label}</a>
+        ))}
+      </nav>
+    </article>
+  </main>
+</Base>

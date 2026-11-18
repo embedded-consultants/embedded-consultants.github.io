@@ -16,6 +16,9 @@ const showBlog = (await publishedPosts()).length > 0;
     </a>
     <nav aria-label="Footer">
       <a href={to('services')}>Services</a>
+      <a href="/markets/us/">United States</a>
+      <a href="/markets/europe/">Europe</a>
+      <a href="/markets/serbia/">Serbia</a>
       <a href={to('process')}>Process</a>
       <a href={to('work')}>Work</a>
       {showBlog && <a href="/blog/">Blog</a>}
