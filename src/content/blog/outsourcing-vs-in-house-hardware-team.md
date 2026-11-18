@@ -107,6 +107,6 @@ For many companies, the cost of delay dominates every other line.
 
 ## How we work
 
-Embedded Consultants is a small, invested team headquartered in Novi Sad, covering electronics and PCB design, embedded firmware, software and mechanical design for clients in the US, Canada, Europe and India. We work as an extension of your team, give you full documentation and sources, and aim to be the shortcut to experience your project needs, not a black box.
+Embedded Consultants is a small team covering electronics and PCB design, embedded firmware, software and mechanical design, for clients in the US, Canada, Europe and India. We work as an extension of your team, give you full documentation and sources, and aim to be the shortcut to experience your project needs, not a black box.
 
 **[Send a project brief and pick a call window](https://embedded-consultants.com/#contact)** for a free 30-minute call. NDA-first is available, and we reply within one business day.

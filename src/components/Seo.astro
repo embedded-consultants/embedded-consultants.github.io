@@ -16,7 +16,7 @@ interface Props {
 const {
   title,
   description,
-  image = '/og/og-default.png',
+  image = '/og/og-default-v2.png',
   ogType = 'website',
   published,
   modified,
@@ -32,7 +32,8 @@ const path = Astro.url.pathname.endsWith('/') || /\.[a-z0-9]+$/i.test(Astro.url.
 const canonical = absolute(path);
 const ogUrl = omitCanonical ? absolute('/') : canonical;
 const imageUrl = absolute(image);
-const imageAlt = `${site.name} — electronic products, engineered from idea to production. Novi Sad, Serbia.`;
+const imageType = imageUrl.endsWith('.jpg') || imageUrl.endsWith('.jpeg') ? 'image/jpeg' : 'image/png';
+const imageAlt = `${site.name} — electronics product development, from idea to production.`;
 ---
 
 <meta charset="utf-8" />
@@ -58,6 +59,8 @@ const imageAlt = `${site.name} — electronic products, engineered from idea to 
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageUrl} />
+<meta property="og:image:secure_url" content={imageUrl} />
+<meta property="og:image:type" content={imageType} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:image:alt" content={imageAlt} />

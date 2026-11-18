@@ -21,7 +21,7 @@ const organization = {
   alternateName: site.legalName,
   url: `${site.url}/`,
   logo: absolute('/brand/ec-logo-full-black.png'),
-  image: absolute('/og/og-default.png'),
+  image: absolute('/og/og-default-v2.png'),
   description: site.schemaDescription,
   email: site.email,
   address: {
