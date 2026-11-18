@@ -104,7 +104,7 @@ export function blogPosting(post: {
   image: string;
 }) {
   return {
-    '@type': 'BlogPosting',
+    '@type': 'Article',
     headline: post.title,
     description: post.description,
     datePublished: post.date.toISOString(),
@@ -112,8 +112,20 @@ export function blogPosting(post: {
     image: absolute(post.image),
     mainEntityOfPage: absolute(post.path),
     url: absolute(post.path),
-    author: { '@id': `${site.url}/#org` },
-    publisher: { '@id': `${site.url}/#org` },
+    author: {
+      '@type': 'Organization',
+      name: 'Embedded Consultants',
+      url: `${site.url}/`,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Embedded Consultants',
+      url: `${site.url}/`,
+      logo: {
+        '@type': 'ImageObject',
+        url: absolute('/brand/ec-logo-full-black.png'),
+      },
+    },
     inLanguage: 'en',
   };
 }

@@ -1,5 +1,4 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import lyra from '../assets/partners/lyra.webp';
 import pcbdesign from '../assets/partners/pcbdesign.webp';
@@ -10,9 +9,9 @@ import ContactFlow from '../components/ContactFlow.astro';
 import { mailto, site } from '../config';
 import { faq, industries, outcomes, plans, principles, projects, services, steps } from '../data/home';
 import { faqPage, graph, webPage } from '../lib/schema';
-import { byDateDesc, formatDate, readingMinutes } from '../lib/posts';
+import { formatDate, publishedPosts, readingMinutes } from '../lib/posts';
 
-const posts = (await getCollection('blog')).sort(byDateDesc).slice(0, 3);
+const posts = (await publishedPosts()).slice(0, 3);
 const logos = [
   { src: lyra, alt: 'Lyra', sq: false },
   { src: pcbdesign, alt: 'PCB Design', sq: false },
