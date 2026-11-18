@@ -772,7 +772,7 @@ details p { margin-top: 8px; color: var(--slate); font-size: 16px; max-width: 62
 }
 .progress span.is-on { border-color: var(--copper); color: var(--ink); }
 .brief-step { border: 0; margin: 0; padding: 0; display: grid; gap: 14px; min-inline-size: 0; }
-.brief-step legend, .format legend {
+.brief-step legend {
   font-family: var(--f-head);
   font-size: 22px;
   font-weight: 600;
@@ -822,13 +822,44 @@ html.js .only-noscript { display: none; }
 .call-options { display: none; gap: 12px; }
 .choice:has(input[data-call]:checked) + .call-options { display: grid; }
 .hint, .window-note { margin: 0; color: var(--slate); font-size: 14px; }
-.windows { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.day { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
-.day > p { grid-column: 1 / -1; }
-.day > p { margin: 0; font-family: var(--f-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+.window-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.window-head p {
+  margin: 0;
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+.tz-change {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 2px;
+  color: var(--copper-deep);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tz-change select {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.tz-change:focus-within { outline: 2px solid var(--copper-deep); outline-offset: 2px; border-radius: 6px; }
+.windows { display: grid; gap: 12px; }
+.day { display: grid; grid-template-columns: repeat(3, minmax(7.5rem, 1fr)); gap: 6px; }
+.day > p { grid-column: 1 / -1; margin: 0; font-family: var(--f-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
 .day button {
-  display: grid;
-  gap: 2px;
+  display: flex;
   text-align: left;
   background: #fff;
   color: var(--ink);
@@ -838,12 +869,13 @@ html.js .only-noscript { display: none; }
   min-height: 44px;
   cursor: pointer;
 }
-.day button b { font-size: 14px; }
+.win-line { display: flex; flex-wrap: wrap; gap: 0 0.35em; align-items: baseline; }
+.win-name { font-weight: 600; font-size: 14px; }
+.win-time { white-space: nowrap; font-variant-numeric: tabular-nums; font-size: 14px; }
+.win-note { flex-basis: 100%; color: var(--slate); font-size: 13px; white-space: nowrap; }
 .day button.is-on { border-color: var(--copper-deep); background: var(--copper-soft); }
 .day button:disabled { background: var(--sand); color: var(--slate); cursor: not-allowed; }
-.toggles, .format { display: grid; gap: 8px; }
-.format { border: 0; margin: 0; padding: 0; }
-.format legend { font-size: 14px; font-family: var(--f-body); margin: 0; }
+.day button:disabled .win-name { font-weight: 600; }
 .check { display: flex; gap: 10px; align-items: center; min-height: 44px; font-size: 14.5px; }
 .check input { width: 18px; height: 18px; min-height: 18px; padding: 0; margin: 0; flex: none; accent-color: var(--copper-deep); }
 .step-controls { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -1059,7 +1091,6 @@ footer .loc { display: block; font-size: 13px; margin-top: 4px; }
 
   .hero .wrap, .why .top, .contact .wrap, .faq .wrap, .proof .wrap, .brief-layout { grid-template-columns: 1fr; gap: 32px; }
   .progress span { font-size: 10px; }
-  .windows { grid-template-columns: 1fr; }
   .cards4, .steps, .outcomes { grid-template-columns: 1fr 1fr; }
   .cards3, .work-grid, .posts { grid-template-columns: 1fr; }
   .principles { grid-template-columns: 1fr; }

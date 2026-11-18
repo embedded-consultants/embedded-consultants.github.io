@@ -79,24 +79,20 @@ import { formAction, mailto, site } from '../config';
       <div class="call-options" data-call-options>
         <p class="hint">These are requests, not bookings. We confirm one window by email.</p>
         <noscript><p class="hint">The time grid needs JavaScript. Write a few times in Preferred times below.</p></noscript>
-        <div class="f tz-row">
-          <label for="tz">Time zone</label>
-          <select id="tz" name="Time zone" data-tz></select>
+        <div class="window-head">
+          <p data-tz-label>Times in your zone</p>
+          <label class="tz-change">
+            <span aria-hidden="true">Change</span>
+            <select id="tz" name="Time zone" data-tz aria-label="Change time zone"></select>
+          </label>
         </div>
         <div class="windows" data-windows role="group" aria-label="Call windows, up to three" aria-live="polite"></div>
         <p class="window-note" data-window-note hidden></p>
         <input type="hidden" name="Requested windows" data-windows-field value="" />
-        <div class="toggles">
-          <label class="check">
-            <input type="checkbox" name="NDA first" value="Send me your mutual NDA before I share details" />
-            <span>Send me your mutual NDA before I share details</span>
-          </label>
-          <fieldset class="format">
-            <legend>Call format</legend>
-            <label class="check"><input type="radio" name="Call format" value="Video" checked /><span>Video</span></label>
-            <label class="check"><input type="radio" name="Call format" value="Phone" /><span>Phone</span></label>
-          </fieldset>
-        </div>
+        <label class="check">
+          <input type="checkbox" name="NDA first" value="Send me your mutual NDA before I share details" />
+          <span>Send me your mutual NDA before I share details</span>
+        </label>
       </div>
       <div class="f only-noscript">
         <label for="preferred">Preferred times</label>
@@ -391,6 +387,35 @@ import { formAction, mailto, site } from '../config';
       return hours >= 1.5 ? 'CEST' : 'CET';
     }
 
+    function gmtLabel(date, timeZone) {
+      const map = {};
+      for (const part of new Intl.DateTimeFormat('en-US', {
+        timeZone,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hourCycle: 'h23',
+      }).formatToParts(date)) {
+        if (part.type !== 'literal') map[part.type] = part.value;
+      }
+      const asUTC = Date.UTC(+map.year, +map.month - 1, +map.day, +map.hour % 24, +map.minute, +map.second);
+      const totalMinutes = Math.round((asUTC - date.getTime()) / 60000);
+      const sign = totalMinutes < 0 ? '-' : '+';
+      const abs = Math.abs(totalMinutes);
+      const whole = Math.floor(abs / 60);
+      const minutes = abs % 60;
+      return minutes === 0 ? `GMT${sign}${whole}` : `GMT${sign}${whole}:${String(minutes).padStart(2, '0')}`;
+    }
+
+    function renderZoneLabel() {
+      const label = `Times in ${gmtLabel(new Date(), zone)}`;
+      root.querySelector('[data-tz-label]').textContent = label;
+      windowsBox.setAttribute('aria-label', `Call windows, up to three. ${label}`);
+    }
+
     function clock(date, timeZone) {
       const map = ymdIn(date, timeZone);
       return `${String(map.hour % 24).padStart(2, '0')}:${map.minute}`;
@@ -436,20 +461,13 @@ import { formAction, mailto, site } from '../config';
           button.type = 'button';
           const id = start.toISOString();
           const item = { id, start: start.getTime(), end: end.getTime(), label: block.label };
-          const text = windowText(item);
           if (!open) {
             button.disabled = true;
-            button.innerHTML = `<b>${block.label}</b><small>outside our hours</small>`;
+            button.innerHTML = `<span class="win-line"><span class="win-name">${block.label}</span> <span class="win-note">outside our hours</span></span>`;
           } else {
-            const localDate = dayLabel(start, zone);
-            const homeDate = dayLabel(start, BELGRADE);
-            const columnDate = title.textContent;
             const localClocks = `${clock(start, zone)}–${clock(end, zone)}`;
-            const homeClocks = `${clock(start, BELGRADE)}–${clock(end, BELGRADE)} ${zoneAbbrev(start)}`;
-            const localLine = localDate === columnDate ? localClocks : `${localDate}, ${localClocks}`;
-            const homeLine = localDate === homeDate ? homeClocks : `${homeDate}, ${homeClocks}`;
-            button.innerHTML = `<b>${block.label}</b><small>${localLine}</small><small>${homeLine}</small>`;
-            button.setAttribute('aria-label', text);
+            button.innerHTML = `<span class="win-line"><span class="win-name">${block.label}</span> <span class="win-time">${localClocks}</span></span>`;
+            button.setAttribute('aria-label', `${title.textContent} ${block.label} ${localClocks}`);
             button.setAttribute('aria-pressed', selected.has(id) ? 'true' : 'false');
             if (selected.has(id)) button.classList.add('is-on');
             button.addEventListener('click', () => toggleWindow(item));
@@ -459,6 +477,7 @@ import { formAction, mailto, site } from '../config';
         windowsBox.append(card);
       }
       writeWindows();
+      renderZoneLabel();
     }
 
     function toggleWindow(item) {
@@ -481,6 +500,12 @@ import { formAction, mailto, site } from '../config';
       const end = new Date(item.end);
       const abbr = zoneAbbrev(start);
       return `${item.label}: ${dayLabel(start, zone)} ${clock(start, zone)}–${clock(end, zone)} ${zone} (${dayLabel(start, BELGRADE)} ${clock(start, BELGRADE)}–${clock(end, BELGRADE)} ${abbr})`;
+    }
+
+    function windowLocal(item) {
+      const start = new Date(item.start);
+      const end = new Date(item.end);
+      return `${item.label} ${clock(start, zone)}–${clock(end, zone)}`;
     }
 
     function writeWindows() {
@@ -511,8 +536,7 @@ import { formAction, mailto, site } from '../config';
 
     function renderReply() {
       const when = replyInstant();
-      const abbr = zoneAbbrev(when);
-      replyEl.textContent = `${dayLabel(when, zone)} ${clock(when, zone)} your time (${dayLabel(when, BELGRADE)} ${clock(when, BELGRADE)} ${abbr})`;
+      replyEl.textContent = `${dayLabel(when, zone)} ${clock(when, zone)} ${gmtLabel(when, zone)}`;
     }
 
     function values(name) {
@@ -533,7 +557,9 @@ import { formAction, mailto, site } from '../config';
       root.querySelector('[data-sheet-needs]').textContent = needs.join(', ') || '—';
       root.querySelector('[data-sheet-timeline]').textContent = form.querySelector('#timeline').value || '—';
       root.querySelector('[data-sheet-next]').textContent = one('Next step') || '—';
-      root.querySelector('[data-sheet-windows]').textContent = picked.length ? picked.map((item) => windowText(item)).join('; ') : '—';
+      root.querySelector('[data-sheet-windows]').textContent = picked.length
+        ? `${picked.map((item) => windowLocal(item)).join('; ')} (${gmtLabel(new Date(), zone)})`
+        : '—';
       toggleCall();
     }
 
@@ -610,10 +636,9 @@ import { formAction, mailto, site } from '../config';
         `- Extra needs: ${values('Extra needs').join(', ') || '—'}`,
         `- Timeline: ${form.querySelector('#timeline').value || '—'}`,
         `- Next step: ${one('Next step') || '—'}`,
-        `- Time zone: ${zone}`,
-        `- Windows: ${picked.map((item) => windowText(item)).join(' | ') || '—'}`,
+        `- Time zone: Times in ${gmtLabel(new Date(), zone)}`,
+        `- Windows: ${picked.map((item) => windowLocal(item)).join('; ') || '—'}`,
         `- NDA first: ${form.querySelector('[name="NDA first"]')?.checked ? 'Yes' : 'No'}`,
-        `- Call format: ${one('Call format') || '—'}`,
         `- Name: ${form.querySelector('#person').value.trim()}`,
         `- Work email: ${form.querySelector('#work-email').value.trim()}`,
         `- Company: ${form.querySelector('#company').value.trim() || '—'}`,
