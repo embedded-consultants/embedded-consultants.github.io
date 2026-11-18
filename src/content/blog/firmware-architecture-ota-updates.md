@@ -7,12 +7,25 @@ metaTitle: "Firmware Architecture for Reliable OTA Updates"
 ogImage: "/blog/og/ota-architecture.png"
 author: "Embedded Consultants Engineering Team"
 tags: ["firmware", "OTA", "security", "IoT"]
+definition: "An over-the-air (OTA) update replaces the firmware in a device that is already in the field, over a network, without a programmer attached."
+takeaways:
+  - "The device must always be able to boot a known-good image, including after power loss mid-write."
+  - "Keep the bootloader small and rarely changed. Put the network stack in the application."
+  - "Check integrity and authenticity of every image, and confirm the new image works before retiring the old one."
+  - "Roll a fleet out in stages. A bad image should stop at a small group, not every unit."
+faq:
+  - q: "What is an OTA update?"
+    a: "OTA means over the air: the device downloads a new firmware image and installs it in the field. A safe design can recover if power or the network fails during that install."
+  - q: "Why use two firmware slots?"
+    a: "One slot keeps the image that is known to boot. The other receives the new image. The bootloader switches only after the new image has been checked and, preferably, after it has run."
+  - q: "What should the bootloader not do?"
+    a: "It should not contain the product's network stack or features you expect to change often. If the bootloader itself fails, you cannot fix it with an update."
 ---
 Over-the-air (OTA) updates turn a shipped product into one you can keep improving. They also create a new way to break thousands of devices at once. The difference between the two outcomes is almost entirely architecture, decided long before the first update is ever pushed.
 
 Here is how we approach OTA-capable firmware on microcontroller-based products.
 
-## Principle 1: The device must always be able to boot something valid
+## Why must the device always boot a valid image?
 
 Every design decision follows from this. Power can fail mid-download, mid-write or mid-reboot. Connectivity can drop. An image can be corrupted or malicious. In every case, the device must come back up in a known-good state and be able to try again.
 

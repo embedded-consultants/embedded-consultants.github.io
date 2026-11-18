@@ -285,23 +285,35 @@ export const plans = [
 
 export const faq: FaqItem[] = [
   {
+    q: 'What does Embedded Consultants do?',
+    a: 'Embedded Consultants is an electronics product-development consultancy. We design the hardware and PCB, embedded firmware, the software around the device, and the mechanical parts, then hand over the files a factory needs to build it.',
+  },
+  {
+    q: 'Which industries do you work in?',
+    a: 'Industrial equipment, automotive electronics, medical devices, and consumer and IoT products. The engineering is the same set of disciplines. Regulated products add traceability, qualified parts and a test record.',
+  },
+  {
+    q: 'How does an engagement work?',
+    a: 'Three shapes. A fixed-scope feasibility review answers whether and how to build it. Milestone-based development runs the eight phases from discovery to production transfer, with a written gate between phases. Flexible support is senior help for a team that already exists: reviews, layout, firmware or a production problem. You own the schematics, layout, source and documents once the work is paid.',
+  },
+  {
     q: 'Do you sign an NDA before the details?',
-    a: 'Yes. Send yours or ask for ours. We sign it before you share anything confidential.',
+    a: 'Yes. Send yours, or ask for the mutual NDA. It is signed before you share anything confidential. The project brief can request that as the first step.',
   },
   {
-    q: 'Who owns the designs and the source?',
-    a: 'You do, once the work is paid. Schematics, PCB files, firmware, software and documentation are handed over in full.',
+    q: 'Can you take a prototype through to mass production?',
+    a: 'Yes. We join at a working prototype as often as at a blank page. The work is a design review, then the changes for test, certification and assembly, then the production package: BOM, test procedure and programming instructions. We design for the standards the market needs, run pre-compliance, and support the accredited lab. The lab, not us, issues the certificate.',
   },
   {
-    q: 'Can you join a prototype that already exists?',
-    a: 'Yes. We often start with a review, then redesign, fix or take the product into production.',
+    q: 'How long does a project usually take?',
+    a: 'A feasibility review is a short written study. Full development is phased and usually measured in months, longer when tooling or certification is on the path. We do not quote one duration for every product. We reply to a new brief within one business day.',
   },
   {
-    q: 'Can you help with certification?',
-    a: 'We design for the standards your market needs, run pre-compliance, and support you through testing at an accredited lab.',
+    q: 'Where is Embedded Consultants based?',
+    a: 'Headquarters are in Novi Sad, Serbia. Clients are mostly in the United States, Canada, Europe and India. Calls are set in the visitor’s time zone. We do not publish any other office.',
   },
   {
-    q: 'Do you work outside Europe?',
-    a: 'Yes. Most clients are in the US, Canada, Europe and India. Calls are set for your time zone. The studio is in Novi Sad, Serbia.',
+    q: 'How do we start?',
+    a: 'Send a project brief at embedded-consultants.com. Say what the product should do, the stage it is at, and whether you want a written reply or a free 30-minute call. The first call and the initial research are free. These are requests, not bookings.',
   },
 ];

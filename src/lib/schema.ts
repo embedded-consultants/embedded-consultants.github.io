@@ -1,11 +1,12 @@
 import { absolute, site } from '../config';
-import type { FaqItem } from '../data/home';
+import { services, type FaqItem } from '../data/home';
 
 const organization = {
   '@type': ['Organization', 'ProfessionalService'],
   '@id': `${site.url}/#org`,
-  name: site.legalName,
-  alternateName: site.name,
+  name: site.name,
+  legalName: site.legalName,
+  alternateName: site.legalName,
   url: `${site.url}/`,
   logo: absolute('/brand/ec-logo-full-black.png'),
   image: absolute('/og/og-default.png'),
@@ -44,12 +45,10 @@ const organization = {
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
     name: 'Engineering services',
-    itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Hardware and PCB design' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Embedded firmware development' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Software and connectivity' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Mechanical design and production transfer' } },
-    ],
+    itemListElement: services.map((service) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: service.title, description: service.text },
+    })),
   },
 };
 
@@ -83,10 +82,10 @@ export function graph(...nodes: Record<string, unknown>[]) {
   };
 }
 
-export function faqPage(items: FaqItem[]) {
+export function faqPage(items: FaqItem[], id = `${site.url}/#faq`) {
   return {
     '@type': 'FAQPage',
-    '@id': `${site.url}/#faq`,
+    '@id': id,
     isPartOf: { '@id': `${site.url}/#website` },
     mainEntity: items.map((item) => ({
       '@type': 'Question',
@@ -96,10 +95,40 @@ export function faqPage(items: FaqItem[]) {
   };
 }
 
+export function breadcrumb(items: { name: string; path: string }[]) {
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: absolute(item.path),
+    })),
+  };
+}
+
+export function serviceList() {
+  return services.map((service) => ({
+    '@type': 'Service',
+    name: service.title,
+    serviceType: service.title,
+    description: service.text,
+    url: `${site.url}/#services`,
+    provider: { '@id': `${site.url}/#org` },
+    areaServed: [
+      { '@type': 'Country', name: 'US' },
+      { '@type': 'Country', name: 'CA' },
+      { '@type': 'Country', name: 'IN' },
+      { '@type': 'Place', name: 'Europe' },
+    ],
+  }));
+}
+
 export function blogPosting(post: {
   title: string;
   description: string;
   date: Date;
+  modified: Date;
   path: string;
   image: string;
 }) {
@@ -108,7 +137,7 @@ export function blogPosting(post: {
     headline: post.title,
     description: post.description,
     datePublished: post.date.toISOString(),
-    dateModified: post.date.toISOString(),
+    dateModified: post.modified.toISOString(),
     image: absolute(post.image),
     mainEntityOfPage: absolute(post.path),
     url: absolute(post.path),

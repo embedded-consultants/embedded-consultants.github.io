@@ -7,12 +7,25 @@ metaTitle: "How to Choose a Microcontroller for a Product"
 ogImage: "/blog/og/choose-mcu.png"
 author: "Embedded Consultants Engineering Team"
 tags: ["MCU", "firmware", "hardware"]
+definition: "A microcontroller (MCU) is the programmable chip that runs a product's firmware. Selecting one for production means matching interfaces, memory, power, security, tools and supply for the life of the product."
+takeaways:
+  - "A dev board that demoed well is not a production selection."
+  - "Write the interface, analog, timing, wireless and environment requirements before opening a vendor selector."
+  - "Size flash and RAM for later features and for update storage, not for the firmware on day one."
+  - "The toolchain, the second source and the part's lifecycle belong in the decision with the core and the peripherals."
+faq:
+  - q: "How is choosing an MCU for a product different from a prototype?"
+    a: "A prototype can use whatever board is on the desk. A product has to keep the same part available, with enough memory, the right peripherals and a toolchain the team can maintain for years."
+  - q: "How much memory headroom should you leave?"
+    a: "Plan for the product years after launch, including logging and space for an update image. Shipping near full flash leaves no room for the next feature."
+  - q: "What should you check besides the core?"
+    a: "Peripherals, power, security features, the quality of the toolchain, supply risk and how long the vendor will sell the part."
 ---
 Most microcontrollers are chosen the same way: someone had a dev board on the desk, the demo worked, and the part quietly became the production MCU. Sometimes that works out. Often it means a redesign twelve months later, when memory runs out, a peripheral is missing, or the part goes on allocation.
 
 Choosing an MCU for a product is a different exercise from choosing one for a proof of concept. Here is the framework we use.
 
-## Start from requirements, not from part numbers
+## What should you specify before picking a part number?
 
 Before opening any vendor selector, write down what the product must do over its whole life:
 
@@ -24,7 +37,7 @@ Before opening any vendor selector, write down what the product must do over its
 
 This list rules out most of the market before you compare a single datasheet.
 
-## Size memory for year three, not day one
+## How much memory should you reserve?
 
 Firmware grows. Features are added after launch, logging gets richer, and secure OTA updates typically need room for two application images or a compressed staging area. A product that ships at 85% flash usage is already in trouble.
 
