@@ -7,12 +7,25 @@ metaTitle: "Medical & Automotive Electronics: What Changes"
 ogImage: "/blog/og/medical-automotive.png"
 author: "Embedded Consultants Engineering Team"
 tags: ["medical", "automotive", "compliance", "safety"]
+definition: "Medical and automotive electronics are ordinary circuits plus an evidence system: requirements, risk controls, qualified parts and tests have to be traceable, not only shown to work once."
+takeaways:
+  - "The circuit skills carry over. The new work is proof, documentation and change control."
+  - "Traceability runs from the requirement to the design and then to the test that shows the requirement is met."
+  - "Part qualification, safety architecture and the test record are planned with the schematic, not written afterwards."
+  - "This note is an engineering overview. It is not regulatory advice."
+faq:
+  - q: "What changes when electronics move into medical or automotive?"
+    a: "Less about how you draw a circuit, and more about how you prove it: traceable requirements, risk management, qualified components and a controlled design history."
+  - q: "Is a working prototype enough evidence?"
+    a: "No. Both domains expect a record that links what the product must do to the design choices and to the tests that checked them."
+  - q: "Does this post replace a regulatory consultant?"
+    a: "No. It lists the engineering work to plan for. The applicable standard and the legal path still need the right specialist for the product and the market."
 ---
 A capable team can build a working consumer or industrial electronics product. Moving into medical or automotive changes less about *how* you design circuits and more about how you **prove**, **document**, and **control** them. Teams that underestimate this shift tend to discover it late, when design history files are missing or a component turns out not to be qualified.
 
 This post is an overview of what changes and where to start. It is not a substitute for regulatory advice, but it should help you plan realistically.
 
-## The common thread: evidence
+## What has to be proved, not only built?
 
 In both domains, the product must not only be safe and reliable; you must be able to show *why* it is. That means:
 

@@ -7,6 +7,19 @@ metaTitle: "EMC Pre-Compliance Testing: A Practical Guide"
 ogImage: "/blog/og/emc-precompliance.png"
 author: "Embedded Consultants Engineering Team"
 tags: ["EMC", "compliance", "testing"]
+definition: "EMC pre-compliance is an in-house approximation of official electromagnetic compatibility tests, used to find emission and immunity problems before an accredited laboratory."
+takeaways:
+  - "Pre-compliance does not replace the certification lab. It finds problems while a change is still cheap."
+  - "Identify the applicable standard first. The standard sets the limits and the immunity tests."
+  - "Near-field probes and a LISN are for comparison and hunting sources. Absolute readings can be several dB off."
+  - "Aim for margin, not a bare pass, because the lab setup will not match the bench exactly."
+faq:
+  - q: "What is EMC pre-compliance testing?"
+    a: "It is a simplified version of radiated and conducted emissions, and of immunity tests such as ESD, run on your own bench so you can compare revisions before booking an accredited lab."
+  - q: "Does a pre-compliance pass count as certification?"
+    a: "No. The setup is not a calibrated lab. Use it to find sources and to judge relative margin. The legal pass still comes from the accredited test."
+  - q: "Which standards should you name before measuring?"
+    a: "The product and market decide: examples include CISPR 32 for multimedia, IEC 61326-1 for measurement equipment, IEC 60601-1-2 for medical, CISPR 25 for automotive components, and FCC Part 15 in the United States."
 ---
 Few things stall a hardware launch like an EMC failure at the accredited lab. The product is "done", the launch date is set, and suddenly a 6 dB emissions peak at 150 MHz puts everything on hold. Each lab session costs money, the next free slot may be weeks away, and fixes made under pressure are rarely the best ones.
 
@@ -22,7 +35,7 @@ Pre-compliance means approximating the official tests with simpler, cheaper equi
 
 It is **not** a calibrated measurement. Absolute numbers from a pre-compliance setup can be off by several dB. That is why the goal is margin, not just a pass.
 
-## Know which standards apply first
+## Which standards apply before you measure?
 
 Before measuring anything, identify the standards for your product and market: for example the EN 55032/CISPR 32 family for multimedia and IT equipment, EN 61326-1 for measurement and control equipment, IEC 60601-1-2 for medical electrical equipment, CISPR 25 for automotive components, plus FCC Part 15 for the US. The standard defines the limits, test setups, and the immunity tests you need to plan for.
 

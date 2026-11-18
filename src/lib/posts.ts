@@ -11,6 +11,12 @@ export function isPublished(date: Date, now = new Date()): boolean {
   return date.getTime() <= now.getTime();
 }
 
+export function modifiedDate(post: CollectionEntry<'blog'>): Date {
+  const updated = post.data.updated;
+  if (!updated || updated.getTime() < post.data.date.getTime()) return post.data.date;
+  return updated;
+}
+
 export async function publishedPosts(now = new Date()): Promise<CollectionEntry<'blog'>[]> {
   const posts = await getCollection('blog');
   return posts.filter((post) => isPublished(post.data.date, now)).sort(byDateDesc);

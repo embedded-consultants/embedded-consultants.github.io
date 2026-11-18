@@ -8,7 +8,7 @@ import valsogard from '../assets/partners/valsogard.webp';
 import ContactFlow from '../components/ContactFlow.astro';
 import { mailto, site } from '../config';
 import { faq, industries, outcomes, plans, principles, projects, services, steps } from '../data/home';
-import { faqPage, graph, webPage } from '../lib/schema';
+import { breadcrumb, faqPage, graph, serviceList, webPage } from '../lib/schema';
 import { formatDate, publishedPosts, readingMinutes } from '../lib/posts';
 
 const posts = (await publishedPosts()).slice(0, 3);
@@ -29,7 +29,7 @@ const scope = [
 ];
 ---
 
-<Base title={site.title} description={site.description} jsonLd={graph(webPage(), faqPage(faq))}>
+<Base title={site.title} description={site.description} jsonLd={graph(webPage(), faqPage(faq), breadcrumb([{ name: 'Home', path: '/' }]), ...serviceList())}>
   <main id="main">
     <section class="hero dark" id="top">
       <div class="grid-bg" aria-hidden="true"></div>
@@ -38,8 +38,7 @@ const scope = [
           <p class="eyebrow">Embedded systems design consultancy</p>
           <h1>Embedded systems consulting, from <em>idea to production.</em></h1>
           <p class="lead">
-            Electronics product development for the hardware, PCBs, firmware, software and enclosure, handed over ready to build.
-            The first call and the initial research are free.
+            Embedded Consultants is an embedded systems consultancy in Novi Sad, Serbia. We do electronics product development for product teams in industrial, automotive, medical and consumer markets: the hardware, PCBs, firmware, software and enclosure, from idea to production. The first call and the initial research are free.
           </p>
           <div class="cta-row">
             <a class="btn btn-primary" href="#contact-call" data-preselect="call" data-umami-event="Request call">
@@ -228,7 +227,7 @@ const scope = [
       </section>
     )}
 
-    <section class="faq" aria-labelledby="faq-heading">
+    <section class="faq" id="faq" aria-labelledby="faq-heading">
       <div class="wrap">
         <div>
           <p class="eyebrow">FAQ</p>

@@ -7,6 +7,21 @@ metaTitle: "9 DFM Pitfalls: Prototype to Mass Production"
 ogImage: "/blog/og/dfm-pitfalls.png"
 author: "Embedded Consultants Engineering Team"
 tags: ["DFM", "manufacturing", "hardware"]
+updated: 2026-11-18T07:00:00+01:00
+definition: "Design for manufacturing (DFM) means shaping a board, its parts and its documents so a factory can build the product repeatedly, not only so a lab can build one."
+takeaways:
+  - "A working prototype does not prove a design can be built in volume."
+  - "The usual stalls are parts you cannot buy, footprints that fail in reflow, no production test, and programming left until the line is waiting."
+  - "Tolerance between the board and the enclosure, panel stress on ceramic capacitors, and overly tight fab rules show up as yield loss, not as a lab bug."
+  - "A factory needs a controlled BOM, assembly drawings, a test spec and programming instructions, not Gerbers alone."
+  - "These are cheaper to fix before the layout is frozen than after tooling or a first production lot."
+faq:
+  - q: "What is design for manufacturing in electronics?"
+    a: "Design for manufacturing (DFM) is the set of choices that let a contract manufacturer assemble a board the same way every time: buyable parts, reflow-friendly footprints, a test plan, programming access, and documents the line can follow."
+  - q: "Why do prototypes pass and production fail?"
+    a: "A technician can rework one board. Reflow, panel stress, connector-to-enclosure tolerances and missing test points do not forgive the same shortcuts across thousands of units."
+  - q: "When should a DFM review happen?"
+    a: "Before layout is frozen, and again with the contract manufacturer on panelization, stencil rules and test. A short pilot on the real line is the last check before volume."
 ---
 A prototype proves that a design *can* work. Mass production has to prove that it works ten thousand times in a row, built by people and machines that never saw your lab bench. The gap between those two statements is where schedules slip and budgets burn.
 
@@ -66,7 +81,7 @@ A production line needs more than Gerbers. It needs a controlled BOM with approv
 
 **What to do:** treat the manufacturing release as a deliverable in its own right, reviewed with the same rigor as the schematic.
 
-## The pattern behind the pitfalls
+## Why do these problems cost more after the first build?
 
 Each of these problems is easy to fix during design and expensive to fix after tooling, certification, or a first production lot. That is why the most useful thing an experienced team brings to a hardware project is not raw speed, but foresight: knowing where the roadblocks usually appear and designing around them before they exist.
 

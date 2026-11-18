@@ -7,6 +7,19 @@ metaTitle: "PCB Design Review Checklist: Schematic to Release"
 ogImage: "/blog/og/pcb-review-checklist.png"
 author: "Embedded Consultants Engineering Team"
 tags: ["PCB", "design review", "hardware"]
+definition: "A PCB design review is a staged check of the schematic, power, layout, EMC and manufacturing files before a board is released to fabrication."
+takeaways:
+  - "Most respins come from small, checkable mistakes, not from unsolved engineering."
+  - "Review the schematic before layout, placement before routing, and the full package before release."
+  - "The designer should not be the only reviewer, and every finding needs an owner."
+  - "Power, pinout, protection, stack-up, EMC and the fabrication package each need their own pass."
+faq:
+  - q: "What is a PCB design review?"
+    a: "It is a structured pass over the schematic and layout, done in stages, to catch pinout, power, routing and manufacturing errors before the board is fabricated."
+  - q: "When should the review happen?"
+    a: "Schematic review before layout starts, placement review before routing, and a final review before Gerbers and the BOM are released."
+  - q: "What does the checklist not replace?"
+    a: "It does not replace measurement. A clean review still needs bring-up and, where the product requires it, pre-compliance and lab testing."
 ---
 A board respin costs weeks of calendar time and, in a regulated or high-volume product, a lot more than the fab invoice. Most respins we have seen were not caused by hard engineering problems. They were caused by small, checkable mistakes that nobody checked.
 

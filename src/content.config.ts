@@ -13,6 +13,10 @@ const blog = defineCollection({
     ogImage: z.string(),
     author: z.literal('Embedded Consultants Engineering Team'),
     tags: z.array(z.string()),
+    updated: z.coerce.date().optional(),
+    definition: z.string(),
+    takeaways: z.array(z.string()).min(3).max(5),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })).min(3).max(4),
   }),
 });
 
