@@ -1,0 +1,8 @@
+---
+interface Props {
+  alt?: string;
+}
+const { alt = '' } = Astro.props;
+---
+
+<img src="/brand/ec-logo-full-white.svg" width="2899" height="488" alt={alt} />

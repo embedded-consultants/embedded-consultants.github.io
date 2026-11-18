@@ -28,9 +28,16 @@ export default defineConfig({
   site: 'https://embedded-consultants.com',
   trailingSlash: 'always',
   compressHTML: true,
+  redirects: {
+    '/sitemap.xml': '/sitemap-index.xml',
+  },
   integrations: [
     sitemap({
-      filter: (page) => !REDIRECT_PATHS.has(new URL(page).pathname),
+      filter: (page) => {
+        const path = new URL(page).pathname;
+        return path !== '/sitemap.xml' && !REDIRECT_PATHS.has(path);
+      },
+      lastmod: new Date(),
     }),
   ],
 });

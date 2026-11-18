@@ -8,7 +8,7 @@ import kingpin from '../assets/partners/kingpin.webp';
 import valsogard from '../assets/partners/valsogard.webp';
 import { booking, formAction, formspreeReady, mailto, site } from '../config';
 import { faq, industries, outcomes, plans, principles, projects, services, steps } from '../data/home';
-import { faqPage, graph } from '../lib/schema';
+import { faqPage, graph, webPage } from '../lib/schema';
 import { byDateDesc, formatDate, readingMinutes } from '../lib/posts';
 
 const posts = (await getCollection('blog')).sort(byDateDesc).slice(0, 3);
@@ -29,16 +29,16 @@ const scope = [
 ];
 ---
 
-<Base title={site.title} description={site.description} jsonLd={graph(faqPage(faq))}>
+<Base title={site.title} description={site.description} jsonLd={graph(webPage(), faqPage(faq))}>
   <main id="main">
     <section class="hero dark" id="top">
       <div class="grid-bg" aria-hidden="true"></div>
       <div class="wrap">
         <div>
           <p class="eyebrow">Embedded systems design consultancy</p>
-          <h1>Electronic products, engineered from <em>idea to production.</em></h1>
+          <h1>Embedded systems consulting, from <em>idea to production.</em></h1>
           <p class="lead">
-            We design the hardware, PCBs, firmware, software and enclosure, then hand the product over ready to build.
+            Electronics product development for the hardware, PCBs, firmware, software and enclosure, handed over ready to build.
             The first call and the initial research are free.
           </p>
           <div class="cta-row">

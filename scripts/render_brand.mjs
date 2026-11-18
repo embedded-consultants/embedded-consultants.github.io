@@ -69,4 +69,10 @@ await sharp(wordSvg, { density: 400 })
   .png()
   .toFile('/tmp/ec-wordmark-og.png');
 
+const blackSvg = readFileSync('public/brand/ec-logo-full-black.svg');
+await sharp(blackSvg, { density: 300 })
+  .resize({ height: 160, background: { r: 0, g: 0, b: 0, alpha: 0 } })
+  .png()
+  .toFile('public/brand/ec-logo-full-black.png');
+
 console.log('brand rasters ready');
