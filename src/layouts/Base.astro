@@ -22,6 +22,7 @@ const props = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
+    <script is:inline>document.documentElement.classList.add('js')</script>
     <link rel="preload" href={soraLatin} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
     <Seo {...props} />
@@ -55,55 +56,6 @@ const props = Astro.props;
         if (event.key === 'Escape' && header?.classList.contains('is-open')) {
           setOpen(false);
           toggle?.focus();
-        }
-      });
-
-      const form = document.querySelector('[data-inquiry]');
-      form?.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const status = form.querySelector('[data-status]');
-        const button = form.querySelector('button[type="submit"]');
-        const data = new FormData(form);
-        const show = (state, message) => {
-          if (!status) return;
-          status.dataset.state = state;
-          status.textContent = message;
-        };
-        if (String(data.get('_gotcha') || '').trim() !== '') {
-          form.reset();
-          show('success', 'Thank you. We will reply within one business day.');
-          return;
-        }
-        if (form.dataset.placeholder === 'true') {
-          show(
-            'error',
-            'This form is not connected yet. Email contact@embedded-consultants.com and we will reply within one business day.',
-          );
-          return;
-        }
-        if (button) button.disabled = true;
-        try {
-          const response = await fetch(form.action, {
-            method: 'POST',
-            body: data,
-            headers: { Accept: 'application/json' },
-          });
-          if (response.ok) {
-            form.reset();
-            show('success', 'Thank you. We will reply within one business day.');
-          } else {
-            show(
-              'error',
-              'We could not send that. Email contact@embedded-consultants.com and we will reply within one business day.',
-            );
-          }
-        } catch {
-          show(
-            'error',
-            'Network problem. Email contact@embedded-consultants.com and we will reply within one business day.',
-          );
-        } finally {
-          if (button) button.disabled = false;
         }
       });
     </script>

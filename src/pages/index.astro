@@ -6,7 +6,8 @@ import pcbdesign from '../assets/partners/pcbdesign.webp';
 import sensa from '../assets/partners/sensa.webp';
 import kingpin from '../assets/partners/kingpin.webp';
 import valsogard from '../assets/partners/valsogard.webp';
-import { booking, formAction, formspreeReady, mailto, site } from '../config';
+import ContactFlow from '../components/ContactFlow.astro';
+import { mailto, site } from '../config';
 import { faq, industries, outcomes, plans, principles, projects, services, steps } from '../data/home';
 import { faqPage, graph, webPage } from '../lib/schema';
 import { byDateDesc, formatDate, readingMinutes } from '../lib/posts';
@@ -42,9 +43,9 @@ const scope = [
             The first call and the initial research are free.
           </p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="#contact" data-umami-event="Book call">
+            <a class="btn btn-primary" href="#contact-call" data-preselect="call" data-umami-event="Request call">
               <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-              Book a free 30-min call
+              Request a free 30-min call
             </a>
             <a class="btn btn-ghost" href="#process">See the process</a>
           </div>
@@ -252,9 +253,9 @@ const scope = [
           <h2>Tell us about your product.</h2>
           <p class="lead">A few sentences are enough. We reply within one business day, and suggest a call if it is a fit.</p>
           <div class="direct">
-            <a href={booking.href} data-umami-event="Book call" {...(booking.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+            <a href="#contact-call" data-preselect="call" data-umami-event="Request call">
               <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
-              <span><b>Book a free 30-min call</b><small>{booking.detail}</small></span>
+              <span><b>Request a free 30-min call</b><small>Choose it in the brief. These are requests, not bookings.</small></span>
               <span class="arr" aria-hidden="true">→</span>
             </a>
             <a href={mailto} data-umami-event="Email">
@@ -281,52 +282,9 @@ const scope = [
             &nbsp;&nbsp;<span>●</span> HQ Novi Sad, Serbia
           </p>
         </div>
-        <form
-          class="inquiry"
-          data-inquiry
-          data-placeholder={formspreeReady ? undefined : 'true'}
-          action={formAction}
-          method="POST"
-          accept-charset="UTF-8"
-        >
-          <h3>Project inquiry</h3>
-          <div class="f">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" autocomplete="name" required maxlength="120" />
-          </div>
-          <div class="f">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" autocomplete="email" required maxlength="200" />
-          </div>
-          <div class="f">
-            <label for="company">Company (optional)</label>
-            <input id="company" name="company" type="text" autocomplete="organization" maxlength="160" placeholder="Optional" />
-          </div>
-          <div class="f">
-            <label for="stage">Stage</label>
-            <select id="stage" name="stage" required>
-              <option value="" selected disabled>Select</option>
-              <option value="idea">Idea</option>
-              <option value="prototype">Prototype</option>
-              <option value="production">Production</option>
-            </select>
-          </div>
-          <div class="f full">
-            <label for="message">Project description</label>
-            <textarea id="message" name="message" required maxlength="4000" placeholder="What should it do, who is it for, and roughly when?"></textarea>
-          </div>
-          <div class="hp" aria-hidden="true">
-            <label for="gotcha">Leave this empty</label>
-            <input id="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
-          </div>
-          <input type="hidden" name="_subject" value="Project inquiry — embedded-consultants.com" />
-          <p class="form-status" data-status data-state="idle" role="status"></p>
-          <button class="btn btn-ink" type="submit" data-umami-event="Inquiry submit">Send inquiry</button>
-          <p class="fine">We use these details only to reply. <a href="/privacy/">Privacy policy</a>. Or email <a href={mailto}>{site.email}</a>.</p>
-          <noscript>
-            <p class="fine">If the form does not send, email {site.email}.</p>
-          </noscript>
-        </form>
+        <div id="contact-call">
+          <ContactFlow />
+        </div>
       </div>
     </section>
   </main>

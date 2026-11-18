@@ -1,0 +1,643 @@
+---
+import { formAction, mailto, site } from '../config';
+---
+
+<div class="brief-layout" data-brief-root>
+  <form class="brief" data-brief data-current="1" action={formAction} method="POST" accept-charset="UTF-8">
+    <div class="progress" data-progress aria-label="Brief progress">
+      <span class="is-on" data-pip="1" aria-current="step">01 Scope</span>
+      <span data-pip="2">02 Details</span>
+      <span data-pip="3">03 Next step</span>
+      <span data-pip="4">04 Contact</span>
+    </div>
+
+    <fieldset class="brief-step is-current" data-step="1">
+      <legend>What should we work on?</legend>
+      <div class="f">
+        <span class="lbl" id="disc-label">Disciplines</span>
+        <div class="chips" role="group" aria-labelledby="disc-label">
+          {['Hardware / PCB', 'Firmware', 'Software', 'Mechanical', 'Not sure'].map((label) => (
+            <label class="chip">
+              <input type="checkbox" name="Disciplines" value={label} />
+              <span>{label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+      <div class="f">
+        <label for="stage">Project stage</label>
+        <select id="stage" name="Project stage" required>
+          <option value="" selected disabled>Select</option>
+          <option value="Idea">Idea</option>
+          <option value="Prototype">Prototype</option>
+          <option value="Production">Production</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <fieldset class="brief-step" data-step="2">
+      <legend>What should it do?</legend>
+      <div class="f">
+        <label for="intent">In a few sentences</label>
+        <textarea id="intent" name="What it should do" required maxlength="4000" placeholder="Who it is for, and the job it must do."></textarea>
+      </div>
+      <div class="f">
+        <span class="lbl" id="needs-label">Extra needs</span>
+        <div class="chips" role="group" aria-labelledby="needs-label">
+          {['CE / FCC', 'Medical', 'DFM / production', 'Other'].map((label) => (
+            <label class="chip">
+              <input type="checkbox" name="Extra needs" value={label} />
+              <span>{label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+      <div class="f">
+        <label for="timeline">Timeline</label>
+        <select id="timeline" name="Timeline" required>
+          <option value="" selected disabled>Select</option>
+          <option>Not sure yet</option>
+          <option>Under 3 months</option>
+          <option>3–6 months</option>
+          <option>This year</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <fieldset class="brief-step" data-step="3">
+      <legend>How should we reply?</legend>
+      <div class="choice" role="radiogroup" aria-label="Next step">
+        <label class="choice-card">
+          <input type="radio" name="Next step" value="Written reply" checked />
+          <span><b>Written reply</b><small>We answer in writing within one business day.</small></span>
+        </label>
+        <label class="choice-card">
+          <input type="radio" name="Next step" value="Free 30-min call" data-call />
+          <span><b>Free 30-min call</b><small>A working session. The first call is free.</small></span>
+        </label>
+      </div>
+      <div class="call-options" data-call-options>
+        <p class="hint">These are requests, not bookings. We confirm one window by email.</p>
+        <noscript><p class="hint">The time grid needs JavaScript. Write a few times in Preferred times below.</p></noscript>
+        <div class="f tz-row">
+          <label for="tz">Time zone</label>
+          <select id="tz" name="Time zone" data-tz></select>
+        </div>
+        <div class="windows" data-windows role="group" aria-label="Call windows, up to three" aria-live="polite"></div>
+        <p class="window-note" data-window-note hidden></p>
+        <input type="hidden" name="Requested windows" data-windows-field value="" />
+        <div class="toggles">
+          <label class="check">
+            <input type="checkbox" name="NDA first" value="Send me your mutual NDA before I share details" />
+            <span>Send me your mutual NDA before I share details</span>
+          </label>
+          <fieldset class="format">
+            <legend>Call format</legend>
+            <label class="check"><input type="radio" name="Call format" value="Video" checked /><span>Video</span></label>
+            <label class="check"><input type="radio" name="Call format" value="Phone" /><span>Phone</span></label>
+          </fieldset>
+        </div>
+      </div>
+      <div class="f only-noscript">
+        <label for="preferred">Preferred times</label>
+        <textarea id="preferred" name="Preferred times" maxlength="1000" placeholder="A few times that suit you, and your time zone. Optional if you want a written reply."></textarea>
+      </div>
+    </fieldset>
+
+    <fieldset class="brief-step" data-step="4">
+      <legend>Where should we reply?</legend>
+      <div class="f">
+        <label for="person">Name</label>
+        <input id="person" name="Name" type="text" autocomplete="name" required maxlength="120" />
+      </div>
+      <div class="f">
+        <label for="work-email">Work email</label>
+        <input id="work-email" name="email" type="email" autocomplete="email" required maxlength="200" />
+      </div>
+      <div class="f">
+        <label for="company">Company (optional)</label>
+        <input id="company" name="Company" type="text" autocomplete="organization" maxlength="160" />
+      </div>
+    </fieldset>
+
+    <div class="hp" aria-hidden="true">
+      <label for="gotcha">Leave this empty</label>
+      <input id="gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+    </div>
+    <input type="hidden" name="Reference" data-ref-field value="" />
+    <input type="hidden" name="_subject" value="Project brief — embedded-consultants.com" />
+
+    <p class="form-status" data-status data-state="idle" role="status"></p>
+    <div class="step-controls">
+      <button class="btn btn-ghost" type="button" data-back>Back</button>
+      <button class="btn btn-primary" type="button" data-next>Continue</button>
+      <button class="btn btn-ink brief-submit" type="submit" data-umami-event="Inquiry submit">Send brief</button>
+    </div>
+    <p class="fine">We use these details only to reply. <a href="/privacy/">Privacy policy</a>. Or email <a href={mailto}>{site.email}</a>.</p>
+  </form>
+
+  <aside class="datasheet" aria-live="polite" aria-label="Project brief">
+    <div class="spec-head"><span><span class="dot"></span>PROJECT BRIEF</span><span data-ref>EC-····-···</span></div>
+    <dl data-sheet>
+      <div><dt>Disciplines</dt><dd data-sheet-disciplines>—</dd></div>
+      <div><dt>Stage</dt><dd data-sheet-stage>—</dd></div>
+      <div><dt>Intent</dt><dd data-sheet-intent>—</dd></div>
+      <div><dt>Extra needs</dt><dd data-sheet-needs>—</dd></div>
+      <div><dt>Timeline</dt><dd data-sheet-timeline>—</dd></div>
+      <div><dt>Next step</dt><dd data-sheet-next>—</dd></div>
+      <div><dt>Windows</dt><dd data-sheet-windows>—</dd></div>
+    </dl>
+    <h3>What happens next</h3>
+    <ol>
+      <li>We read the brief.</li>
+      <li>Reply by <span data-reply>—</span>.</li>
+      <li>The first call and the initial research are free.</li>
+      <li>You own the IP and design files once paid.</li>
+    </ol>
+  </aside>
+
+  <div class="confirm" data-confirm hidden>
+    <p class="eyebrow">Brief received</p>
+    <h3 data-confirm-title>We have it.</h3>
+    <p data-confirm-reply></p>
+    <p>The first call and the initial research are free. You own the IP and the design files once the work is paid.</p>
+    <pre data-confirm-body tabindex="0"></pre>
+    <div class="confirm-actions">
+      <button class="btn btn-primary" type="button" data-download>Download brief (.md)</button>
+      <button class="btn btn-ghost" type="button" data-copy>Copy</button>
+    </div>
+    <p class="fine" data-copy-note role="status"></p>
+  </div>
+</div>
+
+<script>
+  const BELGRADE = 'Europe/Belgrade';
+  const MIN_MS = 4000;
+  const BLOCKS = [
+    { id: 'morning', label: 'Morning', start: 8, end: 12 },
+    { id: 'midday', label: 'Midday', start: 12, end: 15 },
+    { id: 'afternoon', label: 'Afternoon', start: 15, end: 18 },
+  ];
+  const ZONES = [
+    'Europe/Belgrade',
+    'Europe/London',
+    'Europe/Berlin',
+    'Europe/Paris',
+    'Europe/Amsterdam',
+    'America/New_York',
+    'America/Chicago',
+    'America/Denver',
+    'America/Los_Angeles',
+    'America/Toronto',
+    'America/Sao_Paulo',
+    'Asia/Kolkata',
+    'Asia/Singapore',
+    'Asia/Tokyo',
+    'Australia/Sydney',
+    'UTC',
+  ];
+
+  const root = document.querySelector('[data-brief-root]');
+  const form = root?.querySelector('[data-brief]');
+  if (!root || !form) {
+    /* no form on this page */
+  } else {
+    const started = Date.now();
+    const steps = [...form.querySelectorAll('[data-step]')];
+    const pips = [...form.querySelectorAll('[data-pip]')];
+    const status = form.querySelector('[data-status]');
+    const windowsBox = form.querySelector('[data-windows]');
+    const windowsField = form.querySelector('[data-windows-field]');
+    const windowNote = form.querySelector('[data-window-note]');
+    const tzSelect = form.querySelector('[data-tz]');
+    const refField = form.querySelector('[data-ref-field]');
+    const refEl = root.querySelector('[data-ref]');
+    const replyEl = root.querySelector('[data-reply]');
+    let step = 1;
+    let zone = detectZone();
+    /** @type {{ id: string, start: number, end: number, text: string }[]} */
+    let picked = [];
+
+    const ref = makeRef();
+    refField.value = ref;
+    refEl.textContent = ref;
+
+    fillZones();
+    renderWindows();
+    renderReply();
+    syncSheet();
+    applyPreselect();
+
+    form.addEventListener('input', syncSheet);
+    form.addEventListener('change', (event) => {
+      syncSheet();
+      if (event.target?.name === 'Next step') toggleCall();
+    });
+    tzSelect.addEventListener('change', () => {
+      zone = tzSelect.value;
+      renderWindows();
+      renderReply();
+      syncSheet();
+    });
+    form.querySelector('[data-next]')?.addEventListener('click', () => {
+      if (!validate(step)) return;
+      go(step + 1, true);
+    });
+    form.querySelector('[data-back]')?.addEventListener('click', () => go(step - 1, true));
+    document.querySelectorAll('[data-preselect="call"]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const radio = form.querySelector('[data-call]');
+        if (radio) radio.checked = true;
+        syncSheet();
+        setTimeout(() => go(3, true), 0);
+      });
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!validate(4)) return;
+      show('');
+      if (String(new FormData(form).get('_gotcha') || '').trim() !== '') {
+        showSuccess();
+        return;
+      }
+      if (Date.now() - started < MIN_MS) {
+        show('error', 'Take a moment to review the brief, then send it again.');
+        return;
+      }
+      const button = form.querySelector('[type="submit"]');
+      button.disabled = true;
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (response.ok) showSuccess();
+        else show('error', 'We could not send that. Email contact@embedded-consultants.com and we will reply within one business day.');
+      } catch {
+        show('error', 'Network problem. Email contact@embedded-consultants.com and we will reply within one business day.');
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+    root.querySelector('[data-download]')?.addEventListener('click', () => {
+      const text = briefMarkdown();
+      const blob = new Blob([text], { type: 'text/markdown' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `${ref}.md`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+    });
+    root.querySelector('[data-copy]')?.addEventListener('click', async () => {
+      const note = root.querySelector('[data-copy-note]');
+      try {
+        await navigator.clipboard.writeText(briefMarkdown());
+        note.textContent = 'Copied.';
+      } catch {
+        note.textContent = 'Select the brief and copy it.';
+      }
+    });
+
+    function makeRef() {
+      const now = ymdIn(new Date(), BELGRADE);
+      const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      const bytes = new Uint8Array(3);
+      crypto.getRandomValues(bytes);
+      let suffix = '';
+      for (const byte of bytes) suffix += alphabet[byte % alphabet.length];
+      return `EC-${String(now.year).slice(-2)}${String(now.month).padStart(2, '0')}-${suffix}`;
+    }
+
+    function detectZone() {
+      const found = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
+      return found;
+    }
+
+    function fillZones() {
+      const list = ZONES.includes(zone) ? ZONES : [zone, ...ZONES];
+      tzSelect.innerHTML = '';
+      for (const name of list) {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name.replaceAll('_', ' ');
+        if (name === zone) option.selected = true;
+        tzSelect.append(option);
+      }
+    }
+
+    function ymdIn(date, timeZone) {
+      const map = {};
+      for (const part of new Intl.DateTimeFormat('en-US', {
+        timeZone,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hourCycle: 'h23',
+        weekday: 'short',
+      }).formatToParts(date)) {
+        if (part.type !== 'literal') map[part.type] = part.value;
+      }
+      return map;
+    }
+
+    function offsetMs(date, timeZone) {
+      const map = ymdIn(date, timeZone);
+      const asUTC = Date.UTC(+map.year, +map.month - 1, +map.day, +map.hour % 24, +map.minute, 0);
+      return asUTC - date.getTime();
+    }
+
+    function zoned(year, month, day, hour, minute, timeZone) {
+      const utc = Date.UTC(year, month - 1, day, hour, minute, 0);
+      let instant = new Date(utc - offsetMs(new Date(utc), timeZone));
+      instant = new Date(utc - offsetMs(instant, timeZone));
+      return instant;
+    }
+
+    function belgradeNow() {
+      return ymdIn(new Date(), BELGRADE);
+    }
+
+    function businessDays(count) {
+      const now = belgradeNow();
+      let year = +now.year;
+      let month = +now.month;
+      let day = +now.day;
+      const hour = +now.hour % 24;
+      const weekday = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+      if (weekday === 0 || weekday === 6 || hour >= 18) {
+        [year, month, day] = shift(year, month, day, 1);
+      }
+      const days = [];
+      while (days.length < count) {
+        const dow = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+        if (dow !== 0 && dow !== 6) days.push([year, month, day]);
+        [year, month, day] = shift(year, month, day, 1);
+      }
+      return days;
+    }
+
+    function shift(year, month, day, amount) {
+      const next = new Date(Date.UTC(year, month - 1, day + amount));
+      return [next.getUTCFullYear(), next.getUTCMonth() + 1, next.getUTCDate()];
+    }
+
+    function zoneAbbrev(date) {
+      const hours = offsetMs(date, BELGRADE) / 3600000;
+      return hours >= 1.5 ? 'CEST' : 'CET';
+    }
+
+    function clock(date, timeZone) {
+      const map = ymdIn(date, timeZone);
+      return `${String(map.hour % 24).padStart(2, '0')}:${map.minute}`;
+    }
+
+    function dayLabel(date, timeZone) {
+      return new Intl.DateTimeFormat('en-GB', {
+        timeZone,
+        weekday: 'short',
+        day: 'numeric',
+        month: 'short',
+      }).format(date);
+    }
+
+    function renderWindows() {
+      const days = businessDays(6);
+      const first = days[0];
+      const last = days[days.length - 1];
+      const seen = new Set(days.map((d) => d.join('-')));
+      const span = [];
+      let cursor = first;
+      const endKey = last.join('-');
+      while (true) {
+        span.push(cursor);
+        if (cursor.join('-') === endKey) break;
+        cursor = shift(...cursor, 1);
+      }
+      windowsBox.innerHTML = '';
+      const selected = new Set(picked.map((item) => item.id));
+      for (const [year, month, day] of span) {
+        const dow = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+        const open = dow !== 0 && dow !== 6 && seen.has([year, month, day].join('-'));
+        const card = document.createElement('div');
+        card.className = 'day';
+        const title = document.createElement('p');
+        const sample = zoned(year, month, day, 12, 0, BELGRADE);
+        title.textContent = dayLabel(sample, zone);
+        card.append(title);
+        for (const block of BLOCKS) {
+          const start = zoned(year, month, day, block.start, 0, BELGRADE);
+          const end = zoned(year, month, day, block.end, 0, BELGRADE);
+          const button = document.createElement('button');
+          button.type = 'button';
+          const id = start.toISOString();
+          const item = { id, start: start.getTime(), end: end.getTime(), label: block.label };
+          const text = windowText(item);
+          if (!open) {
+            button.disabled = true;
+            button.innerHTML = `<b>${block.label}</b><small>outside our hours</small>`;
+          } else {
+            const localDate = dayLabel(start, zone);
+            const homeDate = dayLabel(start, BELGRADE);
+            const columnDate = title.textContent;
+            const localClocks = `${clock(start, zone)}–${clock(end, zone)}`;
+            const homeClocks = `${clock(start, BELGRADE)}–${clock(end, BELGRADE)} ${zoneAbbrev(start)}`;
+            const localLine = localDate === columnDate ? localClocks : `${localDate}, ${localClocks}`;
+            const homeLine = localDate === homeDate ? homeClocks : `${homeDate}, ${homeClocks}`;
+            button.innerHTML = `<b>${block.label}</b><small>${localLine}</small><small>${homeLine}</small>`;
+            button.setAttribute('aria-label', text);
+            button.setAttribute('aria-pressed', selected.has(id) ? 'true' : 'false');
+            if (selected.has(id)) button.classList.add('is-on');
+            button.addEventListener('click', () => toggleWindow(item));
+          }
+          card.append(button);
+        }
+        windowsBox.append(card);
+      }
+      writeWindows();
+    }
+
+    function toggleWindow(item) {
+      const index = picked.findIndex((entry) => entry.id === item.id);
+      if (index >= 0) picked.splice(index, 1);
+      else if (picked.length >= 3) {
+        windowNote.hidden = false;
+        windowNote.textContent = 'Three windows is enough. Remove one to change it.';
+        return;
+      } else {
+        picked.push(item);
+        windowNote.hidden = true;
+      }
+      renderWindows();
+      syncSheet();
+    }
+
+    function windowText(item) {
+      const start = new Date(item.start);
+      const end = new Date(item.end);
+      const abbr = zoneAbbrev(start);
+      return `${item.label}: ${dayLabel(start, zone)} ${clock(start, zone)}–${clock(end, zone)} ${zone} (${dayLabel(start, BELGRADE)} ${clock(start, BELGRADE)}–${clock(end, BELGRADE)} ${abbr})`;
+    }
+
+    function writeWindows() {
+      windowsField.value = picked.map((item) => windowText(item)).join('\n');
+    }
+
+    function replyInstant() {
+      const now = belgradeNow();
+      let [year, month, day] = [+now.year, +now.month, +now.day];
+      const hour = +now.hour % 24;
+      const dow = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+      if (dow === 0 || dow === 6 || hour >= 18) {
+        [year, month, day] = shift(year, month, day, 1);
+      }
+      while (true) {
+        const dayOfWeek = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+        if (dayOfWeek !== 0 && dayOfWeek !== 6) break;
+        [year, month, day] = shift(year, month, day, 1);
+      }
+      [year, month, day] = shift(year, month, day, 1);
+      while (true) {
+        const dayOfWeek = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
+        if (dayOfWeek !== 0 && dayOfWeek !== 6) break;
+        [year, month, day] = shift(year, month, day, 1);
+      }
+      return zoned(year, month, day, 18, 0, BELGRADE);
+    }
+
+    function renderReply() {
+      const when = replyInstant();
+      const abbr = zoneAbbrev(when);
+      replyEl.textContent = `${dayLabel(when, zone)} ${clock(when, zone)} your time (${dayLabel(when, BELGRADE)} ${clock(when, BELGRADE)} ${abbr})`;
+    }
+
+    function values(name) {
+      return [...form.querySelectorAll(`[name="${name}"]:checked`)].map((input) => input.value);
+    }
+
+    function one(name) {
+      return form.querySelector(`[name="${name}"]:checked`)?.value || '';
+    }
+
+    function syncSheet() {
+      const disciplines = values('Disciplines');
+      const needs = values('Extra needs');
+      const intent = form.querySelector('#intent').value.trim();
+      root.querySelector('[data-sheet-disciplines]').textContent = disciplines.join(', ') || '—';
+      root.querySelector('[data-sheet-stage]').textContent = form.querySelector('#stage').value || '—';
+      root.querySelector('[data-sheet-intent]').textContent = intent || '—';
+      root.querySelector('[data-sheet-needs]').textContent = needs.join(', ') || '—';
+      root.querySelector('[data-sheet-timeline]').textContent = form.querySelector('#timeline').value || '—';
+      root.querySelector('[data-sheet-next]').textContent = one('Next step') || '—';
+      root.querySelector('[data-sheet-windows]').textContent = picked.length ? picked.map((item) => windowText(item)).join('; ') : '—';
+      toggleCall();
+    }
+
+    function toggleCall() {
+      /* Visibility is CSS :has(); this keeps the brief panel in step. */
+    }
+
+    function applyPreselect() {
+      if (location.hash !== '#contact-call') return;
+      const radio = form.querySelector('[data-call]');
+      if (radio) radio.checked = true;
+      syncSheet();
+    }
+
+    function validate(current) {
+      const fieldset = form.querySelector(`[data-step="${current}"]`);
+      if (current === 1 && values('Disciplines').length === 0) {
+        show('error', 'Choose at least one discipline.');
+        fieldset.querySelector('input')?.focus();
+        return false;
+      }
+      const fields = [...fieldset.querySelectorAll('input, select, textarea')].filter((field) => field.willValidate && !field.disabled);
+      for (const field of fields) {
+        if (!field.checkValidity()) {
+          field.reportValidity();
+          return false;
+        }
+      }
+      if (current === 3 && form.querySelector('[data-call]')?.checked && picked.length === 0) {
+        show('error', 'Pick at least one window, or choose a written reply.');
+        return false;
+      }
+      show('');
+      return true;
+    }
+
+    function go(next, focus) {
+      step = Math.min(4, Math.max(1, next));
+      form.dataset.current = String(step);
+      steps.forEach((fieldset) => {
+        const on = Number(fieldset.dataset.step) === step;
+        fieldset.classList.toggle('is-current', on);
+        if (on && focus) {
+          fieldset.tabIndex = -1;
+          fieldset.focus();
+        }
+      });
+      pips.forEach((pip) => {
+        const number = Number(pip.dataset.pip);
+        pip.classList.toggle('is-on', number <= step);
+        if (number === step) pip.setAttribute('aria-current', 'step');
+        else pip.removeAttribute('aria-current');
+      });
+    }
+
+    function show(state, message = '') {
+      if (!message) {
+        status.dataset.state = 'idle';
+        status.textContent = '';
+        return;
+      }
+      status.dataset.state = state;
+      status.textContent = message;
+    }
+
+    function briefMarkdown() {
+      const when = replyEl.textContent;
+      const lines = [
+        `# Project brief ${ref}`,
+        '',
+        `- Disciplines: ${values('Disciplines').join(', ') || '—'}`,
+        `- Stage: ${form.querySelector('#stage').value || '—'}`,
+        `- What it should do: ${form.querySelector('#intent').value.trim() || '—'}`,
+        `- Extra needs: ${values('Extra needs').join(', ') || '—'}`,
+        `- Timeline: ${form.querySelector('#timeline').value || '—'}`,
+        `- Next step: ${one('Next step') || '—'}`,
+        `- Time zone: ${zone}`,
+        `- Windows: ${picked.map((item) => windowText(item)).join(' | ') || '—'}`,
+        `- NDA first: ${form.querySelector('[name="NDA first"]')?.checked ? 'Yes' : 'No'}`,
+        `- Call format: ${one('Call format') || '—'}`,
+        `- Name: ${form.querySelector('#person').value.trim()}`,
+        `- Work email: ${form.querySelector('#work-email').value.trim()}`,
+        `- Company: ${form.querySelector('#company').value.trim() || '—'}`,
+        '',
+        `We reply by ${when}.`,
+        'The first call and the initial research are free.',
+        'You own the IP and the design files once the work is paid.',
+        '',
+      ];
+      return lines.join('\n');
+    }
+
+    function showSuccess() {
+      form.hidden = true;
+      root.querySelector('.datasheet').hidden = true;
+      const panel = root.querySelector('[data-confirm]');
+      panel.hidden = false;
+      root.querySelector('[data-confirm-title]').textContent = `${ref} is with us.`;
+      root.querySelector('[data-confirm-reply]').textContent = `We reply by ${replyEl.textContent}.`;
+      root.querySelector('[data-confirm-body]').textContent = briefMarkdown();
+      panel.querySelector('h3').tabIndex = -1;
+      panel.querySelector('h3').focus();
+    }
+
+    go(location.hash === '#contact-call' ? 3 : 1, false);
+  }
+</script>
