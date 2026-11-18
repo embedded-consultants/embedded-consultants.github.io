@@ -1,12 +1,12 @@
 ---
-import { getCollection } from 'astro:content';
 import Logo from './Logo.astro';
 import { site } from '../config';
+import { publishedPosts } from '../lib/posts';
 
 const year = new Date().getFullYear();
 const onHome = Astro.url.pathname === '/';
 const to = (hash: string) => (onHome ? `#${hash}` : `/#${hash}`);
-const showBlog = (await getCollection('blog')).length > 0;
+const showBlog = (await publishedPosts()).length > 0;
 ---
 
 <footer>
@@ -19,7 +19,7 @@ const showBlog = (await getCollection('blog')).length > 0;
       <a href={to('process')}>Process</a>
       <a href={to('work')}>Work</a>
       {showBlog && <a href="/blog/">Blog</a>}
-      <a href={to('contact')}>Contact</a>}
+      <a href={to('contact')}>Contact</a>
       <a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
       <a href={site.x} target="_blank" rel="noopener noreferrer">X</a>
       <a href="/privacy/">Privacy</a>

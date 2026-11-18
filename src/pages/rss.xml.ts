@@ -1,11 +1,10 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
 import type { APIContext } from 'astro';
 import { site } from '../config';
-import { byDateDesc } from '../lib/posts';
+import { publishedPosts } from '../lib/posts';
 
 export async function GET(context: APIContext) {
-  const posts = (await getCollection('blog')).sort(byDateDesc);
+  const posts = await publishedPosts();
   return rss({
     title: 'Embedded Consultants — engineering notes',
     description: 'Notes on PCB design, parts and taking electronic products to production. Novi Sad, Serbia.',

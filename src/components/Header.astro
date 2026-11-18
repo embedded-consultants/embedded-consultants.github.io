@@ -1,10 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
 import Logo from './Logo.astro';
+import { publishedPosts } from '../lib/posts';
 
 const onHome = Astro.url.pathname === '/';
 const to = (hash: string) => (onHome ? `#${hash}` : `/#${hash}`);
-const showBlog = (await getCollection('blog')).length > 0;
+const showBlog = (await publishedPosts()).length > 0;
 ---
 
 <header>
