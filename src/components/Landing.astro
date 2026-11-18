@@ -25,7 +25,7 @@ if (page.serviceName) {
 }
 ---
 
-<Base title={page.metaTitle} description={page.description} jsonLd={graph(...nodes)}>
+<Base title={page.metaTitle} description={page.description} image={`/og/${page.group}/${page.slug}-v2.png`} jsonLd={graph(...nodes)}>
   <main id="main" class="page">
     <article class="article-inner">
       <p class="eyebrow">{page.eyebrow}</p>
