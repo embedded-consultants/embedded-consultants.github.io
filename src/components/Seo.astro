@@ -28,6 +28,7 @@ const path = Astro.url.pathname.endsWith('/') || /\.[a-z0-9]+$/i.test(Astro.url.
   ? Astro.url.pathname
   : `${Astro.url.pathname}/`;
 const canonical = absolute(path);
+const ogUrl = omitCanonical ? absolute('/') : canonical;
 const imageUrl = absolute(image);
 const imageAlt = `${site.name} — electronic products, engineered from idea to production. Novi Sad, Serbia.`;
 ---
@@ -50,7 +51,7 @@ const imageAlt = `${site.name} — electronic products, engineered from idea to 
 <meta property="og:type" content={ogType} />
 <meta property="og:site_name" content={site.legalName} />
 <meta property="og:locale" content={site.locale} />
-<meta property="og:url" content={canonical} />
+<meta property="og:url" content={ogUrl} />
 <meta property="og:title" content={fullTitle} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={imageUrl} />
