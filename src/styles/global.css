@@ -707,8 +707,8 @@ header {
 }
 
 .proj { overflow: hidden; display: flex; flex-direction: column; }
-.proj .vis { height: 158px; background: var(--ink); position: relative; overflow: hidden; }
-.proj .vis svg, .proj .vis img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.proj .vis { height: 176px; background: #0e1116; position: relative; overflow: hidden; }
+.proj .vis svg, .proj .vis img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .proj .kicker {
   font-family: var(--f-mono);
   font-size: 11px;

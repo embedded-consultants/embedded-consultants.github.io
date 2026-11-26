@@ -112,9 +112,7 @@ const logos = [
         <div class="work-grid">
           {projects.map((project) => (
             <article class="proj">
-              <div class="vis">
-                <img src={project.image} alt="" width="960" height="540" loading="lazy" decoding="async" />
-              </div>
+              <div class="vis" set:html={project.art} />
               <div class="body">
                 <span class="kicker">{project.kicker}</span>
                 <h3>{project.title}</h3>
