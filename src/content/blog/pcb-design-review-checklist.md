@@ -107,6 +107,6 @@ That is the part that comes from experience. Patterns such as a buck converter t
 
 ## How we help
 
-Embedded Consultants offers independent design reviews of schematics and layouts, as well as full hardware, firmware, software and mechanical development from prototype to mass production. If you are a few weeks from releasing a board, a review now is far cheaper than a respin later.
+Embedded Consultants reviews schematics and layouts, and also takes on electronics product development from prototype toward production. [PCB design services](/#services) are part of that work. If you are a few weeks from releasing a board, a review now is far cheaper than a respin later.
 
 **[Send a project brief and pick a call window](https://embedded-consultants.com/#contact)**: a free 30-minute call, NDA-first on request, and a reply within one business day.

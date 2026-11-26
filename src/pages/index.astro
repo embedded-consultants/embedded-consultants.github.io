@@ -6,8 +6,8 @@ import sensa from '../assets/partners/sensa.webp';
 import kingpin from '../assets/partners/kingpin.webp';
 import valsogard from '../assets/partners/valsogard.webp';
 import ContactFlow from '../components/ContactFlow.astro';
-import { mailto, site } from '../config';
-import { faq, industries, outcomes, plans, principles, projects, services, steps } from '../data/home';
+import { site } from '../config';
+import { faq, projects, services, steps } from '../data/home';
 import { breadcrumb, faqPage, graph, serviceList, webPage } from '../lib/schema';
 import { formatDate, publishedPosts, readingMinutes } from '../lib/posts';
 
@@ -19,14 +19,6 @@ const logos = [
   { src: kingpin, alt: 'Kingpin', sq: true },
   { src: valsogard, alt: 'Valsogard', sq: true },
 ];
-
-const scope = [
-  ['01', 'Hardware & PCB', 'Architecture, schematic, layout', 'HW'],
-  ['02', 'Embedded firmware', 'Bare-metal, RTOS, embedded Linux', 'FW'],
-  ['03', 'Software', 'Tools, mobile, cloud, test', 'SW'],
-  ['04', 'Mechanical', 'Housing, mounting, DFM', 'ME'],
-  ['05', 'Production transfer', 'Prototypes, test, series build', 'NPI'],
-];
 ---
 
 <Base title={site.title} description={site.description} jsonLd={graph(webPage(), faqPage(faq), breadcrumb([{ name: 'Home', path: '/' }]), ...serviceList())}>
@@ -34,43 +26,29 @@ const scope = [
     <section class="hero dark" id="top">
       <div class="grid-bg" aria-hidden="true"></div>
       <div class="wrap">
+        <p class="eyebrow">Electronics product development</p>
+        <h1>Electronics product development.</h1>
+        <p class="line">PCB design services, firmware, and production.</p>
+        <a class="btn btn-primary" href="#contact" data-umami-event="Start a project">Start a project</a>
+      </div>
+    </section>
+
+    <section id="contact" class="contact dark">
+      <div class="wrap">
         <div>
-          <p class="eyebrow">Embedded systems design consultancy</p>
-          <h1>Embedded systems consulting, from <em>idea to production.</em></h1>
-          <p class="lead">
-            Embedded Consultants is an electronics product development company in Novi Sad, Serbia, and an embedded systems development company for teams in the US, Canada, Europe and India. The work is the hardware, PCBs, firmware, software and enclosure, from idea to production. The first call and the initial research are free.
-          </p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#contact-call" data-preselect="call" data-umami-event="Request call">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-              Request a free 30-min call
-            </a>
-            <a class="btn btn-ghost" href="#process">See the process</a>
-          </div>
-          <ul class="facts">
-            <li><b>~10 yrs</b> Product development</li>
-            <li><b>1 day</b> Reply time</li>
-            <li><b>Free</b> First call &amp; research</li>
-            <li><b>Novi Sad</b> Headquarters</li>
-          </ul>
+          <p class="eyebrow">Contact</p>
+          <h2>Tell us about the product.</h2>
+          <p class="lead">A short brief is enough. We reply within one business day.</p>
         </div>
-        <aside class="spec" aria-label="What a project can include">
-          <div class="spec-head"><span><span class="dot"></span>PROJECT SCOPE</span><span>IN HOUSE</span></div>
-          {scope.map(([n, title, detail, tag]) => (
-            <div class="spec-row">
-              <span class="n">{n}</span>
-              <span class="t">{title}<small>{detail}</small></span>
-              <span class="tag">{tag}</span>
-            </div>
-          ))}
-          <img class="mark" src="/brand/ec-icon-white.svg" width="1000" height="1000" alt="" />
-        </aside>
+        <div id="contact-call">
+          <ContactFlow />
+        </div>
       </div>
     </section>
 
     <section class="proof" aria-label="Clients and partners">
       <div class="wrap">
-        <p>Engineering partner to product teams in North America, Europe and India</p>
+        <p>Partners</p>
         <ul class="logos">
           {logos.map((logo) => (
             <li>
@@ -85,59 +63,22 @@ const scope = [
               />
             </li>
           ))}
+          <li><span class="word">ProSys</span></li>
+          <li><span class="word">AISLER</span></li>
         </ul>
       </div>
     </section>
 
     <section id="services">
       <div class="wrap">
-        <p class="eyebrow">What we do</p>
-        <h2>One small team for the whole product.</h2>
-        <p class="lead">Hardware design services, PCB design services, embedded firmware development and the mechanical design, in one team, so the seams between them are designed on purpose.</p>
+        <p class="eyebrow">Services</p>
+        <h2>PCB design and the rest of the product.</h2>
         <div class="cards4">
           {services.map((service) => (
             <article class="card">
-              <div class="ic" aria-hidden="true">
-                <svg viewBox="0 0 24 24" set:html={service.icon} />
-              </div>
               <h3>{service.title}</h3>
               <p>{service.text}</p>
-              <div class="tags">{service.tags.map((tag) => <span>{tag}</span>)}</div>
-              <a class="more" href={service.href}>Read the service</a>
             </article>
-          ))}
-        </div>
-        <p class="note"><a href="/services/dfm/">Design for manufacturing and the move from prototype to mass production</a> is its own piece of work.</p>
-        <div class="industries">
-          <b>Industries</b>
-          {industries.map((name) => <span>{name}</span>)}
-        </div>
-        <p class="note">An electronics design consultancy for <a href="/markets/us/">US companies</a>, <a href="/markets/europe/">European companies</a> in the EU, the UK, DACH and the Nordics, and <a href="/markets/serbia/">nearshore engineering from Novi Sad</a>.</p>
-        <p class="cert-note">Certification support is part of the work. We design for the tests your market requires and stay with you through the lab.</p>
-      </div>
-    </section>
-
-    <section id="why" class="why dark">
-      <div class="wrap">
-        <div class="top">
-          <div>
-            <p class="eyebrow">Why work with us</p>
-            <h2>Senior judgment early, when it is cheapest.</h2>
-          </div>
-          <p class="lead">The expensive mistakes in electronics happen in the first weeks. That is where we put the experience.</p>
-        </div>
-        <div class="principles">
-          {principles.map((item) => (
-            <div>
-              <span class="n">{item.n}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </div>
-          ))}
-        </div>
-        <div class="outcomes">
-          {outcomes.map((item) => (
-            <div><b>{item.title}</b>{item.text}</div>
           ))}
         </div>
       </div>
@@ -146,63 +87,41 @@ const scope = [
     <section id="process">
       <div class="wrap">
         <p class="eyebrow">How we work</p>
-        <h2>From idea to production, step by step.</h2>
-        <p class="lead">Eight steps. You see the result of each one and decide before the next starts.</p>
-        <ol class="steps">
+        <h2>Four steps.</h2>
+        <ol class="steps steps-4">
           {steps.map((step) => (
-            <li class:list={['step', { gate: step.gate }]}>
-              {step.gate && <span class="gate-pill">Gate</span>}
+            <li class="step">
               <div class="n">{step.n}</div>
               <h3>{step.title}</h3>
               <p>{step.text}</p>
-              <div class="out"><i>You get</i>{step.out}</div>
             </li>
           ))}
         </ol>
-        <p class="note"><b>Already have a prototype?</b> Start at any step. A review, a cost-down, or the move to series production.</p>
-      </div>
-    </section>
-
-    <section id="engage" class="engage">
-      <div class="wrap">
-        <p class="eyebrow">Ways to work with us</p>
-        <h2>Start small. Scale when it makes sense.</h2>
-        <p class="lead">The first call and the initial research are free. We are happy to hear your ideas. After that, pick a model. No price until we understand the product.</p>
-        <div class="cards3">
-          {plans.map((plan) => (
-            <article class:list={['plan', { feat: plan.featured }]}>
-              {plan.badge && <span class="badge">{plan.badge}</span>}
-              <span class="kind">{plan.kind}</span>
-              <h3>{plan.title}</h3>
-              <p>{plan.text}</p>
-              <ul>{plan.points.map((point) => <li>{point}</li>)}</ul>
-            </article>
-          ))}
-        </div>
       </div>
     </section>
 
     <section id="work">
       <div class="wrap">
-        <p class="eyebrow">Selected work</p>
-        <h2>Products we have helped build.</h2>
-        <p class="lead">Six recent designs. Most of our work is under NDA, so there are no client names and no photographs.</p>
+        <p class="eyebrow">Products</p>
+        <h2>Products we have built.</h2>
         <div class="work-grid">
           {projects.map((project) => (
             <article class="proj">
               <div class="vis">
-                <Fragment set:html={project.art} />
+                {'image' in project && project.image ? (
+                  <img src={project.image} alt="" width="640" height="480" />
+                ) : (
+                  <Fragment set:html={'art' in project ? project.art : ''} />
+                )}
                 <span>{project.kicker}</span>
               </div>
               <div class="body">
                 <h3>{project.title}</h3>
                 <p>{project.summary}</p>
-                <div class="tags">{project.tags.map((tag) => <span>{tag}</span>)}</div>
               </div>
             </article>
           ))}
         </div>
-        <p class="nda">// Described without client names or board photos.</p>
       </div>
     </section>
 
@@ -247,46 +166,5 @@ const scope = [
       </div>
     </section>
 
-    <section id="contact" class="contact dark">
-      <div class="wrap">
-        <div>
-          <p class="eyebrow">Contact</p>
-          <h2>Tell us about your product.</h2>
-          <p class="lead">A few sentences are enough. We reply within one business day, and suggest a call if it is a fit.</p>
-          <div class="direct">
-            <a href="#contact-call" data-preselect="call" data-umami-event="Request call">
-              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
-              <span><b>Request a free 30-min call</b><small>Choose it in the brief. These are requests, not bookings.</small></span>
-              <span class="arr" aria-hidden="true">→</span>
-            </a>
-            <a href={mailto} data-umami-event="Email">
-              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 6l10 7 10-7"/></svg></span>
-              <span><b>{site.email}</b><small>Prefer email? Write to us directly.</small></span>
-              <span class="arr" aria-hidden="true">→</span>
-            </a>
-            <a href={site.linkedin} target="_blank" rel="noopener noreferrer" data-umami-event="LinkedIn">
-              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v6M8 8v.01M12 17v-4a2 2 0 014 0v4"/></svg></span>
-              <span><b>LinkedIn</b><small>Company page</small></span>
-              <span class="arr" aria-hidden="true">→</span>
-            </a>
-            <a href={site.x} target="_blank" rel="noopener noreferrer" data-umami-event="X">
-              <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19"/></svg></span>
-              <span><b>X · @embdd_consult</b><small>Engineering notes</small></span>
-              <span class="arr" aria-hidden="true">→</span>
-            </a>
-          </div>
-          <p class="promise">
-            <span>●</span> Reply within 1 business day
-            &nbsp;&nbsp;<span>●</span> First call and research are free
-            &nbsp;&nbsp;<span>●</span> You own the IP once paid
-            &nbsp;&nbsp;<span>●</span> NDA on request
-            &nbsp;&nbsp;<span>●</span> HQ Novi Sad, Serbia
-          </p>
-        </div>
-        <div id="contact-call">
-          <ContactFlow />
-        </div>
-      </div>
-    </section>
   </main>
 </Base>

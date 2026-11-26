@@ -233,7 +233,7 @@ header {
 .burger span::before { top: -5px; }
 .burger span::after { top: 5px; }
 
-.hero { position: relative; overflow: hidden; padding: 88px 0 100px; }
+.hero { position: relative; overflow: hidden; padding: 128px 0 96px; }
 
 .grid-bg {
   position: absolute;
@@ -250,17 +250,18 @@ header {
 .hero .wrap {
   position: relative;
   display: grid;
-  grid-template-columns: 1.4fr 0.9fr;
-  gap: 56px;
-  align-items: center;
+  gap: 0;
+  max-width: 18em;
 }
 
 .hero h1 {
-  font-size: clamp(40px, 5vw, 64px);
-  margin: 18px 0 18px;
-  letter-spacing: -0.035em;
-  max-width: 16ch;
+  font-size: clamp(52px, 7vw, 84px);
+  margin: 16px 0 12px;
+  letter-spacing: -0.04em;
+  max-width: none;
+  line-height: 1.02;
 }
+.hero .line { font-size: 21px; color: var(--mist); margin: 0 0 32px; max-width: 28ch; }
 
 .hero h1 em { font-style: normal; color: var(--copper); }
 .hero .lead { font-size: 19px; max-width: 46ch; }
@@ -411,6 +412,13 @@ header {
 }
 
 .logos img.sq { height: 46px; }
+.logos .word {
+  font-family: var(--f-head);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
 
 .cards4, .cards3, .work-grid, .posts, .outcomes {
   display: grid;
@@ -533,8 +541,8 @@ header {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin: 48px 0 0;
+  gap: 32px;
+  margin: 64px 0 0;
   padding: 0;
 }
 
@@ -651,7 +659,7 @@ header {
 
 .proj { overflow: hidden; display: flex; flex-direction: column; }
 .proj .vis { height: 158px; background: var(--ink); position: relative; overflow: hidden; }
-.proj .vis svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.proj .vis svg, .proj .vis img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .proj .vis span {
   position: absolute;
   left: 16px;

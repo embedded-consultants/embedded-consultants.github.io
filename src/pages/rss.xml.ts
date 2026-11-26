@@ -7,7 +7,7 @@ export async function GET(context: APIContext) {
   const posts = await publishedPosts();
   return rss({
     title: 'Embedded Consultants — engineering notes',
-    description: 'Notes on PCB design, parts and taking electronic products to production. Novi Sad, Serbia.',
+    description: 'Notes on electronics product development, PCB design, and taking a product to production.',
     site: context.site ?? site.url,
     trailingSlash: true,
     items: posts.map((post) => ({

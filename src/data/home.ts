@@ -36,6 +36,7 @@ export const projects = [
   {
     title: 'STM32 system-on-module',
     kicker: 'Module',
+    image: '/work/som.webp',
     summary: 'Compact STM32MP1 module with SDRAM, eMMC, CAN and Ethernet.',
     tags: ['STM32MP1', 'eMMC', 'Ethernet'],
     art: `<svg viewBox="0 0 640 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -58,6 +59,7 @@ export const projects = [
   {
     title: 'Automotive hub',
     kicker: 'Automotive',
+    image: '/work/hub.webp',
     summary: 'USB 3.1 upstream, distributed to USB, Ethernet and RS485.',
     tags: ['USB 3.1', 'Ethernet', 'RS485'],
     art: `<svg viewBox="0 0 640 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -79,6 +81,7 @@ export const projects = [
   {
     title: 'RFID/NFC crypto dev kit',
     kicker: 'Security',
+    image: '/work/crypto.webp',
     summary: 'NFC plus cryptographic hardware, for a secure application.',
     tags: ['NFC', 'Secure element', 'Dev kit'],
     art: `<svg viewBox="0 0 640 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
@@ -138,34 +141,107 @@ export const projects = [
       <rect x="478" y="208" width="70" height="28" rx="4" fill="${chip}" stroke="${copper}"/>
     </svg>`,
   },
+  {
+    title: 'PCIe USB board',
+    kicker: 'Hardware + firmware',
+    summary: 'PCIe board with USB and other peripheral interfaces.',
+    tags: ['PCIe', 'USB'],
+    image: '/work/pcie.webp',
+  },
+  {
+    title: 'ESP32 I/O module',
+    kicker: 'Hardware + firmware',
+    summary: 'ESP32 module with expanded input and output.',
+    tags: ['ESP32', 'I/O'],
+    image: '/work/module.webp',
+  },
+  {
+    title: 'Multi-channel power module',
+    kicker: 'Hardware',
+    summary: 'One module with several power rails.',
+    tags: ['Power'],
+    image: '/work/power.webp',
+  },
+  {
+    title: 'ESP32 VGA interface',
+    kicker: 'Hardware + firmware',
+    summary: 'VESA-mounted VGA output driven by an ESP32.',
+    tags: ['ESP32', 'VGA'],
+    image: '/work/esp-vga.webp',
+  },
+  {
+    title: 'Cube',
+    kicker: 'Hardware + firmware',
+    summary: 'A compact three-layer IoT device.',
+    tags: ['IoT'],
+    image: '/work/cube.webp',
+  },
+  {
+    title: 'Water controller',
+    kicker: 'Hardware + firmware',
+    summary: 'Controller for a water system.',
+    tags: ['Control'],
+    image: '/work/water.webp',
+  },
+  {
+    title: 'Custom PLC',
+    kicker: 'Hardware + firmware',
+    summary: 'A small programmable controller for industrial I/O.',
+    tags: ['PLC', 'I/O'],
+    image: '/work/plc.webp',
+  },
+  {
+    title: 'Light controller',
+    kicker: 'Hardware + firmware',
+    summary: 'Controller for fixed lighting.',
+    tags: ['Lighting'],
+    image: '/work/leds.webp',
+  },
+  {
+    title: 'Eurobot robot',
+    kicker: 'Hardware + firmware + software',
+    summary: 'Competition robot with onboard control and software.',
+    tags: ['Robotics'],
+    image: '/work/robotics.webp',
+  },
+  {
+    title: 'Parking sensor',
+    kicker: 'Hardware + firmware + software',
+    summary: 'Sensing system for parking.',
+    tags: ['Sensing'],
+    image: '/work/parkingsensor.webp',
+  },
+  {
+    title: 'Boxing robot controllers',
+    kicker: 'Hardware + firmware + software',
+    summary: 'Motor and relay controllers for a boxing robot.',
+    tags: ['Motion', 'Relays'],
+    image: '/work/boxing.webp',
+  },
 ] as const;
 
 export const services = [
   {
     title: 'Hardware & PCB',
-    href: '/services/hardware-pcb/',
-    text: 'Architecture, parts, schematic and multilayer PCB design, shaped for cost, certification and assembly.',
+    text: 'PCB design services: architecture, schematic, and layout.',
     tags: ['High-speed', 'Power & isolation', 'CAN · RS485', 'USB · Ethernet'],
     icon: '<rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 1v4M15 1v4M9 19v4M15 19v4M1 9h4M1 15h4M19 9h4M19 15h4"/><rect x="9" y="9" width="6" height="6"/>',
   },
   {
     title: 'Embedded firmware',
-    href: '/services/firmware/',
-    text: 'Firmware development for drivers, bring-up, RTOS and bare-metal applications, bootloaders and production programming.',
+    text: 'Drivers, bring-up, and the application on the board.',
     tags: ['STM32', 'STM32MP1', 'ESP32', 'Embedded Linux'],
     icon: '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/>',
   },
   {
-    title: 'Software & connectivity',
-    href: '/services/software/',
-    text: 'The software around the device: tools, dashboards, mobile, backend and the factory test.',
+    title: 'Software',
+    text: 'Tools, apps, and the link around the product.',
     tags: ['BLE · Wi-Fi', 'NFC', 'Web & mobile', 'Backend'],
     icon: '<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/>',
   },
   {
-    title: 'Mechanical & production',
-    href: '/services/mechanical/',
-    text: 'Enclosures, mounting, design for manufacture, test fixtures and the handover to assembly.',
+    title: 'Mechanical',
+    text: 'Enclosures, fit, and the path to assembly.',
     tags: ['Enclosures', 'DFM / DFT', 'Cost-down', 'Series build'],
     icon: '<path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M21 7l-9 5-9-5"/>',
   },
@@ -194,67 +270,15 @@ export const principles = [
 export const outcomes = [
   { title: 'Fewer board spins', text: 'Reviews and pre-compliance before the layout is frozen.' },
   { title: 'A plan you can budget', text: 'Each phase has a scope and a gate before the next one.' },
-  { title: 'You own the IP', text: 'Schematics, layouts, source and docs are yours once paid.' },
+  { title: 'Clear next step', text: 'Each phase ends with something you can read.' },
   { title: 'Factory-ready files', text: 'BOM, test procedure and production data, ready for assembly.' },
 ] as const;
 
 export const steps = [
-  {
-    n: '01',
-    title: 'Discovery call',
-    text: 'What it must do, who it is for, target cost and volume. NDA first if you want it.',
-    out: 'An honest view on fit',
-    gate: false,
-  },
-  {
-    n: '02',
-    title: 'Feasibility',
-    text: 'Technical, cost and manufacturing risks, written down before any layout.',
-    out: 'Notes, a rough BOM, a plan',
-    gate: true,
-  },
-  {
-    n: '03',
-    title: 'Architecture',
-    text: 'Block diagram and the key parts, agreed with you before the board starts.',
-    out: 'System design document',
-    gate: true,
-  },
-  {
-    n: '04',
-    title: 'Schematic & PCB',
-    text: 'Capture and layout, reviewed for power, signals and assembly.',
-    out: 'Schematic, layout, BOM',
-    gate: false,
-  },
-  {
-    n: '05',
-    title: 'Firmware & software',
-    text: 'Started on dev kits, so the code is ready when the first boards arrive.',
-    out: 'Source and docs',
-    gate: false,
-  },
-  {
-    n: '06',
-    title: 'Prototype',
-    text: 'Build, bring-up and a round of changes until it matches the spec.',
-    out: 'Working prototypes',
-    gate: false,
-  },
-  {
-    n: '07',
-    title: 'Validation',
-    text: 'Functional tests and pre-compliance for the certifications your market needs.',
-    out: 'Test report, lab readiness',
-    gate: true,
-  },
-  {
-    n: '08',
-    title: 'Production transfer',
-    text: 'DFM, test fixtures and handover to an assembly partner, ours or yours.',
-    out: 'Production package',
-    gate: false,
-  },
+  { n: '01', title: 'Brief', text: 'What the product should do.', out: '', gate: false },
+  { n: '02', title: 'Design', text: 'PCB design, firmware, software.', out: '', gate: false },
+  { n: '03', title: 'Prototype', text: 'Build it and test it.', out: '', gate: false },
+  { n: '04', title: 'Production', text: 'Ready to assemble.', out: '', gate: false },
 ] as const;
 
 export const plans = [
@@ -273,7 +297,7 @@ export const plans = [
       'The eight steps, with a gate on each phase',
       'Weekly progress',
       'Certification support through the lab',
-      'You own the IP and design files once paid',
+      'A written brief before the work starts',
     ],
     featured: true,
     badge: 'Most common',
@@ -289,35 +313,23 @@ export const plans = [
 
 export const faq: FaqItem[] = [
   {
-    q: 'What does Embedded Consultants do?',
-    a: 'Embedded Consultants is an electronics product-development consultancy. We design the hardware and PCB, embedded firmware, the software around the device, and the mechanical parts, then hand over the files a factory needs to build it.',
+    q: 'What is electronics product development here?',
+    a: 'We design the hardware, the PCB, the firmware, the software, and the enclosure, then prepare the product for assembly.',
   },
   {
-    q: 'Which industries do you work in?',
-    a: 'Industrial equipment, automotive electronics, medical devices, and consumer and IoT products. The engineering is the same set of disciplines. Regulated products add traceability, qualified parts and a test record.',
-  },
-  {
-    q: 'How does an engagement work?',
-    a: 'Three shapes. A fixed-scope feasibility review answers whether and how to build it. Milestone-based development runs the eight phases from discovery to production transfer, with a written gate between phases. Flexible support is senior help for a team that already exists: reviews, layout, firmware or a production problem. You own the schematics, layout, source and documents once the work is paid.',
+    q: 'What do PCB design services include?',
+    a: 'Schematic, part choice, and board layout, reviewed for power, signals, and assembly.',
   },
   {
     q: 'Do you sign an NDA before the details?',
-    a: 'Yes. Send yours, or ask for the mutual NDA. It is signed before you share anything confidential. The project brief can request that as the first step.',
+    a: 'Yes. Send yours, or ask for ours. We sign it before you share anything confidential.',
   },
   {
-    q: 'Can you take a prototype through to mass production?',
-    a: 'Yes. We join at a working prototype as often as at a blank page. The work is a design review, then the changes for test, certification and assembly, then the production package: BOM, test procedure and programming instructions. We design for the standards the market needs, run pre-compliance, and support the accredited lab. The lab, not us, issues the certificate.',
-  },
-  {
-    q: 'How long does a project usually take?',
-    a: 'A feasibility review is a short written study. Full development is phased and usually measured in months, longer when tooling or certification is on the path. We do not quote one duration for every product. We reply to a new brief within one business day.',
-  },
-  {
-    q: 'Where is Embedded Consultants based?',
-    a: 'Headquarters are in Novi Sad, Serbia. Clients are mostly in the United States, Canada, Europe and India. Calls are set in the visitor’s time zone. We do not publish any other office.',
+    q: 'Can you start from a prototype?',
+    a: 'Yes. A review, a redesign, or the move toward production.',
   },
   {
     q: 'How do we start?',
-    a: 'Send a project brief at embedded-consultants.com. Say what the product should do, the stage it is at, and whether you want a written reply or a free 30-minute call. The first call and the initial research are free. These are requests, not bookings.',
+    a: 'Send a short project brief. Ask for a written reply or a free 30-minute call. We reply within one business day.',
   },
 ];

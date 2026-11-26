@@ -94,6 +94,6 @@ A practical way to build this into your process:
 
 ## How we help
 
-Embedded Consultants is a small, invested team covering hardware and PCB design, embedded firmware, software, and mechanical design, from first prototype to mass production. If you have a design that works on the bench and you are planning the jump to volume, we can review it for manufacturability and testability before it reaches the factory.
+Embedded Consultants covers hardware, [PCB design](/#services), firmware, software, and mechanical design, from a first prototype toward production. If a design works on the bench and the next step is volume, we can review it for manufacturability and test before it reaches the factory.
 
 **[Send us a project brief and pick a call window](https://embedded-consultants.com/#contact)**: a free 30-minute call, NDA first if you need it, and a reply within one business day.
