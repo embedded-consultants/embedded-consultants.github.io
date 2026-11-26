@@ -1,7 +1,7 @@
 ---
 title: "Firmware Architecture for Reliable OTA Updates"
 description: "How to design embedded firmware for safe over-the-air updates: bootloader, A/B slots, signing, rollback, power-fail safety and fleet rollout strategy."
-date: 2026-11-22T08:00:00+01:00
+date: 2026-11-28T08:00:00+01:00
 category: "firmware"
 metaTitle: "Firmware Architecture for Reliable OTA Updates"
 ogImage: "/blog/og/ota-architecture.png"

@@ -1,7 +1,7 @@
 ---
 title: "Outsourcing vs. In-House Hardware Team: An Honest Cost Comparison"
 description: "A practical cost and risk comparison of building an in-house hardware team versus outsourcing electronics product development, with a hybrid model."
-date: 2026-11-24T08:00:00+01:00
+date: 2026-11-30T08:00:00+01:00
 category: "strategy"
 metaTitle: "Outsource Hardware Development or Build a Team?"
 ogImage: "/blog/og/outsource-vs-inhouse.png"
