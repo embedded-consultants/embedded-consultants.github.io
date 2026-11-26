@@ -13,11 +13,11 @@ const showBlog = (await publishedPosts()).length > 0;
       <Logo alt="Embedded Consultants" />
     </a>
     <ul class="nav-links" id="site-nav" data-nav-panel>
-      <li><a href={to('contact')}>Contact</a></li>
       <li><a href={to('services')}>Services</a></li>
       <li><a href={to('process')}>Process</a></li>
       <li><a href={to('work')}>Work</a></li>
       {showBlog && <li><a href={onHome ? '#blog' : '/blog/'}>Blog</a></li>}
+      <li><a href={to('contact')}>Contact</a></li>
       <li class="mobile-only"><a class="btn btn-primary" href={to('contact')}>Start a project</a></li>
     </ul>
     <a class="btn btn-primary nav-cta" href={to('contact')} data-umami-event="Start a project">Start a project</a>

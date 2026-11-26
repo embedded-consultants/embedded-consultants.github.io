@@ -233,7 +233,55 @@ header {
 .burger span::before { top: -5px; }
 .burger span::after { top: 5px; }
 
-.hero { position: relative; overflow: hidden; padding: 128px 0 96px; }
+.hero { position: relative; overflow: hidden; padding: 128px 0 112px; min-height: 640px; display: flex; align-items: center; }
+
+.hero-board {
+  position: absolute;
+  top: 50%;
+  right: max(-40px, calc((100% - 1120px) / 2 - 20px));
+  width: min(620px, 48vw);
+  height: auto;
+  transform: translateY(-50%);
+  pointer-events: none;
+  mask-image: linear-gradient(90deg, transparent, #000 22%);
+}
+
+.hero-board .quiet,
+.hero-board .live {
+  fill: none;
+  stroke: #2A303A;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero-board .live {
+  stroke: #D9702B;
+  stroke-dasharray: 10 180;
+  animation: hero-pulse 8s linear infinite;
+}
+
+.hero-board .live.slow { animation-duration: 11s; animation-delay: -3s; }
+
+@keyframes hero-pulse {
+  to { stroke-dashoffset: -190; }
+}
+
+.hero-board .dot {
+  offset-path: path("M140 210 H260 V250 H350");
+  offset-distance: 0%;
+  animation: hero-ride 8s linear infinite;
+}
+
+.hero-board .dot.second {
+  offset-path: path("M390 280 H460 V370 H300");
+  animation-duration: 11s;
+  animation-delay: -4s;
+}
+
+@keyframes hero-ride {
+  to { offset-distance: 100%; }
+}
 
 .grid-bg {
   position: absolute;
@@ -249,16 +297,17 @@ header {
 
 .hero .wrap {
   position: relative;
+  z-index: 1;
   display: grid;
   gap: 0;
-  max-width: 18em;
+  justify-items: start;
 }
 
 .hero h1 {
   font-size: clamp(52px, 7vw, 84px);
   margin: 16px 0 12px;
   letter-spacing: -0.04em;
-  max-width: none;
+  max-width: 11ch;
   line-height: 1.02;
 }
 .hero .line { font-size: 21px; color: var(--mist); margin: 0 0 32px; max-width: 28ch; }
@@ -921,6 +970,14 @@ html.js .brief[data-current="4"] .brief-submit { display: inline-flex; }
 .step-controls .brief-submit { flex: 1; }
 .brief-step:focus { outline: 2px solid var(--copper-deep); outline-offset: 4px; }
 .contact h2 { max-width: 12ch; }
+.contact-also { display: flex; gap: 20px; margin: 28px 0 0; }
+.contact-also a {
+  color: var(--paper);
+  text-decoration: none;
+  border-bottom: 1px solid var(--copper);
+  padding-bottom: 2px;
+}
+.contact-also a:hover { color: var(--copper); }
 
 .direct { margin-top: 28px; display: grid; gap: 12px; }
 .direct a {
@@ -1143,8 +1200,9 @@ footer .loc { display: block; font-size: 13px; margin-top: 4px; }
   body { font-size: 16px; }
   .wrap { width: min(var(--max), calc(100% - 40px)); }
   section { padding: 72px 0; }
-  .hero { padding: 48px 0 64px; }
-  .hero h1 { font-size: 38px; }
+  .hero { padding: 72px 0 80px; min-height: 0; }
+  .hero h1 { font-size: 44px; max-width: 11ch; }
+  .hero-board { width: 220px; right: -64px; opacity: 0.4; mask-image: linear-gradient(90deg, transparent, #000 40%); }
   .cta-row .btn { width: 100%; }
   .facts { grid-template-columns: 1fr 1fr; }
   .cards4, .steps, .outcomes { grid-template-columns: 1fr; }
@@ -1169,4 +1227,6 @@ footer .loc { display: block; font-size: 13px; margin-top: 4px; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .hero-board .live { stroke-dasharray: none; }
+  .hero-board .dot { display: none; }
 }

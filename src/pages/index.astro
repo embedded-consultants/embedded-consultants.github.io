@@ -25,24 +25,29 @@ const logos = [
   <main id="main">
     <section class="hero dark" id="top">
       <div class="grid-bg" aria-hidden="true"></div>
+      <svg class="hero-board" viewBox="0 0 640 480" aria-hidden="true">
+        <rect x="70" y="36" width="500" height="408" rx="18" fill="none" stroke="#2A303A" stroke-width="1.5" />
+        <circle cx="96" cy="62" r="5" fill="none" stroke="#2A303A" />
+        <circle cx="544" cy="62" r="5" fill="none" stroke="#2A303A" />
+        <circle cx="96" cy="418" r="5" fill="none" stroke="#2A303A" />
+        <circle cx="544" cy="418" r="5" fill="none" stroke="#2A303A" />
+        <path class="quiet" d="M120 150h90v70h70" />
+        <path class="quiet" d="M120 330h140v-60" />
+        <path class="quiet" d="M430 190h90v80h-40" />
+        <path class="live" d="M140 210h120v40h90" />
+        <path class="live slow" d="M390 280h70v90H300" />
+        <rect x="250" y="150" width="170" height="140" rx="12" fill="#161A21" stroke="#D9702B" stroke-width="1.6" />
+        <rect x="274" y="174" width="122" height="92" rx="6" fill="none" stroke="#D9702B" opacity="0.45" />
+        <g fill="#D9702B">
+          <circle class="dot" r="3.5" />
+          <circle class="dot second" r="3.5" />
+        </g>
+      </svg>
       <div class="wrap">
         <p class="eyebrow">Electronics product development</p>
         <h1>Electronics product development.</h1>
         <p class="line">PCB design services, firmware, and production.</p>
         <a class="btn btn-primary" href="#contact" data-umami-event="Start a project">Start a project</a>
-      </div>
-    </section>
-
-    <section id="contact" class="contact dark">
-      <div class="wrap">
-        <div>
-          <p class="eyebrow">Contact</p>
-          <h2>Tell us about the product.</h2>
-          <p class="lead">A short brief is enough. We reply within one business day.</p>
-        </div>
-        <div id="contact-call">
-          <ContactFlow />
-        </div>
       </div>
     </section>
 
@@ -108,11 +113,7 @@ const logos = [
           {projects.map((project) => (
             <article class="proj">
               <div class="vis">
-                {'image' in project && project.image ? (
-                  <img src={project.image} alt="" width="640" height="480" />
-                ) : (
-                  <Fragment set:html={'art' in project ? project.art : ''} />
-                )}
+                <img src={project.image} alt="" width="960" height="540" loading="lazy" decoding="async" />
               </div>
               <div class="body">
                 <span class="kicker">{project.kicker}</span>
@@ -162,6 +163,23 @@ const logos = [
               <p>{item.a}</p>
             </details>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact dark">
+      <div class="wrap">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Tell us about the product.</h2>
+          <p class="lead">A short brief is enough. We reply within one business day.</p>
+          <p class="contact-also">
+            <a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href={site.x} target="_blank" rel="noopener noreferrer">X</a>
+          </p>
+        </div>
+        <div id="contact-call">
+          <ContactFlow />
         </div>
       </div>
     </section>
