@@ -136,10 +136,14 @@ export const services = [
 ] as const;
 
 export const steps = [
-  { n: '01', title: 'Brief', text: 'Agree what the product should do.', out: '', gate: false },
-  { n: '02', title: 'Design', text: 'Schematic, layout, and code.', out: '', gate: false },
-  { n: '03', title: 'Prototype', text: 'Build one and test it.', out: '', gate: false },
-  { n: '04', title: 'Production', text: 'Files ready to assemble.', out: '', gate: false },
+  { n: '01', title: 'Discovery', text: 'What it must do, the cost, and the volume.', out: '', gate: false },
+  { n: '02', title: 'Feasibility', text: 'Risks, a rough BOM, and a plan.', out: '', gate: true },
+  { n: '03', title: 'Architecture', text: 'Block diagram and key parts, agreed first.', out: '', gate: true },
+  { n: '04', title: 'Schematic & PCB', text: 'Capture and layout, reviewed for power and assembly.', out: '', gate: false },
+  { n: '05', title: 'Firmware', text: 'Code underway before the first boards arrive.', out: '', gate: false },
+  { n: '06', title: 'Prototype', text: 'Build, bring-up, and changes until it matches.', out: '', gate: false },
+  { n: '07', title: 'Validation', text: 'Tests and pre-compliance for the market.', out: '', gate: true },
+  { n: '08', title: 'Production', text: 'DFM, fixtures, and the files for assembly.', out: '', gate: false },
 ] as const;
 
 export const faq: FaqItem[] = [
