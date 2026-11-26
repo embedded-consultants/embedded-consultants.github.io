@@ -57,7 +57,7 @@ const logos = [
 
     <section class="proof" aria-label="Clients and partners">
       <div class="wrap">
-        <p>Partners</p>
+        <p>Partners and clients across the world</p>
         <ul class="logos">
           {logos.map((logo) => (
             <li>
@@ -83,6 +83,7 @@ const logos = [
         <div class="cards4">
           {services.map((service) => (
             <article class="card">
+              <span class="ic" aria-hidden="true" set:html={`<svg viewBox="0 0 24 24">${service.icon}</svg>`} />
               <h3>{service.title}</h3>
               <p>{service.text}</p>
             </article>
@@ -113,9 +114,14 @@ const logos = [
       <div class="wrap">
         <p class="eyebrow">Products</p>
         <h2>Products we have built.</h2>
-        <div class="work-grid">
+        <div class="filters" role="group" aria-label="Filter products">
+          {['All', 'Industrial', 'Power', 'Modules', 'Sensing', 'Wireless', 'Robotics'].map((name) => (
+            <button type="button" data-filter={name} aria-pressed={name === 'All' ? 'true' : 'false'}>{name}</button>
+          ))}
+        </div>
+        <div class="work-grid" data-work>
           {projects.map((project) => (
-            <article class="proj">
+            <article class="proj" data-group={project.group}>
               <div class="vis" set:html={project.art} />
               <div class="body">
                 <span class="kicker">{project.kicker}</span>
@@ -125,6 +131,7 @@ const logos = [
             </article>
           ))}
         </div>
+        <button class="more-work" type="button" data-more hidden>Show more</button>
       </div>
     </section>
 
@@ -191,7 +198,7 @@ const logos = [
             <li>
               <a href={`mailto:${site.email}`}>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M4 7l8 6 8-6" /></svg>
-                Email
+                {site.email}
               </a>
             </li>
           </ul>
@@ -204,3 +211,64 @@ const logos = [
 
   </main>
 </Base>
+<script>
+  const grid = document.querySelector('[data-work]');
+  const more = document.querySelector('[data-more]');
+  if (grid && more instanceof HTMLButtonElement) {
+    const cards = [...grid.querySelectorAll('.proj')];
+    const chips = [...document.querySelectorAll('[data-filter]')];
+    const motion = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let filter = 'All';
+    let open = false;
+    const apply = () => {
+      let shown = 0;
+      let extra = 0;
+      for (const card of cards) {
+        const el = card instanceof HTMLElement ? card : null;
+        if (!el) continue;
+        const match = filter === 'All' || el.dataset.group === filter;
+        if (!match) {
+          el.hidden = true;
+          continue;
+        }
+        if (!open && shown >= 6) {
+          el.hidden = true;
+          extra += 1;
+        } else {
+          el.hidden = false;
+          shown += 1;
+        }
+      }
+      more.hidden = extra === 0;
+    };
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        if (!(chip instanceof HTMLButtonElement)) return;
+        filter = chip.dataset.filter || 'All';
+        open = false;
+        chips.forEach((item) => {
+          if (item instanceof HTMLButtonElement) item.setAttribute('aria-pressed', item === chip ? 'true' : 'false');
+        });
+        apply();
+      });
+    });
+    more.addEventListener('click', () => {
+      open = true;
+      apply();
+    });
+    apply();
+    if (motion && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      }, { threshold: 0.2 });
+      cards.forEach((card) => {
+        card.classList.add('will-in');
+        io.observe(card);
+      });
+    }
+  }
+</script>
