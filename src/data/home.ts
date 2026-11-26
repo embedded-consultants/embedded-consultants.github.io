@@ -247,68 +247,11 @@ export const services = [
   },
 ] as const;
 
-export const industries = ['Industrial', 'Automotive', 'Medical', 'Consumer & IoT'] as const;
-
-export const principles = [
-  {
-    n: '01',
-    title: 'A shortcut to experience',
-    text: 'A decade of product work, applied to yours, without you hiring a team first.',
-  },
-  {
-    n: '02',
-    title: 'Fewer surprises later',
-    text: 'Supply, test, certification and assembly are planned before the layout is frozen.',
-  },
-  {
-    n: '03',
-    title: 'You talk to the engineers',
-    text: 'A small team means the people on the call are the people doing the work.',
-  },
-] as const;
-
-export const outcomes = [
-  { title: 'Fewer board spins', text: 'Reviews and pre-compliance before the layout is frozen.' },
-  { title: 'A plan you can budget', text: 'Each phase has a scope and a gate before the next one.' },
-  { title: 'Clear next step', text: 'Each phase ends with something you can read.' },
-  { title: 'Factory-ready files', text: 'BOM, test procedure and production data, ready for assembly.' },
-] as const;
-
 export const steps = [
   { n: '01', title: 'Brief', text: 'What the product should do.', out: '', gate: false },
   { n: '02', title: 'Design', text: 'PCB design, firmware, software.', out: '', gate: false },
   { n: '03', title: 'Prototype', text: 'Build it and test it.', out: '', gate: false },
   { n: '04', title: 'Production', text: 'Ready to assemble.', out: '', gate: false },
-] as const;
-
-export const plans = [
-  {
-    kind: 'Fixed scope',
-    title: 'Feasibility review',
-    text: 'A written answer on whether and how to build it, before you fund development.',
-    points: ['Requirements and risks', 'Concept and key parts', 'Rough BOM at your volumes', 'A development plan'],
-    featured: false,
-  },
-  {
-    kind: 'Milestone based',
-    title: 'Full product development',
-    text: 'We run the engineering from concept to the factory: hardware, firmware, software and mechanics.',
-    points: [
-      'The eight steps, with a gate on each phase',
-      'Weekly progress',
-      'Certification support through the lab',
-      'A written brief before the work starts',
-    ],
-    featured: true,
-    badge: 'Most common',
-  },
-  {
-    kind: 'Flexible',
-    title: 'Engineering support',
-    text: 'Senior help for your own team: reviews, layout, firmware, cost-down or a production issue.',
-    points: ['Design and code reviews', 'Layout or firmware tasks', 'Redesign for cost or obsolete parts', 'Production and test support'],
-    featured: false,
-  },
 ] as const;
 
 export const faq: FaqItem[] = [
