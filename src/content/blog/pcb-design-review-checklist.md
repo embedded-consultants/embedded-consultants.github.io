@@ -1,7 +1,7 @@
 ---
 title: "The PCB Design Review Checklist We Use Before Every Release"
 description: "A practical PCB design review checklist covering schematic, power, layout, signal integrity, EMC, DFM and documentation, for catching errors before fab."
-date: 2026-11-20T08:00:00+01:00
+date: 2026-11-26T08:00:00+01:00
 category: "PCB"
 metaTitle: "PCB Design Review Checklist: Schematic to Release"
 ogImage: "/blog/og/pcb-review-checklist.png"

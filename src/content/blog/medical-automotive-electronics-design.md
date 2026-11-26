@@ -1,7 +1,7 @@
 ---
 title: "Designing Electronics for Medical and Automotive: What Changes"
 description: "What changes when electronics move into medical or automotive products: standards, component qualification, safety, documentation and test, explained."
-date: 2026-11-23T08:00:00+01:00
+date: 2026-11-29T08:00:00+01:00
 category: "medical"
 metaTitle: "Medical & Automotive Electronics: What Changes"
 ogImage: "/blog/og/medical-automotive.png"

@@ -1,7 +1,7 @@
 ---
 title: "EMC Pre-Compliance Testing: Find Failures Before the Lab Does"
 description: "How to run EMC pre-compliance in-house: near-field probes, LISN, ESD and margin targets, so electronics products pass the certification lab first time."
-date: 2026-11-21T08:00:00+01:00
+date: 2026-11-27T08:00:00+01:00
 category: "EMC"
 metaTitle: "EMC Pre-Compliance Testing: A Practical Guide"
 ogImage: "/blog/og/emc-precompliance.png"
