@@ -113,9 +113,9 @@ const logos = [
                 ) : (
                   <Fragment set:html={'art' in project ? project.art : ''} />
                 )}
-                <span>{project.kicker}</span>
               </div>
               <div class="body">
+                <span class="kicker">{project.kicker}</span>
                 <h3>{project.title}</h3>
                 <p>{project.summary}</p>
               </div>

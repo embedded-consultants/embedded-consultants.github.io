@@ -13,10 +13,9 @@ const showBlog = (await publishedPosts()).length > 0;
       <Logo alt="Embedded Consultants" />
     </a>
     <ul class="nav-links" id="site-nav" data-nav-panel>
-      <li><a href={to('services')}>What we do</a></li>
-      <li><a href={to('why')}>Why us</a></li>
+      <li><a href={to('contact')}>Contact</a></li>
+      <li><a href={to('services')}>Services</a></li>
       <li><a href={to('process')}>Process</a></li>
-      <li><a href={to('engage')}>Engagement</a></li>
       <li><a href={to('work')}>Work</a></li>
       {showBlog && <li><a href={onHome ? '#blog' : '/blog/'}>Blog</a></li>}
       <li class="mobile-only"><a class="btn btn-primary" href={to('contact')}>Start a project</a></li>
