@@ -590,8 +590,8 @@ header {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  margin: 64px 0 0;
+  gap: 16px;
+  margin: 48px 0 0;
   padding: 0;
 }
 
@@ -970,14 +970,40 @@ html.js .brief[data-current="4"] .brief-submit { display: inline-flex; }
 .step-controls .brief-submit { flex: 1; }
 .brief-step:focus { outline: 2px solid var(--copper-deep); outline-offset: 4px; }
 .contact h2 { max-width: 12ch; }
-.contact-also { display: flex; gap: 20px; margin: 28px 0 0; }
-.contact-also a {
+.reach {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  max-width: 460px;
+}
+.reach a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 8px 12px;
+  border: 1px solid var(--line-d);
+  border-radius: 12px;
+  background: var(--graphite);
   color: var(--paper);
   text-decoration: none;
-  border-bottom: 1px solid var(--copper);
-  padding-bottom: 2px;
+  font-weight: 600;
+  font-size: 15px;
 }
-.contact-also a:hover { color: var(--copper); }
+.reach a:hover { border-color: var(--copper); }
+.reach svg {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  stroke: var(--copper);
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 
 .direct { margin-top: 28px; display: grid; gap: 12px; }
 .direct a {
@@ -1200,6 +1226,7 @@ footer .loc { display: block; font-size: 13px; margin-top: 4px; }
   body { font-size: 16px; }
   .wrap { width: min(var(--max), calc(100% - 40px)); }
   section { padding: 72px 0; }
+  .reach { grid-template-columns: 1fr; max-width: none; }
   .hero { padding: 72px 0 80px; min-height: 0; }
   .hero h1 { font-size: 44px; max-width: 11ch; }
   .hero-board { width: 220px; right: -64px; opacity: 0.4; mask-image: linear-gradient(90deg, transparent, #000 40%); }
