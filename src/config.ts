@@ -6,11 +6,11 @@ export const site = {
   legalName: 'Embedded Consultants LLC',
   url: 'https://embedded-consultants.com',
   email: 'contact@embedded-consultants.com',
-  title: 'Embedded Systems Consulting, Novi Sad | Embedded Consultants',
+  title: 'Electronics Product Development and PCB Design | Embedded Consultants',
   description:
-    'Embedded systems consulting in Novi Sad, Serbia. Hardware, PCB, firmware, software and mechanical design, from idea to production. First call is free.',
+    'Electronics product development and PCB design services. Hardware, firmware, software, and mechanical design, from idea to production.',
   schemaDescription:
-    'Embedded systems design consultancy in Novi Sad, Serbia: hardware, PCB, firmware, software and mechanical design, from idea to production.',
+    'Electronics product development and PCB design services: hardware, firmware, software, and mechanical design, from idea to production.',
   locale: 'en_US',
   twitter: '@embdd_consult',
   linkedin: 'https://www.linkedin.com/company/embedded-consultants/',

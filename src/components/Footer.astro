@@ -16,9 +16,6 @@ const showBlog = (await publishedPosts()).length > 0;
     </a>
     <nav aria-label="Footer">
       <a href={to('services')}>Services</a>
-      <a href="/markets/us/">United States</a>
-      <a href="/markets/europe/">Europe</a>
-      <a href="/markets/serbia/">Serbia</a>
       <a href={to('process')}>Process</a>
       <a href={to('work')}>Work</a>
       {showBlog && <a href="/blog/">Blog</a>}
@@ -27,6 +24,6 @@ const showBlog = (await publishedPosts()).length > 0;
       <a href={site.x} target="_blank" rel="noopener noreferrer">X</a>
       <a href="/privacy/">Privacy</a>
     </nav>
-    <span>© {year} {site.legalName}<span class="loc">Headquarters: Novi Sad, Serbia</span></span>
+    <span>© {year} {site.legalName}</span>
   </div>
 </footer>

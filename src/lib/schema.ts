@@ -6,7 +6,6 @@ export function areaServed() {
     { '@type': 'Country', name: 'United States' },
     { '@type': 'Country', name: 'Canada' },
     { '@type': 'Country', name: 'United Kingdom' },
-    { '@type': 'Country', name: 'Serbia' },
     { '@type': 'Country', name: 'India' },
     { '@type': 'Place', name: 'Europe' },
     { '@type': 'Place', name: 'European Union' },
@@ -24,11 +23,6 @@ const organization = {
   image: absolute('/og/og-default-v2.png'),
   description: site.schemaDescription,
   email: site.email,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Novi Sad',
-    addressCountry: 'RS',
-  },
   areaServed: areaServed(),
   knowsAbout: [
     'Electronics product development',
@@ -139,14 +133,8 @@ export function breadcrumb(items: { name: string; path: string }[]) {
 export function serviceList() {
   return [
     ...services.map((service) =>
-      serviceNode({ name: service.title, description: service.text, path: service.href }),
+      serviceNode({ name: service.title, description: service.text, path: '/#services' }),
     ),
-    serviceNode({
-      name: 'Design for manufacturing and production transfer',
-      description:
-        'Design for manufacturing and the handover from a prototype to files a factory can build, test and program.',
-      path: '/services/dfm/',
-    }),
   ];
 }
 
