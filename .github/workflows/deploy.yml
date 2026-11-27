@@ -6,9 +6,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  # 07:00 UTC is 08:00 Europe/Belgrade in winter, when the next post becomes due.
+  # Hourly, off the hour, so a rebuild follows each 08:00 Europe/Belgrade
+  # publish time even when GitHub starts scheduled runs late.
   schedule:
-    - cron: '0 7 * * *'
+    - cron: '17 * * * *'
   workflow_dispatch:
 
 permissions:
