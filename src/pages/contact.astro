@@ -1,4 +1,23 @@
 ---
-import Redirect from '../components/Redirect.astro';
+import Base from '../layouts/Base.astro';
+import ContactFlow from '../components/ContactFlow.astro';
+import { site } from '../config';
 ---
-<Redirect to="/#contact" />
+
+<Base title={`Contact | ${site.name}`} description={site.description}>
+  <main id="main">
+    <section class="page-hero">
+      <div class="w">
+        <p class="eyebrow">Contact</p>
+        <h1>Tell us about the product.</h1>
+        <p class="lead">A short brief is enough. We reply within one business day.</p>
+        <a class="mail" href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+    </section>
+    <section id="contact" class="contact dark">
+      <div class="w">
+        <ContactFlow />
+      </div>
+    </section>
+  </main>
+</Base>

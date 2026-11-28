@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import { site } from '../../config';
+import { services } from '../../data/home';
+---
+
+<Base
+  title={`PCB design and product development services | ${site.name}`}
+  description="PCB design services plus firmware, software and mechanical design. Electronics product development from idea to production."
+>
+  <main id="main" class="page">
+    <div class="w page-hero">
+      <p class="eyebrow">What we do</p>
+      <h1>PCB design and the rest of the product.</h1>
+      <p class="lead">Four disciplines, one team. The board, the firmware, the software and the enclosure are designed together.</p>
+      <div class="svc" style="margin-top:40px">
+        {services.map((service, i) => (
+          <article data-reveal>
+            <span class="no">0{i + 1}</span>
+            <h3>{service.title}</h3>
+            <p>{service.text}</p>
+          </article>
+        ))}
+      </div>
+      <p style="margin-top:36px"><a class="btn btn-primary" href="/contact/">Start a project</a></p>
+    </div>
+  </main>
+</Base>

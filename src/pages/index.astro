@@ -1,157 +1,176 @@
 ---
 import Base from '../layouts/Base.astro';
-import lyra from '../assets/partners/lyra.webp';
-import pcbdesign from '../assets/partners/pcbdesign.webp';
-import sensa from '../assets/partners/sensa.webp';
-import kingpin from '../assets/partners/kingpin.webp';
-import valsogard from '../assets/partners/valsogard.webp';
-import prosys from '../assets/partners/prosys.webp';
-import aisler from '../assets/partners/aisler.webp';
 import ContactFlow from '../components/ContactFlow.astro';
+import Partners from '../components/Partners.astro';
 import { site } from '../config';
 import { faq, projects, services, steps } from '../data/home';
 import { breadcrumb, faqPage, graph, serviceList, webPage } from '../lib/schema';
 import { formatDate, publishedPosts, readingMinutes } from '../lib/posts';
 
-const posts = (await publishedPosts()).slice(0, 3);
-const logos = [
-  { src: lyra, alt: 'Lyra', sq: false },
-  { src: pcbdesign, alt: 'PCB Design', sq: false },
-  { src: sensa, alt: 'Sensa', sq: false },
-  { src: kingpin, alt: 'Kingpin', sq: true },
-  { src: valsogard, alt: 'Valsogard', sq: true },
-  { src: prosys, alt: 'ProSys', sq: true },
-  { src: aisler, alt: 'AISLER', sq: false },
+const posts = await publishedPosts();
+const featured = posts[0];
+const notes = posts.slice(1, 5);
+const selected = projects.slice(0, 4);
+const icons = [
+  '<rect x="14" y="14" width="28" height="28"/><path d="M20 14V6M28 14V6M36 14V6M20 42v8M28 42v8M36 42v8M14 20H6M14 28H6M14 36H6M42 20h8M42 28h8M42 36h8"/><circle cx="28" cy="28" r="5" stroke="#E0843A"/>',
+  '<path d="M18 18L6 28l12 10M38 18l12 10-12 10"/><path d="M32 12L24 44" stroke="#E0843A"/>',
+  '<rect x="6" y="10" width="44" height="30" rx="2"/><path d="M20 48h16M28 40v8"/><path d="M16 22l6 6-6 6M26 34h10" stroke="#E0843A"/>',
+  '<path d="M28 6l20 11v22L28 50 8 39V17z"/><path d="M8 17l20 11 20-11M28 28v22" stroke="#E0843A"/>',
+];
+const industries = [
+  { title: 'Industrial', text: 'Controllers, sensing and gateways built for long life and harsh environments.' },
+  { title: 'Consumer', text: 'Connected, battery-powered devices tuned for cost, size and the person using them.' },
+  { title: 'Automotive', text: 'Vehicle electronics, gateways and test equipment for the electrical environment of a car.' },
+  { title: 'Medical', text: 'Precise electronics developed with traceability and regulated-product practice in mind.' },
 ];
 ---
 
 <Base title={site.title} description={site.description} jsonLd={graph(webPage(), faqPage(faq), breadcrumb([{ name: 'Home', path: '/' }]), ...serviceList())}>
   <main id="main">
-    <section class="hero dark" id="top">
-      <div class="grid-bg" aria-hidden="true"></div>
-      <svg class="hero-board" viewBox="0 0 640 480" aria-hidden="true">
-        <rect x="70" y="36" width="500" height="408" rx="18" fill="none" stroke="#2A303A" stroke-width="1.5" />
-        <circle cx="96" cy="62" r="5" fill="none" stroke="#2A303A" />
-        <circle cx="544" cy="62" r="5" fill="none" stroke="#2A303A" />
-        <circle cx="96" cy="418" r="5" fill="none" stroke="#2A303A" />
-        <circle cx="544" cy="418" r="5" fill="none" stroke="#2A303A" />
-        <path class="quiet" d="M120 150h90v70h70" />
-        <path class="quiet" d="M120 330h140v-60" />
-        <path class="quiet" d="M430 190h90v80h-40" />
-        <path class="live" d="M140 210h120v40h90" />
-        <path class="live slow" d="M390 280h70v90H300" />
-        <rect x="250" y="150" width="170" height="140" rx="12" fill="#161A21" stroke="#D9702B" stroke-width="1.6" />
-        <rect x="274" y="174" width="122" height="92" rx="6" fill="none" stroke="#D9702B" opacity="0.45" />
-        <g fill="#D9702B">
-          <circle class="dot" r="3.5" />
-          <circle class="dot second" r="3.5" />
+    <header class="c-hero">
+      <svg class="circ" viewBox="0 0 900 900" fill="none" aria-hidden="true">
+        <circle class="ring" cx="450" cy="450" r="430" stroke="#E0843A" stroke-width="2" />
+        <circle cx="450" cy="450" r="330" fill="#E0843A" opacity=".1" />
+        <g stroke="#E0843A" stroke-width="2" opacity=".55">
+          <path d="M120 450H300L360 390H520L580 450H780" />
+          <path d="M180 330H320L380 270H640" />
+          <path d="M200 590H400L450 640H700" />
         </g>
+        <rect x="620" y="150" width="150" height="130" rx="6" fill="#161C24" stroke="#E0843A" stroke-width="2" />
+        <circle cx="695" cy="215" r="18" fill="#E0843A" />
       </svg>
-      <div class="wrap">
-        <p class="eyebrow">Electronics product development</p>
-        <h1>Electronics product development.</h1>
-        <p class="line">PCB design services, firmware, and production.</p>
-        <a class="btn btn-primary" href="#contact" data-umami-event="Start a project">Start a project</a>
+      <div class="w">
+        <div data-reveal>
+          <p class="eyebrow">Electronics product development</p>
+          <h1>Electronics product development, to <b>mass production.</b></h1>
+          <p class="lead">{site.description}</p>
+          <div class="hcta">
+            <a class="btn btn-primary" href="#contact">Start a project</a>
+            <a class="btn-line" href="#services">Explore our services</a>
+          </div>
+        </div>
+        {featured && (
+          <a class="feat" href={`/blog/${featured.id}/`} data-reveal>
+            <small>Engineering note</small>
+            <h2>{featured.data.title}</h2>
+            <span>Read the article →</span>
+          </a>
+        )}
       </div>
-    </section>
+    </header>
 
-    <section class="proof" aria-label="Clients and partners">
-      <div class="wrap">
-        <p>Partners and clients across the world</p>
-        <ul class="logos">
-          {logos.map((logo) => (
-            <li>
-              <img
-                class={logo.sq ? 'sq' : undefined}
-                src={logo.src.src}
-                width={logo.src.width}
-                height={logo.src.height}
-                alt={logo.alt}
-                loading="lazy"
-                decoding="async"
-              />
-            </li>
-          ))}
-        </ul>
+    <div class="stats">
+      <div class="w">
+        <div class="s"><b data-count="10" data-suffix="+">10+</b><span>years of product development</span></div>
+        <div class="s"><b data-count="4">4</b><span>engineering disciplines, one team</span></div>
+        <div class="s"><b data-count="4">4</b><span>industries we design for</span></div>
+        <div class="s"><b data-count="1">1</b><span>team from prototype to production</span></div>
       </div>
-    </section>
+    </div>
 
-    <section id="services">
-      <div class="wrap">
-        <p class="eyebrow">Services</p>
-        <h2>PCB design and the rest of the product.</h2>
-        <div class="cards4">
-          {services.map((service) => (
-            <article class="card">
-              <span class="ic" aria-hidden="true" set:html={`<svg viewBox="0 0 24 24">${service.icon}</svg>`} />
+    <Partners />
+
+    <section class="c-sec" id="services">
+      <div class="w">
+        <div class="sh" data-reveal>
+          <h2>What we <b>do</b></h2>
+          <p>Four disciplines under one roof, so the electronics, the code and the enclosure are designed together.</p>
+        </div>
+        <div class="svc">
+          {services.map((service, i) => (
+            <article data-reveal>
+              <span class="no">0{i + 1}</span>
+              <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#0E1116" stroke-width="2" aria-hidden="true" set:html={icons[i]} />
               <h3>{service.title}</h3>
               <p>{service.text}</p>
+              <a class="more" href="/services/">Learn more</a>
             </article>
           ))}
         </div>
       </div>
     </section>
 
-    <section id="process">
-      <div class="wrap">
-        <p class="eyebrow">How we work</p>
-        <h2>From idea to production.</h2>
-        <p class="lead">Eight steps. A gate before the next one starts.</p>
-        <ol class="steps">
-          {steps.map((step) => (
-            <li class:list={['step', { gate: step.gate }]}>
-              {step.gate && <span class="gate-pill">Gate</span>}
-              <div class="n">{step.n}</div>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
-            </li>
+    <section class="c-sec ind" id="industries">
+      <div class="w">
+        <div class="sh" data-reveal>
+          <h2>Industries we <b>build for</b></h2>
+          <p>Products that have to work on a factory floor, in a vehicle, in a clinic, or in someone’s hand.</p>
+        </div>
+        <div class="indg">
+          {industries.map((item) => (
+            <article class="ic" data-reveal>
+              <svg class="bg" viewBox="0 0 300 380" fill="none" stroke="#E0843A" opacity=".35" aria-hidden="true">
+                <path d="M30 70h120M30 110h80M30 150h140" />
+                <circle cx="220" cy="120" r="36" />
+              </svg>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
           ))}
-        </ol>
+        </div>
       </div>
     </section>
 
-    <section id="work">
-      <div class="wrap">
-        <p class="eyebrow">Products</p>
-        <h2>Products we have built.</h2>
-        <div class="filters" role="group" aria-label="Filter products">
-          {['All', 'Industrial', 'Power', 'Modules', 'Sensing', 'Wireless', 'Robotics'].map((name) => (
-            <button type="button" data-filter={name} aria-pressed={name === 'All' ? 'true' : 'false'}>{name}</button>
+    <section class="c-sec" id="process">
+      <div class="w">
+        <div class="sh" data-reveal>
+          <h2>How we <b>work</b></h2>
+          <p>Eight steps from the brief to production files, with a gate before the next one starts.</p>
+        </div>
+        <div class="how-line">
+          {steps.map((step) => (
+            <article class="step" data-reveal>
+              <div class="dot">{step.n}</div>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </article>
           ))}
         </div>
-        <div class="work-grid" data-work>
-          {projects.map((project) => (
-            <article class="proj" data-group={project.group}>
+      </div>
+    </section>
+
+    <section class="c-sec workband" id="work">
+      <div class="w">
+        <div class="sh" data-reveal>
+          <h2>Selected <b>work</b></h2>
+          <a class="more" href="/portfolio/">View all projects</a>
+        </div>
+        <div class="cards4w">
+          {selected.map((project) => (
+            <article class="pcard" data-reveal>
               <div class="vis" set:html={project.art} />
-              <div class="body">
-                <span class="kicker">{project.kicker}</span>
+              <div class="b">
+                <span class="tag">{project.kicker}</span>
                 <h3>{project.title}</h3>
                 <p>{project.summary}</p>
               </div>
             </article>
           ))}
         </div>
-        <button class="more-work" type="button" data-more hidden>Show more</button>
       </div>
     </section>
 
     {posts.length > 0 && (
-      <section id="blog" class="blog">
-        <div class="wrap">
-          <div class="blog-top">
-            <div>
-              <p class="eyebrow">From the blog</p>
-              <h2>Engineering notes from real projects.</h2>
-            </div>
-            <a class="more" href="/blog/">All articles</a>
+      <section class="c-sec" id="blog">
+        <div class="w">
+          <div class="sh" data-reveal>
+            <h2>Engineering <b>notes</b></h2>
+            <a class="more" href="/blog/">All insights</a>
           </div>
-          <div class="posts">
-            {posts.map((post) => (
-              <a class="post" href={`/blog/${post.id}/`}>
-                <span class="cat">{post.data.category}</span>
+          <div class="ins">
+            {featured && (
+              <a class="big" href={`/blog/${featured.id}/`} data-reveal>
+                <span class="tag">{featured.data.category}</span>
+                <h3>{featured.data.title}</h3>
+                <span class="more">Read the article</span>
+              </a>
+            )}
+            {notes.map((post) => (
+              <a class="note-card" href={`/blog/${post.id}/`} data-reveal>
+                <span class="tag">{post.data.category}</span>
                 <h3>{post.data.title}</h3>
                 <p>{post.data.description}</p>
-                <span class="rd">{formatDate(post.data.date)} · {readingMinutes(post.body)} min read</span>
+                <span class="m">{formatDate(post.data.date)} · {readingMinutes(post.body)} min</span>
               </a>
             ))}
           </div>
@@ -159,13 +178,13 @@ const logos = [
       </section>
     )}
 
-    <section class="faq" id="faq" aria-labelledby="faq-heading">
-      <div class="wrap">
-        <div>
+    <section class="c-sec" id="faq">
+      <div class="w faq-grid">
+        <div data-reveal>
           <p class="eyebrow">FAQ</p>
-          <h2 id="faq-heading">Questions we hear before most projects.</h2>
+          <h2>Questions we hear before most projects.</h2>
         </div>
-        <div>
+        <div data-reveal>
           {faq.map((item, index) => (
             <details open={index === 0}>
               <summary>{item.q}</summary>
@@ -176,95 +195,26 @@ const logos = [
       </div>
     </section>
 
-    <section id="contact" class="contact dark">
-      <div class="wrap">
+    <section class="cta-band">
+      <div class="w">
+        <h2>Let’s build your <b>next product.</b></h2>
         <div>
-          <p class="eyebrow">Contact</p>
-          <h2>Tell us about the product.</h2>
-          <p class="lead">A short brief is enough. We reply within one business day.</p>
-          <ul class="reach">
-            <li>
-              <a href={site.linkedin} target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9v10M6 5h.01M10 19v-6a4 4 0 0 1 8 0v6M10 11v8" /></svg>
-                LinkedIn
-              </a>
-            </li>
-            <li>
-              <a href={site.x} target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" /></svg>
-                X
-              </a>
-            </li>
-            <li>
-              <a href={`mailto:${site.email}`}>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M4 7l8 6 8-6" /></svg>
-                {site.email}
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="contact-call">
-          <ContactFlow />
+          <p>Tell us what you are making. A short brief is enough. We reply within one business day.</p>
+          <a class="btn btn-primary" href="#contact" style="background:#000;color:#fff">Start a project</a>
+          <a class="mail" href={`mailto:${site.email}`}>{site.email}</a>
         </div>
       </div>
     </section>
 
+    <section id="contact" class="contact dark">
+      <div class="w">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Tell us about the product.</h2>
+          <p class="lead">A short brief is enough. We reply within one business day.</p>
+        </div>
+        <ContactFlow />
+      </div>
+    </section>
   </main>
 </Base>
-<script>
-  const grid = document.querySelector('[data-work]');
-  const more = document.querySelector('[data-more]');
-  if (grid && more instanceof HTMLButtonElement) {
-    const cards = [...grid.querySelectorAll('.proj')];
-    const chips = [...document.querySelectorAll('[data-filter]')];
-    const motion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let filter = 'All';
-    let open = false;
-    const apply = () => {
-      let shown = 0;
-      let extra = 0;
-      for (const card of cards) {
-        if (!(card instanceof HTMLElement)) continue;
-        const match = filter === 'All' || card.dataset.group === filter;
-        if (!match || (!open && shown >= 6)) {
-          card.hidden = true;
-          if (match) extra += 1;
-          continue;
-        }
-        card.hidden = false;
-        shown += 1;
-      }
-      more.hidden = extra === 0 && !open;
-      more.textContent = open ? 'Show less' : 'Show more';
-    };
-    chips.forEach((chip) => {
-      chip.addEventListener('click', () => {
-        if (!(chip instanceof HTMLButtonElement)) return;
-        filter = chip.dataset.filter || 'All';
-        open = false;
-        chips.forEach((item) => {
-          if (item instanceof HTMLButtonElement) item.setAttribute('aria-pressed', item === chip ? 'true' : 'false');
-        });
-        apply();
-      });
-    });
-    more.addEventListener('click', () => {
-      open = !open;
-      apply();
-    });
-    apply();
-    if (motion && 'IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          entry.target.classList.add('is-in');
-          io.unobserve(entry.target);
-        }
-      }, { threshold: 0.2 });
-      cards.forEach((card) => {
-        card.classList.add('will-in');
-        io.observe(card);
-      });
-    }
-  }
-</script>

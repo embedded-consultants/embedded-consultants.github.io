@@ -4,26 +4,49 @@ import { site } from '../config';
 import { publishedPosts } from '../lib/posts';
 
 const year = new Date().getFullYear();
-const onHome = Astro.url.pathname === '/';
-const to = (hash: string) => (onHome ? `#${hash}` : `/#${hash}`);
 const showBlog = (await publishedPosts()).length > 0;
 ---
 
-<footer>
-  <div class="wrap">
-    <a href="/" aria-label="Embedded Consultants home">
-      <Logo />
-    </a>
-    <nav aria-label="Footer">
-      <a href={to('services')}>Services</a>
-      <a href={to('process')}>Process</a>
-      <a href={to('work')}>Work</a>
-      {showBlog && <a href="/blog/">Blog</a>}
-      <a href={to('contact')}>Contact</a>
-      <a href={site.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href={site.x} target="_blank" rel="noopener noreferrer">X</a>
-      <a href="/privacy/">Privacy</a>
-    </nav>
-    <span>© {year} {site.legalName}</span>
+<footer class="site-foot">
+  <div class="w">
+    <div class="fg">
+      <div>
+        <a href="/" aria-label="Embedded Consultants home"><Logo /></a>
+        <p>Electronics product development and PCB design. Hardware, firmware, software and mechanical design, from idea to production.</p>
+        <div class="soc">
+          <a href={site.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
+          <a href={site.x} target="_blank" rel="noopener noreferrer" aria-label="X">X</a>
+        </div>
+      </div>
+      <div>
+        <h5>What we do</h5>
+        <ul>
+          <li><a href="/services/">Hardware &amp; PCB</a></li>
+          <li><a href="/services/">Firmware</a></li>
+          <li><a href="/services/">Software</a></li>
+          <li><a href="/services/">Mechanical</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Work</h5>
+        <ul>
+          <li><a href="/portfolio/">Projects</a></li>
+          {showBlog && <li><a href="/blog/">Engineering notes</a></li>}
+          <li><a href="/#process">How we work</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="/contact/">Contact</a></li>
+          <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+          <li><a href="/privacy/">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fb">
+      <span>© {year} {site.legalName}</span>
+      <span>Hardware · Firmware · Software · Mechanical</span>
+    </div>
   </div>
 </footer>

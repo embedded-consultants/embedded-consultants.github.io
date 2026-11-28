@@ -1,4 +1,30 @@
 ---
-import Redirect from '../components/Redirect.astro';
+import Base from '../layouts/Base.astro';
+import { site } from '../config';
+import { projects } from '../data/home';
 ---
-<Redirect to="/#work" />
+
+<Base
+  title={`Projects | ${site.name}`}
+  description="Electronics products we have designed: controllers, modules, power, sensing, wireless and motion."
+>
+  <main id="main" class="page">
+    <div class="w page-hero">
+      <p class="eyebrow">Our work</p>
+      <h1>Selected work.</h1>
+      <p class="lead">Boards and devices we have taken from a brief toward production. Descriptions stay on the product, not the client.</p>
+      <div class="cards4w" style="margin-top:36px">
+        {projects.map((project) => (
+          <article class="pcard" data-reveal>
+            <div class="vis" set:html={project.art} />
+            <div class="b">
+              <span class="tag">{project.group}</span>
+              <h3>{project.title}</h3>
+              <p>{project.summary}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </main>
+</Base>
