@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/consult.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Seo from '../components/Seo.astro';
@@ -22,7 +23,7 @@ const props = Astro.props;
 <!doctype html>
 <html lang="en">
   <head>
-    <script is:inline>document.documentElement.classList.add('js')</script>
+    <script is:inline>document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion');</script>
     <link rel="preload" href={soraLatin} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
     <Seo {...props} />
@@ -58,6 +59,41 @@ const props = Astro.props;
           toggle?.focus();
         }
       });
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const revealed = document.querySelectorAll('[data-reveal]');
+      if (reduce || !('IntersectionObserver' in window)) {
+        revealed.forEach((el) => el.classList.add('in'));
+      } else {
+        const reveal = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add('in');
+            reveal.unobserve(entry.target);
+          }
+        }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+        revealed.forEach((el) => reveal.observe(el));
+
+        const count = (el) => {
+          const target = Number(el.dataset.count);
+          const suffix = el.dataset.suffix || '';
+          const start = performance.now();
+          const tick = (now) => {
+            const t = Math.min(1, (now - start) / 900);
+            el.textContent = `${Math.round(target * (1 - (1 - t) ** 3))}${suffix}`;
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        };
+        const stats = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            count(entry.target);
+            stats.unobserve(entry.target);
+          }
+        }, { threshold: 0.6 });
+        document.querySelectorAll('[data-count]').forEach((el) => stats.observe(el));
+      }
     </script>
   </body>
 </html>

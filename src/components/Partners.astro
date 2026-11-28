@@ -1,0 +1,40 @@
+---
+import lyra from '../assets/partners/lyra.webp';
+import pcbdesign from '../assets/partners/pcbdesign.webp';
+import sensa from '../assets/partners/sensa.webp';
+import kingpin from '../assets/partners/kingpin.webp';
+import valsogard from '../assets/partners/valsogard.webp';
+import prosys from '../assets/partners/prosys.webp';
+import aisler from '../assets/partners/aisler.webp';
+
+const logos = [
+  { src: lyra, alt: 'Lyra', sq: false },
+  { src: pcbdesign, alt: 'PCB Design', sq: false },
+  { src: sensa, alt: 'Sensa', sq: false },
+  { src: kingpin, alt: 'Kingpin', sq: true },
+  { src: valsogard, alt: 'Valsogard', sq: true },
+  { src: prosys, alt: 'ProSys', sq: true },
+  { src: aisler, alt: 'AISLER', sq: false },
+];
+---
+
+<div class="partners">
+  <div class="w">
+    <p>Partners and clients across the world</p>
+    <ul>
+      {logos.map((logo) => (
+        <li>
+          <img
+            class={logo.sq ? 'sq' : undefined}
+            src={logo.src.src}
+            width={logo.src.width}
+            height={logo.src.height}
+            alt={logo.alt}
+            loading="lazy"
+            decoding="async"
+          />
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
